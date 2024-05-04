@@ -14,6 +14,8 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     padding: 0;
     margin: 0;
     font-size: 35px;
@@ -52,12 +54,16 @@ p {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 600px;
+    gap: 50px;
 }
 
 .header .navbar a {
     text-decoration: none;
     color: white;
+}
+
+.header .navbar a:hover {
+    color: #48d348;
 }
 
 .header .navbar .pagina_atual {
@@ -79,10 +85,26 @@ p {
     text-decoration: underline;
 }  
 
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.content .container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.transition {
+    width: 100vw;
+    height: 160px;
+    background-image: url(../images/transition.png);
+    margin-top: auto;
+}
+
 .footer {
     width: 100vw;
     background-color: #040404;
-    margin-top: auto;
     color: white;
     display: flex;
     justify-content: center;
@@ -120,4 +142,68 @@ p {
 
 .copyright {
     font-size: 17px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    margin: 0 0 30px 0;
+    color: white;
+    text-align: justify;
+}
+
+.inputStyle {
+    background-color: black;
+    width: 100%;
+    height: auto;
+    font-size: 35px;
+    padding: 5px;
+    border: 3px solid #6a6a6a;
+    color: white;
+    width: 100%;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 10px 0
+}
+
+button {
+    width: 80%;
+    align-self: center;
+    font-size: 35px;
+    color: white;
+    background-color: #6a6a6a;
+    margin: 20px 0;
+    cursor: pointer;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+.submessage {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-self: center;
+    font-size: 26px;
+}
+
+.submessage a {
+    color: #228b22;
+}
+
+.submessage a:hover {
+    color: #1a6b1a
+}
+
+.infoLogReg {
+    margin-bottom: 10px; 
+    text-align: center;
 }
