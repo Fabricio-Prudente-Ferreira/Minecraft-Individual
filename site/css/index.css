@@ -1,0 +1,45 @@
+.indexIntroduction {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 6px #000 solid;
+    border-bottom: 8px #000 solid;
+}
+
+.indexIntroduction img {
+    width: 500px;
+    height: 500px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.content .container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .container .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 0 50px 0
+}
+
+.container .section .box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.box img {
+    width: 400px;
+    height: 400px;
+    margin-left: 50px;
+    border: 10px black solid;
+}
