@@ -112,13 +112,19 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 0 50px 0
+    margin: 0 0 40px 0
 }
 
 .container .section .box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.right {
+    text-align: right;
 }
 
 .footerTransition {
@@ -149,6 +155,7 @@ p {
     flex-direction: column;
 }
 
+
 .footer .box a {
     color: white;
 }
@@ -160,7 +167,7 @@ p {
 
 .footerCopyright {
     width: 100vw;
-    height: 120px;
+    height: 160px;
     background-image: url(../images/background/footerTransition.png);
     color: white;
     display: flex;
@@ -228,10 +235,18 @@ button:hover {
 }
 
 .submessage a:hover {
-    color: #1a6b1a
+    color: #14ddeb;
+}
+
+.footer .container .box .navigation:hover {
+    color: #14ddeb;
 }
 
 .infoLogReg {
     margin-bottom: 10px; 
     text-align: center;
+}
+
+.header .container .navbar .exit:hover {
+    color: red;
 }
