@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+        <div class="headerTransition"></div>
         <div class="content">
             <div class="container">
                 <span class="title">CADASTRE-SE</span>
@@ -28,48 +29,68 @@
                     <span class="infoLogReg">Insira os dados abaixo para efetuar seu cadastro no site</span>
                     <label>
                         <span>Nome</span>
-                        <input type="text" class="inputStyle" placeholder="Nome">
+                        <input type="text" class="inputStyle" id="inpNome" placeholder="Nome">
                     </label>
                     <label>
                         <span>Nickname</span>
-                        <input type="text" class="inputStyle" placeholder="Nickname">
+                        <input type="text" class="inputStyle" id="inpNick" placeholder="Nickname">
                     </label>
                     <label>
                         <span>E-mail</span>
-                        <input type="text" class="inputStyle" placeholder="E-mail">
+                        <input type="text" class="inputStyle" id="inpEmail" placeholder="E-mail">
                     </label>
                     <label>
                         <span>Senha</span>
-                        <input type="text" class="inputStyle" placeholder="Senha">
+                        <input type="password" class="inputStyle" id="inpSenha" placeholder="Senha">
                     </label>
                     <label>
                         <span>Confirmar Senha</span>
-                        <input type="text" class="inputStyle" placeholder="Senha">
+                        <input type="password" class="inputStyle" id="inpConfSenha" placeholder="Senha">
                     </label>
+                    <div id="div_erro" style="text-align: center;"></div>
                     <button onclick="cadastrar()">Concluir Cadastro</button>
-                    <span class="submessage">Ja possui uma conta?<a href="login.html">Login</a></span>
+                    <span class="submessage">Já possui uma conta?<a href="login.html">Login</a></span>
                 </div>
             </div>
         </div>
-        <div class="transition"></div>
+        <div class="footerTransition"></div>
         <div class="footer">
             <div class="container">
-                <div class="block">
-                    <div class="box">
-                        <a href="./index.html">Início</a>
-                        <a href="./sobremim.html">Sobre Mim</a>
-                        <a href="./cadastro.html">Cadastro</a>
-                        <a href="./login.html">Login</a>
-                    </div>
-                    <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
+                <div class="box">
+                    <a href="./index.html">Início</a>
+                    <a href="./sobremim.html">Sobre Mim</a>
+                    <a href="./cadastro.html">Cadastro</a>
+                    <a href="./login.html">Login</a>
                 </div>
-                <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
+                <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
             </div>
+        </div>
+        <div class="footerCopyright">
+            <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
         </div>
     </body>
 </html>
 <script>
     function cadastrar(){
+        var nome = inpNome.value;
+        var nick = inpNick.value;
+        var email = inpEmail.value;
+        var senha = inpSenha.value;
+        var confSenha = inpConfSenha.value;
+        var texto = "";
+        var corTexto = 'red';
 
+        if(nome == "" || nick == "" || email == "" || senha == "" || confSenha == "") texto = "Por favor, preencha todos os campos";
+        else if(email.indexOf('@') == -1 || email.indexOf('.') == -1) texto = "Digite um e-mail válido";
+        else if(senha.length < 7) texto = "Sua senha deve ter ao menos 7 dígitos";
+        else if(senha != confSenha) texto = "As senhas não se correspondem";
+        else {
+            texto = "Cadastro Concluído";
+            corTexto = '#48d348';
+        }
+        
+        div_erro.innerHTML = `
+            <span style="color: ${corTexto}; text-align: center;">${texto}</span>
+        `;
     }
 </script>

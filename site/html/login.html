@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+        <div class="headerTransition"></div>
         <div class="content">
             <div class="container">
                 <span class="title">ENTRAR</span>
@@ -28,36 +29,51 @@
                     <span class="infoLogReg">Insira os dados abaixo para acessar a sua conta</span>
                     <label>
                         <span>Nickname | E-mail</span>
-                        <input type="text" class="inputStyle" placeholder="Login">
+                        <input type="text" class="inputStyle" id="inpLogin" placeholder="Login">
                     </label>
                     <label>
                         <span>Senha</span>
-                        <input type="text" class="inputStyle" placeholder="Senha">
+                        <input type="password" class="inputStyle" id="inpSenha" placeholder="Senha">
                     </label>
+                    <div id="div_erro" style="text-align: center;"></div>
                     <button onclick="login()">Entrar</button>
-                    <span class="submessage">Ja possui uma conta?<a href="login.html">Login</a></span>
+                    <span class="submessage">Não possui uma conta?<a href="cadastro.html">Cadastre-se</a></span>
                 </div>
             </div>
         </div>
-        <div class="transition"></div>
+        <div class="footerTransition"></div>
         <div class="footer">
             <div class="container">
-                <div class="block">
-                    <div class="box">
-                        <a href="./index.html">Início</a>
-                        <a href="./sobremim.html">Sobre Mim</a>
-                        <a href="./cadastro.html">Cadastro</a>
-                        <a href="./login.html">Login</a>
-                    </div>
-                    <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
+                <div class="box">
+                    <a href="./index.html">Início</a>
+                    <a href="./sobremim.html">Sobre Mim</a>
+                    <a href="./cadastro.html">Cadastro</a>
+                    <a href="./login.html">Login</a>
                 </div>
-                <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
+                <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
             </div>
+        </div>
+        <div class="footerCopyright">
+            <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
         </div>
     </body>
 </html>
 <script>
     function login(){
+        var login = inpLogin.value;
+        var senha = inpSenha.value;
+        var texto = "";
+        var corTexto = 'red';
 
+        if(login == "" || senha == "") texto = "Por favor, preencha todos os campos";
+        else if((login != "Fabricio" && login != "fab@gmail.com") || senha != "1234567") texto = "Login ou senha inválidos. Tente novamente";
+        else {
+            corTexto = '#48d348';
+            texto = "Login efetuado!";
+        }
+
+        div_erro.innerHTML = `
+            <span style="color: ${corTexto}; text-align: center">${texto}</span>
+        `;
     }
 </script>
