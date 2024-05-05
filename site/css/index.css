@@ -1,18 +1,3 @@
-.indexIntroduction {
-    background-image: url(../images/background/background.jpg);
-    background-size: cover;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 6px #000 solid;
-}
-
-.indexIntroduction img {
-    width: 500px;
-    height: 500px;
-}
-
 .box img {
     width: 400px;
     height: 400px;

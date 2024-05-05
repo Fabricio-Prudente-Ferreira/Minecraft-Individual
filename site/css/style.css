@@ -250,3 +250,25 @@ button:hover {
 .header .container .navbar .exit:hover {
     color: red;
 }
+
+.indexIntroduction {
+    background-color: #000;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/background/headerBg.png);
+}
+
+.indexIntroduction img {
+    width: 500px;
+    height: 500px;
+}
+
+.indexIntroduction .moon {
+    position: absolute;
+    top: 160px;
+    right: 100px;
+    width: 160px;
+    height: 160px;
+}

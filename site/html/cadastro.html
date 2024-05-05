@@ -40,6 +40,10 @@
                         <input type="text" class="inputStyle" id="inpEmail" placeholder="E-mail">
                     </label>
                     <label>
+                        <span>Data de Nascimento</span>
+                        <input type="date" class="inputStyle" id="inpData">
+                    </label>
+                    <label>
                         <span>Senha</span>
                         <input type="password" class="inputStyle" id="inpSenha" placeholder="Senha">
                     </label>
@@ -75,12 +79,13 @@
         var nome = inpNome.value;
         var nick = inpNick.value;
         var email = inpEmail.value;
+        var dtNasc = inpData.value;
         var senha = inpSenha.value;
         var confSenha = inpConfSenha.value;
         var texto = "";
         var corTexto = 'red';
 
-        if(nome == "" || nick == "" || email == "" || senha == "" || confSenha == "") texto = "Por favor, preencha todos os campos";
+        if(nome == "" || nick == "" || email == "" || dtNasc == "" || senha == "" || confSenha == "") texto = "Por favor, preencha todos os campos";
         else if(email.indexOf('@') == -1 || email.indexOf('.') == -1) texto = "Digite um e-mail válido";
         else if(senha.length < 7) texto = "Sua senha deve ter ao menos 7 dígitos";
         else if(senha != confSenha) texto = "As senhas não se correspondem";

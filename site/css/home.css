@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border-top: 6px #000 solid; */
     background-image: url(../images/background/headerBg.png);
 }
 
