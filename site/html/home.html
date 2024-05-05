@@ -24,6 +24,16 @@
             <img src="../images/imagens/moon.png" alt="moon" class="moon">
         </div>
         <div class="headerTransition"></div>
+        <div class="content">
+            <div class="container">
+                <span class="title">BEM-VINDO</span>
+                <div class="section">
+                    <span class="subtitle">Mobs</span>
+                    <div class="box" id="mobsCards"></div>
+                    <div id="mobPages"></div>
+                </div>
+            </div>
+        </div>
         <div class="footerTransition"></div>
         <div class="footer">
             <div class="container">
@@ -41,3 +51,125 @@
         </div>
     </body>
 </html>
+<script>
+    var mobsName = [
+        'Abelha',
+        'Afogado',
+        'Aldeão',
+        'Aldeão Zumbi',
+        'Allay',
+        'Aranha',
+        'Aranha de Caverna',
+        'Axolote',
+        'Bacalhau',
+        'Baiacu',
+        'Blaze',
+        'Bode',
+        'Bogged',
+        'Boneco de Ferro',
+        'Boneco de Neve',
+        'Breeze',
+        'Bruxa',
+        'Burro',
+        'Camelo',
+        'Cavalo',
+        'Cavalo Esqueleto',
+        'Coelho',
+        'Coguvaca',
+        'Creeper',
+        'Cubo de Magma',
+        'Devastador',
+        'Dragão Ender',
+        'Enderman',
+        'Endermite',
+        'Esqueleto',
+        'Esqueleto Wither',
+        'Galinha',
+        'Gato',
+        'Ghast',
+        'Girino',
+        'Golfinho',
+        'Guardião',
+        'Guardião Ancião',
+        'Hoglin',
+        'Husk',
+        'Invocador',
+        'Jaquatirica',
+        'Jumento',
+        'Lhama',
+        'Lobo',
+        'Lula',
+        'Lula Brilhante',
+        'Morcego',
+        'Ovelha',
+        'Panda',
+        'Papagaio',
+        'Phantom',
+        'Peixe Tropical',
+        'Piglin',
+        'Piglin Bruto',
+        'Piglin Zumbi',
+        'Porco',
+        'Salmão',
+        'Sapo',
+        'Saqueador',
+        'Shulker',
+        'Slime',
+        'Sniffer',
+        'Stray',
+        'Strider',
+        'Tartaruga',
+        'Tatu',
+        'Traça',
+        'Urso Polar',
+        'Vaca',
+        'Vingador',
+        'Warden',
+        'Wither',
+        'Zoglin',
+        'Zumbi'
+    ];
+
+    var cards = [];
+    var letras = ['A'];
+
+    var content = "<div class='group'><span style='color: white;'>A</span><div class='cards'>";
+    var contCards = 0;
+    var pularLinha = false;
+    var letra = "A";
+
+    for(var index = 0; index < mobsName.length; index++){
+        if(!mobsName[index].startsWith(letra)) {
+            letra = mobsName[index][0];
+            letras.push(letra);
+            pularLinha = true;
+        } else pularLinha = false;
+        
+        if(pularLinha) {
+            content += `</div></div>`
+            cards.push(content);
+            content = `<div class='group'><span style='color: white;'>${letra}</span><div class='cards'>`;
+            contCards = 0;
+        }
+        else if(contCards % 4 == 0) content += `</div><div class='cards'>`;
+            
+        content += `<button class='card'>${mobsName[index]}</button>`;
+
+        if(index == mobsName.length - 1) { 
+            content += `</div></div>`;
+            cards.push(content);
+        }
+
+        contCards++;
+    }
+
+    var pages = "";
+    for(var index = 0; index < cards.length; index++){
+        pages += `
+            <button onclick="mobsCards.innerHTML = cards[${index}]">${letras[index]}</button>
+        `
+    }
+
+    mobsCards.innerHTML = cards[0];
+    mobPages.innerHTML = pages;
+</script>
