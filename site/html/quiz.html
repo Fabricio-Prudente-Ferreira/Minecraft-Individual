@@ -224,6 +224,7 @@
                 <span class="subtitle">${quizType}</span>
                 <img src=${img} alt=${quizType}>
                 <button onclick="next()">Iniciar</button>
+                <button onclick="sair()">Voltar</button>
             </div>`;
     }
 
@@ -544,26 +545,26 @@
     function questionsCrafts(){
         perguntas = [
             'Quais itens são precisos para craftar uma besta?',
-            'B',
-            'C',
-            'D',
-            'E'
+            'O craft abaixo resultará em qual bloco?',
+            'Qual é o único corante que não é possível ser craftado no jogo?',
+            'Quantos painéis de vidro são gerados por craft?',
+            'Qual alimento que vai no slot central da Crafting Table em um craft de bolo?'
         ];
 
         alternativas = [
             ['Vareta, Tábua, Linha e Alavanca', 'Vareta, Tábua, Ferro e Alavanca', 'Tábua, Gancho de Armadilha, Vareta e Linha', 'Ferro, Gancho de Armadilha, Linha e Vareta'],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
+            ['Arenito', 'TNT', 'Terracota', 'Areia das Almas'],
+            ['Corante Azul', 'Corante Branco', 'Corante Verde', 'Corante Marrom'],
+            ['4', '8', '12', '16'],
+            ['Ovo', 'Trigo', 'Balde de Leite', 'Açúcar'],
         ];
 
         respCerta = [
             'Ferro, Gancho de Armadilha, Linha e Vareta', 
-            2, 
-            3, 
-            4,
-
+            'TNT', 
+            'Corante Verde', 
+            '16',
+            'Ovo'
         ];
     }
 
