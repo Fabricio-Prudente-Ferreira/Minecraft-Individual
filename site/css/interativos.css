@@ -30,9 +30,10 @@ body .content .container .section {
     border: 6px solid #14ddeb;
 }
 
-#chat {
+#interativo {
     width: 90%;
     background-image: url(../images/background/sculk.png);
     min-height: 80vh;
     border: 6px solid black;
+    display: flex;
 }

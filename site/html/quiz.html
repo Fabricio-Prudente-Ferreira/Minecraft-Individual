@@ -6,6 +6,7 @@
         <title>Village Craft | Quizzes</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/interativos.css">
+        <link rel="stylesheet" href="../css/quiz.css">
     </head>
     <body>
         <div class="header">
@@ -25,44 +26,58 @@
             <div class="container" id="container">
                 <span class="title">QUIZZES</span>
                 <div class="section">
-                    <div class="card">
-                        <img src="https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg" alt="Biomas e Estruturas">
-                        <span class="cardTitle">Biomas e Estruturas</span>
+                    <div class="card" onclick="selectQuiz('Geral')">
+                        <img src="https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp" alt="Geral">
+                        <span class="cardTitle">Geral</span>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Minérios')">
                         <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg" alt="Minérios">
                         <span class="cardTitle">Minérios</span>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Redstone')">
                         <img src="https://wallpapercave.com/wp/wp10656185.png" alt="Redstone">
                         <span class="cardTitle">Redstone</span>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Mobs')">
                         <img src="https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg" alt="Mobs">
                         <span class="cardTitle">Mobs</span>
                     </div>
                 </div>
                 <div class="section">
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Blocos')">
                         <img src="https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original" alt="Blocos">
                         <span class="cardTitle">Blocos</span>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Itens')">
                         <img src="https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large" alt="Itens">
                         <span class="cardTitle">Itens</span>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Encantamentos')">
                         <img src="https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg" alt="Encantamentos">
                         <span class="cardTitle">Encantamentos</span>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="selectQuiz('Biomas')">
+                        <img src="https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg" alt="Biomas">
+                        <span class="cardTitle">Biomas</span>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="card" onclick="selectQuiz('Poções')">
+                        <img src="https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp" alt="Poções">
+                        <span class="cardTitle">Poções</span>
+                    </div>
+                    <div class="card" onclick="selectQuiz('Estruturas')">
+                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg" alt="Estruturas">
+                        <span class="cardTitle">Estruturas</span>
+                    </div>
+                    <div class="card" onclick="selectQuiz('Crafts')">
+                        <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="Crafts">
+                        <span class="cardTitle">Crafts</span>
+                    </div>
+                    <div class="card" onclick="selectQuiz('App & Jogo')">
                         <img src="https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg" alt="App">
                         <span class="cardTitle">App & Jogo</span>
                     </div>
-                </div>
-                <div class="quiz">
-                    <span class="subtitle">Minérios</span>
-                    
                 </div>
             </div>
         </div>
@@ -83,3 +98,494 @@
         </div>
     </body>
 </html>
+<script>
+    var content = `
+        <span class="title">QUIZZES</span>
+        <div class="section">
+            <div class="card" onclick="selectQuiz('Geral')">
+                <img src="https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp" alt="Geral">
+                <span class="cardTitle">Geral</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Minérios')">
+                <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg" alt="Minérios">
+                <span class="cardTitle">Minérios</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Redstone')">
+                <img src="https://wallpapercave.com/wp/wp10656185.png" alt="Redstone">
+                <span class="cardTitle">Redstone</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Mobs')">
+                <img src="https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg" alt="Mobs">
+                <span class="cardTitle">Mobs</span>
+            </div>
+        </div>
+        <div class="section">
+            <div class="card" onclick="selectQuiz('Blocos')">
+                <img src="https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original" alt="Blocos">
+                <span class="cardTitle">Blocos</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Itens')">
+                <img src="https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large" alt="Itens">
+                <span class="cardTitle">Itens</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Encantamentos')">
+                <img src="https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg" alt="Encantamentos">
+                <span class="cardTitle">Encantamentos</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Biomas')">
+                <img src="https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg" alt="Biomas">
+                <span class="cardTitle">Biomas</span>
+            </div>
+        </div>
+        <div class="section">
+            <div class="card" onclick="selectQuiz('Poções')">
+                <img src="https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp" alt="Poções">
+                <span class="cardTitle">Poções</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Estruturas')">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg" alt="Estruturas">
+                <span class="cardTitle">Estruturas</span>
+            </div>
+            <div class="card" onclick="selectQuiz('Crafts')">
+                <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="Crafts">
+                <span class="cardTitle">Crafts</span>
+            </div>
+            <div class="card" onclick="selectQuiz('App & Jogo')">
+                <img src="https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg" alt="App">
+                <span class="cardTitle">App & Jogo</span>
+            </div>
+        </div>
+    `;
+
+    var quizType = "";
+    var perguntas = [];
+    var alternativas = [];
+    var respCerta = [];
+    var contador = -1;
+    var acertos = 0;
+
+    function selectQuiz(tipo) {
+        var img = "";
+        contador = -1;
+
+        quizType = tipo; 
+
+        if(quizType == 'Geral') {
+            img = 'https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp';
+            questionsAll();
+        }
+        else if(quizType == 'Minérios') {
+            img = 'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg';
+            questionsOres();
+        }
+        else if(quizType == 'Redstone') {
+            img = 'https://wallpapercave.com/wp/wp10656185.png';
+            questionsRedstone();
+        }
+        else if(quizType == 'Mobs') {
+            img = 'https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg';
+            questionsMobs();
+        }
+        else if(quizType == 'Blocos') {
+            img = 'https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original';
+            questionsBlocks();
+        }
+        else if(quizType == 'Itens') {
+            img = 'https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large';
+            questionsItems();
+        }
+        else if(quizType == 'Encantamentos') {
+            img = 'https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg';
+            questionsEnchantments();
+        }
+        else if(quizType == 'Biomas') {
+            img = 'https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg';
+            questionsBiomes();
+        }
+        else if(quizType == 'Poções') {
+            img = 'https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp';
+            questionsPotions();
+        }
+        else if(quizType == 'Estruturas') {
+            img = 'https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg';
+            questionsStructures();
+        }
+        else if(quizType == 'Crafts') {
+            img = 'https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg';
+            questionsCrafts();
+        }
+        else {
+            img = 'https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg';
+            questionsApp();
+        }
+
+        container.innerHTML = `
+            <div id="interativo" class="quiz">
+                <span class="subtitle">${quizType}</span>
+                <img src=${img} alt=${quizType}>
+                <button onclick="next()">Iniciar</button>
+            </div>`;
+    }
+
+    function next() {
+        contador++;
+
+        interativo.innerHTML = `
+            <span class="subtitle question">${perguntas[contador]}</span>
+            <img src='../images/quiz/${quizType}/questionImg${contador}.jpg' alt="imagem${contador}">
+            <div class="options">
+                <div class="alternatives">
+                    <button onclick="altSelecionada(0)" id="opt0">${alternativas[contador][0]}</button>
+                    <button onclick="altSelecionada(1)" id="opt1">${alternativas[contador][1]}</button>
+                </div>
+                <div class="alternatives">
+                    <button onclick="altSelecionada(2)" id="opt2">${alternativas[contador][2]}</button>
+                    <button onclick="altSelecionada(3)" id="opt3">${alternativas[contador][3]}</button>
+                </div>
+            </div>
+        `;
+    }
+
+    function altSelecionada(alternativa) {
+        var alt_correta = false;
+
+        if(alternativas[contador][alternativa] == respCerta[contador]) alt_correta = true;
+        
+        if(!alt_correta) {
+            document.getElementById(`opt${alternativa}`).style.color = `red`;
+            document.getElementById(`opt${alternativa}`).style.border = `2px red solid`;
+        }
+        
+        document.getElementById(`opt${alternativas[contador].indexOf(respCerta[contador])}`).style.color = `lime`;
+        document.getElementById(`opt${alternativas[contador].indexOf(respCerta[contador])}`).style.border = `2px lime solid`;
+
+        for(var cont = 0; cont < 4; cont++){
+            document.getElementById(`opt${cont}`).disabled = true;
+            document.getElementById(`opt${cont}`).style.cursor = 'auto';
+            document.getElementById(`opt${cont}`).style.backgroundColor = '#444';
+        }
+
+        if(contador < 4) {
+            interativo.innerHTML += `
+                <button onclick="next()">Próxima Pergunta</button>
+            `;
+        } else {
+            interativo.innerHTML += `
+                <button onclick="sair()">Ver Resultados</button>
+            `;
+        }
+    }
+
+    function results(){
+
+    }
+    
+    function sair(){ container.innerHTML = content; }
+
+    // ============================================== FUNÇÕES PARA CADA TEMA DE QUIZ ============================================== //
+    
+    //Geral
+    function questionsAll(){
+        perguntas = [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E'
+        ];
+
+        alternativas = [
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+        ];
+
+        respCerta = [
+            1, 2, 3, 4
+        ];
+    }
+
+    //Minérios
+    function questionsOres(){
+        perguntas = [
+            'Qual é o nome desse minério?',
+            'Qual é o minério que não pode ser coletado utilizando uma picareta feita do mesmo material?',
+            'Qual desses minérios é impossível de se encontrar na dimensão do Nether?',
+            'A partir da versão 1.18 do Java Edition, é possível encontrar esmeralda entre quais camadas do Overworld?',
+            'Qual é o único minério que pode ser transformado em corante?'
+        ];
+
+        alternativas = [
+            ['Quartzo', 'Ferro', 'Netherite', 'Ametista'],
+            ['Ferro', 'Diamante', 'Cobre', 'Ouro'],
+            ['Ouro', 'Netherite', 'Cobre', 'Quartzo'],
+            ['-55 e 20', '-10 e 0', '120 e 333', '-16 e 320'],
+            ['Redstone', 'Lápis-Lazúli', 'Carvão', 'Cobre'],
+        ];
+
+        respCerta = [
+            'Netherite', 
+            'Ouro', 
+            'Cobre', 
+            '-16 e 320',
+            'Lápis-Lazúli',
+        ];
+    }
+
+    //Redstone
+    function questionsRedstone(){
+        perguntas = [
+            'Qual é a função do componente de redstone abaixo?',
+            'Qual componente de redstone analisa a mudança de estado de um bloco qualquer?',
+            'Quantos blocos a energia de redstone consegue alcançar via fio?',
+            'Qual das opções abaixo não é uma função do redstone?',
+            'Qual é o único mob que tem o redstone como um de seus possíveis drops?'
+        ];
+
+        alternativas = [
+            ['Enviar um sinal de redstone dependendo da luminosidade do ambiente', 'Medir os estados dos blocos e analisar a intensidade de um sinal', 'Recarregar o sinal fraco de redstone', 'Ninguém sabe a função disso ;-;'],
+            ['Pistão', 'Repetidor', 'Observador', 'Ejetor'],
+            ['8 blocos', '10 blocos', '13 blocos', '15 blocos'],
+            ['Personalizar de armaduras', 'Prolongar o efeito de uma poção', 'Troca com aldeões', 'Encantar ferramentas e armaduras'],
+            ['Bruxa', 'Zumbi', 'Piglin', 'Invocador'],
+        ];
+
+        respCerta = [
+            'Medir os estados dos blocos e analisar a intensidade de um sinal', 
+            'Observador', 
+            '15 blocos', 
+            'Encantar ferramentas e armaduras',
+            'Bruxa'
+        ];
+    }
+
+    //Mobs
+    function questionsMobs(){
+        perguntas = [
+            'Qual é o mob que pode dropar o Totem da Imortalidade?',
+            'Qual desses mobs abaixo não pode ser encontrado naturalmente no jogo?',
+            'De qual mob o Phantom tem medo?',
+            'Quantas personalidades o panda possui?',
+            'Qual dos mobs abaixo é o mais raro de ser encontrado naturalmente?'
+        ];
+
+        alternativas = [
+            ['Invocador', 'Bruxa', 'Vingador', 'Warden'],
+            ['Wither', 'Ilusionista', 'Cavalo Esqueleto', 'Aranha Invisível'],
+            ['Gato', 'Lobo', 'Papagaio', 'Tatu'],
+            ['3', '4', '5', '6'],
+            ['Panda Marrom', 'Ovelha Rosa', 'Axolote Azul', 'Cavalo Esqueleto'],
+        ];
+
+        respCerta = [
+            'Invocador', 
+            'Ilusionista', 
+            'Gato', 
+            '6',
+            'Axolote Azul'
+        ];
+    }
+
+    //Blocos
+    function questionsBlocks(){
+        perguntas = [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E'
+        ];
+
+        alternativas = [
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+        ];
+
+        respCerta = [
+            1, 2, 3, 4
+        ];
+    }
+
+    //Itens
+    function questionsItems(){
+        perguntas = [
+            '',
+            'B',
+            'C',
+            'D',
+            'E'
+        ];
+
+        alternativas = [
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4]
+        ];
+
+        respCerta = [
+            1, 2, 3, 4
+        ];
+    }
+
+    //Encantamentos
+    function questionsEnchantments(){
+        perguntas = [
+            'Qual desses encantamentos é aceito nas espadas?',
+            'Selecione a opção que possua todos os encantamentos usados somente em bestas.',
+            'Qual é o nível máximo do encantamento Proteção?',
+            'Qual é o único encantamento que não é compatível com Remendo?',
+            'Lealdade, Condutividade, Penetração e Correnteza são encantamentos exclusivos de:'
+        ];
+
+        alternativas = [
+            ['Chama', 'Ruína de Artrópodes', 'Penetração', 'Força'],
+            ['Chama, Durabilidade e Lealdade', 'Alcance, Durabilidade e Rajada', 'Carga Rápida, Penetração e Rajada', 'Chama, Carga Rápida e Julgamento'],
+            ['2', '3', '4', '5'],
+            ['Infinidade', 'Alcance', 'Aspecto Flamejante', 'Espinhos'],
+            ['Clava', 'Tridente', 'Vara de Pesca', 'Enxada']
+        ];
+
+        respCerta = [
+            'Ruína de Artrópodes', 
+            'Carga Rápida, Penetração e Rajada', 
+            '4', 
+            'Infinidade',
+            'Tridente'
+        ];
+    }
+
+    //Biomas
+    function questionsBiomes(){
+        perguntas = [
+            'Qual é o nome do bioma na imagem abaixo?',
+            'As vilas podem ser geradas em diversos biomas, exceto na:',
+            'Qual dos biomas abaixo tem chuva?',
+            'Quantos biomas existem no Nether?',
+            'Entre as opções abaixo, qual é o bioma mais raro?'
+        ];
+
+        alternativas = [
+            ['Floresta Escura', 'Selva', 'Ilha de Cogumelos', 'Floresta de Bétulas'],
+            ['Planície', 'Floresta Comum', 'Taiga Nevada', 'Selva'],
+            ['Deserto', 'Savana', 'Oceano', 'Mesa (Badlands)'],
+            ['4', '5', '6', '7'],
+            ['Floresta de Bambu', 'Floresta de Cerejeiras', 'Picos de Gelo', 'Ilha de Cogumelos']
+        ];
+
+        respCerta = [
+            'Floresta Escura', 
+            'Selva', 
+            'Oceano', 
+            '5',
+            'Ilha de Cogumelos'
+        ];
+    }
+
+    //Poções
+    function questionsPotions(){
+        perguntas = [
+            'Qual é a única poção que não necessita do Fungo do Nether?',
+            'Qual é a ordem de itens para fabricar uma poção de visão noturna?',
+            'Qual a função da Glowstone nas poções?',
+            'Como fazer uma poção arremessável?',
+            'Usando uma melancia reluzente no suporte de poções, é possível obter a poção de:'
+        ];
+
+        alternativas = [
+            ['Poção de Fraqueza', 'Poção de Força', 'Poção de Super-Pulo', 'Poção de Invisibilidade'],
+            ['Fungo do Nether > Baiacu', 'Escama de Phantom > Glowstone', 'Fungo do Nether > Cenoura Dourada', 'Fungo do Nether > Lágrima de Ghast'],
+            ['Prolongar o efeito', 'Potencializar o efeito', 'Remover o efeito', 'Enfraquecer o efeito'],
+            ['Usando redstone', 'Usando pólvora', 'Usando açúcar', 'Usando bola de neve'],
+            ['Super-Pulo', 'Regeneração', 'Força', 'Vida Instantânea'],
+        ];
+
+        respCerta = [
+            'Poção de Fraqueza', 
+            'Fungo do Nether > Cenoura Dourada', 
+            'Potencializar o efeito', 
+            'Usando pólvora', 
+            'Vida Instantânea'
+        ];
+    }
+
+    //Estruturas
+    function questionsStructures(){
+        perguntas = [
+            'Qual estrutura não pode ser encontrada na tundra nevada?',
+            'Em qual estrutura surgem os Piglins Bárbaros?',
+            'Qual dessas estruturas não possui um Mob Spawner?',
+            'Qual estrutura só pode ser acessada após matar o Ender Dragon?',
+            'Qual é o nome da estrutura da imagem abaixo?'
+        ];
+
+        alternativas = [
+            ['Iglu', 'Vila', 'Templo', 'Posto de Saqueadores'],
+            ['Fortaleza do Nether', 'Cidade Ancestral', 'Bastião', 'Templo do Nether'],
+            ['Bastião', 'Cidade Ancestral', 'Mansão do Bosque', 'Fortaleza do Nether'],
+            ['Cidade do Fim', 'Mansão do Bosque', 'Cidade Ancestral', 'Fortaleza'],
+            ['Bastião', 'Monumento Oceânico', 'Ruínas Aquáticas', 'Fortaleza'],
+        ];
+
+        respCerta = [
+            'Templo', 
+            'Bastião', 
+            'Cidade Ancestral', 
+            'Cidade do Fim',
+            'Monumento Oceânico'
+        ];
+    }
+
+    //Crafts
+    function questionsCrafts(){
+        perguntas = [
+            'Quais itens são precisos para craftar uma besta?',
+            'B',
+            'C',
+            'D',
+            'E'
+        ];
+
+        alternativas = [
+            ['Vareta, Tábua, Linha e Alavanca', 'Vareta, Tábua, Ferro e Alavanca', 'Tábua, Gancho de Armadilha, Vareta e Linha', 'Ferro, Gancho de Armadilha, Linha e Vareta'],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+        ];
+
+        respCerta = [
+            'Ferro, Gancho de Armadilha, Linha e Vareta', 
+            2, 
+            3, 
+            4,
+
+        ];
+    }
+
+    //App e Jogo
+    function questionsApp(){
+        perguntas = [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E'
+        ];
+
+        alternativas = [
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+        ];
+
+        respCerta = [
+            1, 2, 3, 4
+        ];
+    }
+</script>

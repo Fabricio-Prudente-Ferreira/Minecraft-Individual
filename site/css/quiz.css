@@ -1,0 +1,40 @@
+.quiz {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px
+}
+
+.quiz img {
+    border: 10px solid black;
+    width: 50%;
+    margin: 20px 0;
+}
+
+.quiz button {
+    width: 50%;
+}
+
+.quiz .question {
+    text-decoration: none;
+    width: 80%;
+    text-align: center;
+    font-size: 60px;
+}
+
+.quiz .options {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz .options .alternatives {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.quiz .options .alternatives button {
+    width: 48%;
+}
