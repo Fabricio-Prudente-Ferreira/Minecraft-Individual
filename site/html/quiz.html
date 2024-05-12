@@ -84,8 +84,8 @@
                         <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="Crafts">
                         <span class="cardTitle">Crafts</span>
                     </div>
-                    <div class="card" onclick="selectQuiz('App & Jogo')">
-                        <img src="https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg" alt="App">
+                    <div class="card" onclick="selectQuiz('App')">
+                        <img src="../images/imagens/gameIntro.png" alt="App">
                         <span class="cardTitle">App & Jogo</span>
                     </div>
                 </div>
@@ -160,8 +160,8 @@
                 <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="Crafts">
                 <span class="cardTitle">Crafts</span>
             </div>
-            <div class="card" onclick="selectQuiz('App & Jogo')">
-                <img src="https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg" alt="App">
+            <div class="card" onclick="selectQuiz('App')">
+                <img src="../images/imagens/gameIntro.png" alt="App">
                 <span class="cardTitle">App & Jogo</span>
             </div>
         </div>
@@ -225,7 +225,7 @@
             questionsCrafts();
         }
         else {
-            img = 'https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg';
+            img = '../images/imagens/gameIntro.png';
             questionsApp();
         }
 
@@ -285,7 +285,7 @@
             else results();
 
             clearInterval(timer);
-        }, 50);
+        }, 1500);
     }
 
     function results(){
@@ -656,22 +656,27 @@
     //App e Jogo
     function questionsApp(){
         perguntas = [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
+            'Quantos heróis o jogo possui?',
+            'Em qual fase está localizado o Guardian?',
+            'Qual a cor da poção que aumenta a velocidade do disparo?',
+            'Qual é o mini-boss da Fase 5 - Cavernas?',
+            'Quantos pontos de vida (HP) o mob Ghast possui?'
         ];
 
         alternativas = [
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
+            ['1', '2', '3', '4'],
+            ['Fase 1 - Planícies', 'Fase 2 - Mares', 'Fase 3 - Florestas', 'Fase 4 - Nether'],
+            ['Verde', 'Azul', 'Rosa', 'Roxo'],
+            ['Phantom', 'Elder Guardian', 'Warden', 'Wither'],
+            ['5', '6', '7', '8']
         ];
 
         respCerta = [
-            1, 2, 3, 4
+            '4',
+            'Fase 2 - Mares',
+            'Verde',
+            'Warden',
+            '6'
         ];
     }
 </script>
