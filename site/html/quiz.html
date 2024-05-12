@@ -7,6 +7,16 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/interativos.css">
         <link rel="stylesheet" href="../css/quiz.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <style>
+            canvas {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        </style>
     </head>
     <body>
         <div class="header">
@@ -252,34 +262,100 @@
 
         if(alternativas[contador][alternativa] == respCerta[contador]) alt_correta = true;
         
-        if(!alt_correta) {
-            document.getElementById(`opt${alternativa}`).style.color = `red`;
-            document.getElementById(`opt${alternativa}`).style.border = `2px red solid`;
+        if(alt_correta) {
+            acertos++;
+            document.getElementById(`opt${alternativa}`).style.color = `lime`;
+            document.getElementById(`opt${alternativa}`).style.border = `2px lime solid`;
+        } else {
+            document.getElementById(`opt${alternativa}`).style.color = `#a00`;
+            document.getElementById(`opt${alternativa}`).style.border = `2px #a00 solid`;
         }
         
-        document.getElementById(`opt${alternativas[contador].indexOf(respCerta[contador])}`).style.color = `lime`;
-        document.getElementById(`opt${alternativas[contador].indexOf(respCerta[contador])}`).style.border = `2px lime solid`;
+        // document.getElementById(`opt${alternativas[contador].indexOf(respCerta[contador])}`).style.color = `lime`;
+        // document.getElementById(`opt${alternativas[contador].indexOf(respCerta[contador])}`).style.border = `2px lime solid`;
 
         for(var cont = 0; cont < 4; cont++){
             document.getElementById(`opt${cont}`).disabled = true;
             document.getElementById(`opt${cont}`).style.cursor = 'auto';
-            document.getElementById(`opt${cont}`).style.backgroundColor = '#444';
+            document.getElementById(`opt${cont}`).style.backgroundColor = '#333';
         }
 
-        if(contador < 4) {
-            interativo.innerHTML += `
-                <button onclick="next()">Próxima Pergunta</button>
-            `;
-        } else {
-            interativo.innerHTML += `
-                <button onclick="sair()">Ver Resultados</button>
-            `;
-        }
+        var timer = setInterval(() => {
+            if(contador < 4) next();
+            else results();
+
+            clearInterval(timer);
+        }, 50);
     }
 
     function results(){
+        interativo.innerHTML = `
+            <div class='graficos'>
+                <section>
+                    <canvas id='acertos'></canvas>
+                </section>
+            </div>
+            <button onclick="sair()">Voltar</button>
+        `;
 
+        document.getElementById('interativo').style.backgroundImage = "url(../images/background/footerBg.png)";
+
+        var acertosCanvas = document.getElementById('acertos').getContext('2d');
+        acertosCanvas.canvas.parentNode.style.width = '500px';
+        acertosCanvas.canvas.parentNode.style.height = '500px';
+        acertosCanvas.canvas.width = 1;
+        acertosCanvas.canvas.height = 1;
+
+        var porcAcertos = acertos * 100 / 5;
+        var porcErros = 100 - porcAcertos;
+
+        var graficoAcertosCanvas = new Chart(
+            acertosCanvas,
+            {
+                type: 'pie',
+                data: {
+                    labels: [`Acertos - ${porcAcertos}%`, `Erros - ${porcErros}%`],
+                    datasets: [{
+                        data: [acertos, 5 - acertos],
+                        backgroundColor: [
+                            '#48d348',
+                            '#a00'
+                        ],
+                        label: 'Taxa de Acertos'
+                    }]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Taxa de Acertos',
+                            color: 'white',
+                            font: {
+                                family: 'pixel-font',
+                                size: 60
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            align: 'center',
+                            minHeight: 350,
+                            labels: {
+                                color: '#ccc',
+                                padding: 40,
+                                boxWidth: 60,
+                                font: {
+                                    family: 'pixel-font',
+                                    size: 20
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        )
     }
+
     
     function sair(){ container.innerHTML = content; }
 
@@ -391,45 +467,54 @@
     //Blocos
     function questionsBlocks(){
         perguntas = [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
+            'Qual é o nome do bloco na imagem abaixo?',
+            'Qual bloco é obtido através de 4 cremes de magma?',
+            'Qual bloco é obtido quando um sapo engole slimes/cubos de magma?',
+            'Entre as opções abaixo, qual bloco não surge naturalmente no Overworld?',
+            'Entre as opções abaixo, qual bloco é possível obter sem o encantamento Toque Suave?'
         ];
 
         alternativas = [
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
+            ['Tijolos de Pedra', 'Tijolos de Pedra Polidos', 'Tijolos de Pedra Talhados', 'Tijolos de Pedra Lisos'],
+            ['Cubo de Magma', 'Bloco de Magma', 'Cubo de Lava', 'Bloco de Lava'],
+            ['Bloco de Slime', 'Cogubrilho', 'Anfibrilho', 'Pedra Ancestral'],
+            ['Pistão Grudento', 'Bloco de Diamante', 'Netherrack', 'Terra das Almas'],
+            ['Sinalizador', 'Bloco de Grama', 'Bloco de Coral', 'Minério de Quartzo']
         ];
 
         respCerta = [
-            1, 2, 3, 4
+            'Tijolos de Pedra Talhados', 
+            'Bloco de Magma', 
+            'Anfibrilho', 
+            'Terra das Almas',
+            'Sinalizador'
         ];
     }
 
     //Itens
     function questionsItems(){
         perguntas = [
-            '',
-            'B',
-            'C',
-            'D',
-            'E'
+            'Qual dos itens abaixo não é craftável?',
+            'Entre as opções abaixo, qual item não é usado para obter um fogo de artifício?',
+            'Qual é a única função da concha de náutilo?',
+            'Qual dos itens abaixo não é aceito em uma troca de aldeão?',
+            'Selecione a opção que representa um drop do Drowned.'
         ];
 
         alternativas = [
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4]
+            ['Armadura de Couro para Cavalo', 'Olho do Fim', 'Frasco de Experiência', 'Melhoria de Netherite'],
+            ['Pólvora', 'Papel', 'Vareta', 'Estrela de Fogo de Artifício'],
+            ['Acasalar peixes tropicais', 'Craftar um aqueduto', 'Reparar tridentes', 'Não possui função'],
+            ['Diamante', 'Sílex', 'Ametista', 'Escama de Tartaruga'],
+            ['Cobre', 'Bolsa de Tinta', 'Pedaço de Prismarinho', 'Coração do Mar']
         ];
 
         respCerta = [
-            1, 2, 3, 4
+            'Frasco de Experiência', 
+            'Vareta', 
+            'Craftar um aqueduto', 
+            'Ametista',
+            'Cobre'
         ];
     }
 

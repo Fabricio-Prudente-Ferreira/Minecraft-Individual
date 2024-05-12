@@ -31,7 +31,7 @@ body .content .container .section {
 }
 
 #interativo {
-    width: 90%;
+    width: 100%;
     background-image: url(../images/background/sculk.png);
     min-height: 80vh;
     border: 6px solid black;

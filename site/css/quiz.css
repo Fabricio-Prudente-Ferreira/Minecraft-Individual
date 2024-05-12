@@ -6,8 +6,8 @@
 }
 
 .quiz img {
-    border: 10px solid black;
-    width: 50%;
+    border: 8px solid black;
+    width: 40%;
     margin: 20px 0;
 }
 
@@ -17,7 +17,7 @@
 
 .quiz .question {
     text-decoration: none;
-    width: 80%;
+    width: 90%;
     text-align: center;
     font-size: 60px;
 }
