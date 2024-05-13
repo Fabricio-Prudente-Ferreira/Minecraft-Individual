@@ -38,3 +38,15 @@
 .quiz .options .alternatives button {
     width: 48%;
 }
+
+.graficos {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.graficos section {
+    background-color: '#33';
+    border: 2px black solid;
+    padding: 20px;
+}

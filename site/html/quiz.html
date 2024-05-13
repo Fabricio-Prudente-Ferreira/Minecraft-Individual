@@ -84,9 +84,9 @@
                         <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="Crafts">
                         <span class="cardTitle">Crafts</span>
                     </div>
-                    <div class="card" onclick="selectQuiz('App')">
-                        <img src="../images/imagens/gameIntro.png" alt="App">
-                        <span class="cardTitle">App & Jogo</span>
+                    <div class="card" onclick="selectQuiz('Comércio')">
+                        <img src="../images/villageTheme.jpg" alt="Comércio">
+                        <span class="cardTitle">Comércio</span>
                     </div>
                 </div>
             </div>
@@ -160,9 +160,9 @@
                 <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="Crafts">
                 <span class="cardTitle">Crafts</span>
             </div>
-            <div class="card" onclick="selectQuiz('App')">
-                <img src="../images/imagens/gameIntro.png" alt="App">
-                <span class="cardTitle">App & Jogo</span>
+            <div class="card" onclick="selectQuiz('Comércio')">
+                <img src="../images/villageTheme.jpg" alt="Comércio">
+                <span class="cardTitle">Comércio</span>
             </div>
         </div>
     `;
@@ -177,6 +177,7 @@
     function selectQuiz(tipo) {
         var img = "";
         contador = -1;
+        acertos = 0;
 
         quizType = tipo; 
 
@@ -225,8 +226,8 @@
             questionsCrafts();
         }
         else {
-            img = '../images/imagens/gameIntro.png';
-            questionsApp();
+            img = '../images/villageTheme.jpg';
+            questionsTrade();
         }
 
         container.innerHTML = `
@@ -294,11 +295,12 @@
                 <section>
                     <canvas id='acertos'></canvas>
                 </section>
+                <section>
+                    <canvas id='tentativas'></canvas>    
+                </section>
             </div>
             <button onclick="sair()">Voltar</button>
         `;
-
-        document.getElementById('interativo').style.backgroundImage = "url(../images/background/footerBg.png)";
 
         var acertosCanvas = document.getElementById('acertos').getContext('2d');
         acertosCanvas.canvas.parentNode.style.width = '500px';
@@ -354,6 +356,94 @@
                 }
             }
         )
+
+        var tentativasCanvas = document.getElementById('tentativas').getContext('2d');
+        tentativasCanvas.canvas.parentNode.style.width = '1000px';
+        tentativasCanvas.canvas.parentNode.style.height = '500px';
+        tentativasCanvas.canvas.width = 2;
+        tentativasCanvas.canvas.height = 1;
+
+        var graficotentativasCanvas = new Chart(
+            tentativasCanvas,
+            {
+                type: 'bar',
+                data: {
+                    labels: ['Tentativa 1', 'Tentativa 2'],
+                    datasets: [{
+                        data: [2, acertos],
+                        backgroundColor: ['#48d348'],
+                        label: 'Taxa de Acertos'
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tentativas',
+                                color: '#ccc',
+                                font: {
+                                    size: 20,
+                                    family: 'pixel-font'
+                                }
+                            },
+                            ticks: {
+                                color: '#ccc',
+                                font: {
+                                    family: 'pixel-font',
+                                    size: 15
+                                }
+                            },
+                            grid: {
+                                zeroLineColor: 'white'
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            max: 5,
+                            ticks: {
+                                stepSize: 1,
+                                color: '#ccc',
+                                font: {
+                                    family: 'pixel-font',
+                                    size: 15
+                                }
+                            },
+                            grid: {
+                                color: '#ccc',
+                                zeroLineColor: 'white'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Taxa de Acertos',
+                            color: 'white',
+                            font: {
+                                family: 'pixel-font',
+                                size: 60
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            align: 'center',
+                            minHeight: 350,
+                            labels: {
+                                color: '#ccc',
+                                padding: 40,
+                                boxWidth: 60,
+                                font: {
+                                    family: 'pixel-font',
+                                    size: 20
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        )
     }
 
     
@@ -364,22 +454,27 @@
     //Geral
     function questionsAll(){
         perguntas = [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
+            'Quando que obtém um disco de música?',
+            'Qual deve ser o nome dado para que um Vingador se torne agressivo com todos os mobs do jogo?',
+            'Qual das opções abaixo só é possível de ser feito no Java Edition?',
+            'Qual foi o mob vencedor da Mob Vote 2022?',
+            'Qual o tema da atualização 1.16 do Java Edition?'
         ];
 
         alternativas = [
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
-            [1, 2, 3, 4],
+            ['Quando um gato dorme com o seu dono', 'Quando mata o Ender Dragon', 'Quando um Esqueleto mata um Creeper', 'Quando salva uma vila de uma invasão'],
+            ['Johnny', 'Dinnerbone', 'jeb_', 'Toast'],
+            ['Lã pode ser usada como combustível em fornalhas', 'Folhas de árvores ficam brancas em biomas gélidos', 'Shulkers podem ser tingidos com corantes', 'Colocar poções em caldeirões'],
+            ['Rascal', 'Sniffer', 'Tuff Golem', 'Todos entraram'],
+            ['Villagers & Pillagers', 'Aquatic Update', 'Nether Update', 'Caves & Cliffs']
         ];
 
         respCerta = [
-            1, 2, 3, 4
+            'Quando um Esqueleto mata um Creeper', 
+            'Johnny', 
+            'Lã pode ser usada como combustível em fornalhas', 
+            'Sniffer',
+            'Nether Update'
         ];
     }
 
@@ -421,7 +516,7 @@
         ];
 
         alternativas = [
-            ['Enviar um sinal de redstone dependendo da luminosidade do ambiente', 'Medir os estados dos blocos e analisar a intensidade de um sinal', 'Recarregar o sinal fraco de redstone', 'Ninguém sabe a função disso ;-;'],
+            ['Enviar um sinal de redstone dependendo da luminosidade do ambiente', 'Medir os estados dos blocos e analisar a intensidade de um sinal', 'Recarregar o sinal fraco de redstone', 'Ninguém sabe a função disso'],
             ['Pistão', 'Repetidor', 'Observador', 'Ejetor'],
             ['8 blocos', '10 blocos', '13 blocos', '15 blocos'],
             ['Personalizar de armaduras', 'Prolongar o efeito de uma poção', 'Troca com aldeões', 'Encantar ferramentas e armaduras'],
@@ -497,7 +592,7 @@
             'Qual dos itens abaixo não é craftável?',
             'Entre as opções abaixo, qual item não é usado para obter um fogo de artifício?',
             'Qual é a única função da concha de náutilo?',
-            'Qual dos itens abaixo não é aceito em uma troca de aldeão?',
+            'Qual dos itens abaixo não é possível de conseguir no inventário do modo Criativo?',
             'Selecione a opção que representa um drop do Drowned.'
         ];
 
@@ -505,7 +600,7 @@
             ['Armadura de Couro para Cavalo', 'Olho do Fim', 'Frasco de Experiência', 'Melhoria de Netherite'],
             ['Pólvora', 'Papel', 'Vareta', 'Estrela de Fogo de Artifício'],
             ['Acasalar peixes tropicais', 'Craftar um aqueduto', 'Reparar tridentes', 'Não possui função'],
-            ['Diamante', 'Sílex', 'Ametista', 'Escama de Tartaruga'],
+            ['Minério de Carvão de Ardósia', 'Barreira', 'Mob Spawner', 'Rocha Matriz'],
             ['Cobre', 'Bolsa de Tinta', 'Pedaço de Prismarinho', 'Coração do Mar']
         ];
 
@@ -513,7 +608,7 @@
             'Frasco de Experiência', 
             'Vareta', 
             'Craftar um aqueduto', 
-            'Ametista',
+            'Barreira',
             'Cobre'
         ];
     }
@@ -557,8 +652,8 @@
 
         alternativas = [
             ['Floresta Escura', 'Selva', 'Ilha de Cogumelos', 'Floresta de Bétulas'],
-            ['Planície', 'Floresta Comum', 'Taiga Nevada', 'Selva'],
-            ['Deserto', 'Savana', 'Oceano', 'Mesa (Badlands)'],
+            ['Planície', 'Deserto', 'Taiga Nevada', 'Selva'],
+            ['Deserto', 'Savana', 'Montanhas de Cascalho', 'Mesa (Badlands)'],
             ['4', '5', '6', '7'],
             ['Floresta de Bambu', 'Floresta de Cerejeiras', 'Picos de Gelo', 'Ilha de Cogumelos']
         ];
@@ -566,7 +661,7 @@
         respCerta = [
             'Floresta Escura', 
             'Selva', 
-            'Oceano', 
+            'Montanhas de Cascalho', 
             '5',
             'Ilha de Cogumelos'
         ];
@@ -653,30 +748,30 @@
         ];
     }
 
-    //App e Jogo
-    function questionsApp(){
+    //Trades
+    function questionsTrade(){
         perguntas = [
-            'Quantos heróis o jogo possui?',
-            'Em qual fase está localizado o Guardian?',
-            'Qual a cor da poção que aumenta a velocidade do disparo?',
-            'Qual é o mini-boss da Fase 5 - Cavernas?',
-            'Quantos pontos de vida (HP) o mob Ghast possui?'
+            'Qual dos itens abaixo não é aceito em uma troca de aldeão?',
+            'Antes da versão 1.11 do Minecraft Java Edition, qual das profissões abaixo não existia entre os aldeões?',
+            'Qual é a profissão do aldeão da imagem abaixo?',
+            'Dentre as opções abaixo, qual aldeão não troca diamante por esmeralda?',
+            'Qual das opções abaixo é uma profissão de aldeão?'
         ];
 
         alternativas = [
-            ['1', '2', '3', '4'],
-            ['Fase 1 - Planícies', 'Fase 2 - Mares', 'Fase 3 - Florestas', 'Fase 4 - Nether'],
-            ['Verde', 'Azul', 'Rosa', 'Roxo'],
-            ['Phantom', 'Elder Guardian', 'Warden', 'Wither'],
-            ['5', '6', '7', '8']
+            ['Diamante', 'Sílex', 'Ametista', 'Escama de Tartaruga'],
+            ['Clérigo', 'Cartógrafo', 'Armoreiro', 'Pedreiro'],
+            ['Bibliotecário', 'Fazendeiro', 'Pescador', 'Flecheiro'],
+            ['Armoreiro', 'Ferramenteiro', 'Armeiro', 'Pedreiro'],
+            ['Lenhador', 'Engenheiro', 'Pastor', 'Arquiteto']
         ];
 
         respCerta = [
-            '4',
-            'Fase 2 - Mares',
-            'Verde',
-            'Warden',
-            '6'
+            'Ametista',
+            'Cartógrafo',
+            'Pescador',
+            'Pedreiro',
+            'Pastor'
         ];
     }
 </script>

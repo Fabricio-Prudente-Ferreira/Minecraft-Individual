@@ -14,8 +14,6 @@
                 <div class="navbar">
                     <a href="./index.html">Início</a>
                     <a href="./sobremim.html">Sobre Mim</a>
-                    <a href="./jogo.html">Jogo</a>
-                    <a href="./app.html">App</a>
                     <a href="./cadastro.html" class="pagina_atual">Cadastro</a>
                     <a href="./login.html">Login</a>
                 </div>
@@ -75,7 +73,7 @@
     </body>
 </html>
 <script>
-    function cadastrar(){
+    function cadastrar() {
         var nome = inpNome.value;
         var nick = inpNick.value;
         var email = inpEmail.value;
@@ -85,9 +83,17 @@
         var texto = "";
         var corTexto = 'red';
 
+        var caracteres_especiais = ['!', '?', '@', '#', '$', '%', '-', '_', '&', '*', '/'];
+        var tem_caracter_especial = false;
+
+        for(var cont = 0; cont < caracteres_especiais.length; cont++){
+            if(senha.indexOf(caracteres_especiais[cont]) >= 0) tem_caracter_especial = true;
+        }
+
         if(nome == "" || nick == "" || email == "" || dtNasc == "" || senha == "" || confSenha == "") texto = "Por favor, preencha todos os campos";
         else if(email.indexOf('@') == -1 || email.indexOf('.') == -1) texto = "Digite um e-mail válido";
         else if(senha.length < 7) texto = "Sua senha deve ter ao menos 7 dígitos";
+        else if(!tem_caracter_especial) texto = "Seu caracter precisa de um caracter especial";
         else if(senha != confSenha) texto = "As senhas não se correspondem";
         else {
             texto = "Cadastro Concluído";
