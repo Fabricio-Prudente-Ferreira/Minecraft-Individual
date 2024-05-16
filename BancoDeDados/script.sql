@@ -17,32 +17,29 @@ CREATE TABLE Quiz(
 
 CREATE TABLE Pontuacao(
 	idPontuacao INT,
-    fkUsuario INT,
+    fkUsuarioPont INT,
     fkQuizPont INT,
-    PRIMARY KEY(idPontuacao, fkUsuario, fkQuizPont),
+    PRIMARY KEY(idPontuacao, fkUsuarioPont, fkQuizPont),
     acertos INT,
     perg_respondidas INT,
-    FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY(fkUsuarioPont) REFERENCES Usuario(idUsuario),
     FOREIGN KEY(fkQuizPont) REFERENCES Quiz(idQuiz)
 );
 
-CREATE TABLE Pergunta(
-	idPergunta INT PRIMARY KEY AUTO_INCREMENT,
-    pergunta VARCHAR(90) NOT NULL,
-    fkQuizPerg INT,
-    FOREIGN KEY(fkQuizPerg) REFERENCES Quiz(idQuiz)
+CREATE TABLE Chat(
+	idChat INT AUTO_INCREMENT PRIMARY KEY,
+    tema VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE Alternativa(
-	idAlternativa INT PRIMARY KEY AUTO_INCREMENT,
-    valor VARCHAR(60) NOT NULL,
-    alternativa_certa TINYINT,
-    CONSTRAINT chkCerto CHECK(alternativa_certa IN(0, 1)),
-    fkPergunta INT,
-    fkPergQuiz INT,
-    FOREIGN KEY(fkPergunta) REFERENCES Pergunta(idPergunta),
-    FOREIGN KEY(fkPergQuiz) REFERENCES Pergunta(fkQuizPerg)
+CREATE TABLE Mensagem(
+	idMensagem INT,
+    fkUsuarioMsg INT,
+    fkChat INT,
+    PRIMARY KEY(idMensagem, fkUsuarioMsg, fkChat),
+    texto VARCHAR(200),
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(fkUsuarioMsg) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY(fkChat) REFERENCES Chat(idChat)
 );
-
 
 
