@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Village Craft | Login</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/sobremim.css">
+        <script src="./js/sessao.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <img src="./images/villageCraftExt.png" alt="VillageCraft">
+                <div class="navbar">
+                    <a href="./index.html">Início</a>
+                    <a href="./sobremim.html">Sobre Mim</a>
+                    <a href="./cadastro.html">Cadastro</a>
+                    <a href="./login.html" class="pagina_atual">Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="headerTransition"></div>
+        <div class="content">
+            <div class="container">
+                <span class="title">ENTRAR</span>
+                <div class="form">
+                    <span class="infoLogReg">Insira os dados abaixo para acessar a sua conta</span>
+                    <label>
+                        <span>Nickname | E-mail</span>
+                        <input type="text" class="inputStyle" id="inpLogin" placeholder="Login" value="faprufer@gmail.com">
+                    </label>
+                    <label>
+                        <span>Senha</span>
+                        <input type="password" class="inputStyle" id="inpSenha" placeholder="Senha" value="1234567!">
+                    </label>
+                    <a href="cadastro.html" class="submessage">Esqueci minha senha</a>
+                    <div id="div_erro" style="text-align: center;"></div>
+                    <button onclick="login()">Entrar</button>
+                    <span class="submessage">Não possui uma conta?<a href="cadastro.html">Cadastre-se</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="footerTransition"></div>
+        <div class="footer">
+            <div class="container">
+                <div class="box">
+                    <a href="./index.html" class="navigation">Início</a>
+                    <a href="./sobremim.html" class="navigation">Sobre Mim</a>
+                    <a href="./cadastro.html" class="navigation">Cadastro</a>
+                    <a href="./login.html" class="navigation">Login</a>
+                </div>
+                <img src="./images/villageCraft.png" alt="VillageCraft" class="footerLogo">
+            </div>
+        </div>
+        <div class="footerCopyright">
+            <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
+        </div>
+    </body>
+</html>
+<script>
+    function login(){
+        var login = inpLogin.value;
+        var senha = inpSenha.value;
+        var textLogin = "";
+        var corTextLogin = 'red';
+
+        if(login == "" || senha == "") finalizarSessao('Preencha todos os campos');
+        else {
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: login,
+                    senhaServer: senha
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.NICK_USUARIO = json.nick;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.DTNASC_USUARIO = json.dtNasc;
+                        sessionStorage.SENHA_USUARIO = json.senha;
+
+                        console.log(json.nick);
+
+                        setTimeout(function () {
+                            window.location = "./pages/home.html";
+                        }, 1000); // apenas para exibir o loading
+                    });
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+
+                        finalizarSessao(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+    }
+</script>

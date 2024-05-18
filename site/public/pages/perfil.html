@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Village Craft | Perfil</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/perfil.css">
+        <script src="../js/sessao.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <img src="../images/villageCraftExt.png" alt="VillageCraft">
+                <div class="navbar">
+                    <a href="./home.html">Home</a>
+                    <a href="./chat.html">Assuntos</a>
+                    <a href="./quiz.html">Quizzes</a>
+                    <a href="./jogo.html">Jogo</a>
+                    <a href="./perfil.html" class="pagina_atual">Perfil</a>
+                    <a href="./index.html" class="exit">Sair</a>
+                </div>
+            </div>
+        </div>
+        <div class="headerTransition"></div>
+        <div class="content">
+            <div class="container">
+                <span class="title">SEU PERFIL</span>
+                <div class="box">
+                    <div class="avatar" onclick="editImg()">
+                        <img src="https://i.pinimg.com/originals/85/78/bf/8578bfd439ef6ee41e103ae82b561986.png" alt="avatar">
+                    </div>
+                    <div class="labels">
+                        <label>
+                            <span>Nome</span>
+                            <input type="text" class="inputStyle" placeholder="Nome" value="Nome" id="inp_nome">
+                        </label>
+                        <label>
+                            <span>Nickname</span>
+                            <div class="flex">
+                                <input type="text" class="inputStyle" placeholder="Nickname" value="Nick" id="inp_nick">
+                                <input type="text" class="inputStyle id" placeholder="id" value="id" disabled id="inp_id">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <label>
+                    <span>E-mail</span>
+                    <input type="text" class="inputStyle" placeholder="E-mail" value="Adress" id="inp_email">
+                </label>
+                <label>
+                    <span>Data de Nascimento</span>
+                    <input type="date" class="inputStyle" id="inp_dtNasc">
+                </label>
+                <label>
+                    <span>Senha</span>
+                    <div class="flex">
+                        <input type="password" class="inputStyle" placeholder="Senha" value="Password" disabled id="inp_senha">
+                        <button onclick="editpw()" class="btnEdit"></button>
+                    </div>
+                </label>
+                <button onclick="save()">Salvar Alterações</button>
+            </div>
+        </div>
+        <div class="footerTransition"></div>
+        <div class="footer">
+            <div class="container">
+                <div class="box">
+                    <a href="./home.html" class="navigation">Home</a>
+                    <a href="./chat.html" class="navigation">Assuntos</a>
+                    <a href="./quiz.html" class="navigation">Quizzes</a>
+                    <a href="./perfil.html" class="navigation">Perfil</a>
+                </div>
+                <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
+            </div>
+        </div>
+        <div class="footerCopyright">
+            <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
+        </div>
+    </body>
+</html>
+<script>
+    window.onload = load_user_data();
+
+
+</script>
