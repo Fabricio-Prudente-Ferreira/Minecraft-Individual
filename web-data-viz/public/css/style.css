@@ -182,7 +182,7 @@ p {
 .form {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 50vw;
     margin: 0 0 30px 0;
     color: white;
     text-align: justify;
@@ -271,4 +271,9 @@ button:hover {
     right: 100px;
     width: 160px;
     height: 160px;
+}
+
+#div_erro {
+    color: red;
+    margin: 5px 0;
 }

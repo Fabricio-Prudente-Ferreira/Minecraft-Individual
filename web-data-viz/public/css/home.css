@@ -1,0 +1,63 @@
+.homeIntroduction {
+    background-color: #000;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/background/headerBg.png);
+}
+
+.homeIntroduction img {
+    width: 500px;
+    height: 500px;
+}
+
+.homeIntroduction .moon {
+    position: absolute;
+    top: 160px;
+    right: 100px;
+    width: 160px;
+    height: 160px;
+}
+
+.content .container .box {
+    flex-direction: column;
+    display: flex;
+    width: 1500px;
+    align-items: center;
+}
+
+.content .container .box .group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.content .container .box .group .cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.card {
+    background-color: #6a6a6a;
+    border: #333 solid 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 300px;
+}
+
+#mobPages {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#mobPages button {
+    width: 50px;
+    height: 50px;
+}

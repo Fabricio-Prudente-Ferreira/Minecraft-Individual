@@ -1,0 +1,10 @@
+.formBox {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+
+.formBox label {
+    width: 45%;
+}
