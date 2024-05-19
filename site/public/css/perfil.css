@@ -68,6 +68,7 @@ label {
 
 #backgroundEditImg .editForm {
     display: flex;
+    flex-direction: column;
     background-image: url(../images/background/footerBg.png);
     width: 60vw;
     height: 220px;
@@ -87,4 +88,12 @@ label {
 
 .editForm label button, .editForm label input {
     margin: 0
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }

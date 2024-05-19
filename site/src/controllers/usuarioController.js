@@ -75,7 +75,7 @@ function atualizar(req, res){
     var email = req.body.emailServer;
     var dtNasc = req.body.dtNascServer;
     var senha = req.body.senhaServer;
-    var imagem = req.body.imgURL;
+    var imagem = req.body.imagemServer;
 
     if (nome == undefined) res.status(400).send("Seu nome está undefined!");
     else if(nick == undefined) res.status(400).send("Seu nickname está undefined!");
@@ -86,7 +86,6 @@ function atualizar(req, res){
         usuarioModel.atualizar(id, nome, nick, email, dtNasc, imagem, senha)
         .then(
             function(resultadoAtualizar){
-                console.log('RESULTADO:', resultadoAtualizar);
                 res.json({
                     id: resultadoAtualizar[0].idUsuario,
                     email: resultadoAtualizar[0].email,

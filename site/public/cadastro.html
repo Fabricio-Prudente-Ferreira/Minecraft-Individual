@@ -6,6 +6,7 @@
         <title>Village Craft | Cadastro</title>
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./css/cadastro.css">
+        <script src="./js/sessao.js"></script>
     </head>
     <body>
         <div class="header">
@@ -88,6 +89,7 @@
         var confSenha = inpConfSenha.value;
         var texto = "";
         var corTexto = 'red';
+        var validado = false; 
 
         var caracteres_especiais = ['!', '?', '@', '#', '$', '%', '-', '_', '&', '*', '/'];
         var tem_caracter_especial = false;
@@ -126,6 +128,8 @@
                     // cardErro.style.display = "block";
 
                     texto = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    validado = true;
+                    finalizarSessao(texto, validado);
 
                     setTimeout(() => {
                         window.location = "login.html";
@@ -141,8 +145,6 @@
             return false;
         }
         
-        div_erro.innerHTML = `
-            <span style="color: ${corTexto}; text-align: center;">${texto}</span>
-        `;
+        finalizarSessao(texto, validado);
     }
 </script>

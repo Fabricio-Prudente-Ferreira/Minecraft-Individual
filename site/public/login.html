@@ -87,6 +87,7 @@
                         sessionStorage.DTNASC_USUARIO = json.dtNasc;
                         sessionStorage.SENHA_USUARIO = json.senha;
 
+                        finalizarSessao('Carregando...', true)
                         setTimeout(function () {
                             window.location = "./pages/home.html";
                         }, 1000); // apenas para exibir o loading
@@ -97,7 +98,7 @@
                     resposta.text().then(texto => {
                         console.error(texto);
 
-                        finalizarSessao(texto);
+                        finalizarSessao(texto, false);
                     });
                 }
             }).catch(function (erro) {

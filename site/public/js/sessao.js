@@ -34,8 +34,7 @@ function load_user_data(){
         elements_array[index].value = data_array[index];
     }
 
-    if(sessionStorage.IMAGEM_USUARIO == 'undefined') var imagem = 'https://i.pinimg.com/originals/85/78/bf/8578bfd439ef6ee41e103ae82b561986.png';
-    else var imagem = sessionStorage.IMAGEM_USUARIO;
+    if(sessionStorage.IMAGEM_USUARIO != 'undefined') var imagem = sessionStorage.IMAGEM_USUARIO;
 
     document.getElementById('avatar').src = imagem;
 }
@@ -51,11 +50,10 @@ function aguardar() {
     divAguardar.style.display = "flex";
 }
 
-function finalizarSessao(texto) {
-    // var divAguardar = document.getElementById("div_aguardar");
-    // divAguardar.style.display = "none";
-
-    var divErro = document.getElementById("div_erro");
-    if (texto) divErro.innerHTML = texto;
+function finalizarSessao(texto, bool) {
+    if(bool) var cor = '#14ddeb';
+    else var cor = 'red';
+    document.getElementById('div_erro').style.color = cor;
+    document.getElementById('div_erro').innerHTML = texto;
 }
 

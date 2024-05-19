@@ -81,8 +81,11 @@
 
         <div id="backgroundEditImg">
             <div class="editForm">
+                <div class="top">
+                    <span>Coloque a URL da sua foto (.png/.jpg/.gif):</span>
+                    <button onclick="closeEditImg()" class="close">X</button>
+                </div>
                 <label>
-                    <span>Coloque a URL da sua foto:</span>
                     <input type="text" placeholder="URL" class="inputStyle" id="inp_url">
                     <button onclick="saveImg()">Salvar Imagem</button>
                 </label>
@@ -97,10 +100,15 @@
         document.getElementById('backgroundEditImg').style.display = 'flex'
     }
 
+    function closeEditImg(){
+        document.getElementById('backgroundEditImg').style.display = 'none'
+    }
+
     function saveImg(){
         var url = inp_url.value;
 
         if(url.length > 250) alert('URL muito longa. Escolha outra!');
+        else if(url.indexOf('.jpg') == -1 && url.indexOf('.png') == -1 && url.indexOf('.gif') == -1) alert('Imagem inválida');
         else {
             document.getElementById('backgroundEditImg').style.display = 'none'
             document.getElementById('avatar').src = inp_url.value;
@@ -114,8 +122,9 @@
         var email = inp_email.value;
         var dtNasc = inp_dtNasc.value;
         var senha = inp_senha.value;
-        var imgURL = avatar.src;
+        var imgURL = document.getElementById('avatar').src;
         var textMsg = "";
+        var validado = false;
 
         var caracteres_especiais = ['!', '?', '@', '#', '$', '%', '-', '_', '&', '*', '/'];
         var tem_caracter_especial = false;
@@ -146,6 +155,9 @@
             })
             .then(function(resposta){
                 if(resposta.ok){
+                    textMsg = "Atualizado com Sucesso!";
+                    validado = true;
+                    finalizarSessao(textMsg, validado);
                     resposta.json().then(json => {
                         sessionStorage.ID_USUARIO = json.id;
                         sessionStorage.NOME_USUARIO = json.nome;
@@ -154,7 +166,7 @@
                         sessionStorage.IMAGEM_USUARIO = json.imagem;
                         sessionStorage.DTNASC_USUARIO = json.dtNasc;
                         sessionStorage.SENHA_USUARIO = json.senha;
-
+                        
                         setTimeout(function () {
                             window.location = "./home.html";
                         }, 1000); // apenas para exibir o loading
@@ -168,6 +180,6 @@
             return false;
         }
 
-        div_erro.innerHTML = textMsg;
+        finalizarSessao(textMsg, validado);
     }
 </script>

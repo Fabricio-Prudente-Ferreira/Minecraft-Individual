@@ -232,6 +232,7 @@ button:hover {
 
 .form a {
     color: #48d348;
+    margin: 7px 0;
 }
 
 .form a:hover {
@@ -274,6 +275,11 @@ button:hover {
 }
 
 #div_erro {
-    color: red;
     margin: 5px 0;
+}
+
+.close {
+    width: 50px;
+    height: 50px;
+    margin: 0;
 }
