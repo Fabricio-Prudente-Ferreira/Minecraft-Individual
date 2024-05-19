@@ -30,11 +30,14 @@ function load_user_data(){
         document.getElementById('inp_senha')
     ];
 
-    console.log(data_array);
-
     for(var index = 0; index < data_array.length; index++){
         elements_array[index].value = data_array[index];
     }
+
+    if(sessionStorage.IMAGEM_USUARIO == 'undefined') var imagem = 'https://i.pinimg.com/originals/85/78/bf/8578bfd439ef6ee41e103ae82b561986.png';
+    else var imagem = sessionStorage.IMAGEM_USUARIO;
+
+    document.getElementById('avatar').src = imagem;
 }
 
 function limparSessao() {

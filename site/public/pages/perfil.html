@@ -28,7 +28,7 @@
                 <span class="title">SEU PERFIL</span>
                 <div class="box">
                     <div class="avatar" onclick="editImg()">
-                        <img src="https://i.pinimg.com/originals/85/78/bf/8578bfd439ef6ee41e103ae82b561986.png" alt="avatar">
+                        <img id='avatar' alt="avatar">
                     </div>
                     <div class="labels">
                         <label>
@@ -46,7 +46,7 @@
                 </div>
                 <label>
                     <span>E-mail</span>
-                    <input type="text" class="inputStyle" placeholder="E-mail" value="Adress" id="inp_email">
+                    <input type="text" class="inputStyle" placeholder="E-mail" value="Address" id="inp_email">
                 </label>
                 <label>
                     <span>Data de Nascimento</span>
@@ -55,10 +55,11 @@
                 <label>
                     <span>Senha</span>
                     <div class="flex">
-                        <input type="password" class="inputStyle" placeholder="Senha" value="Password" disabled id="inp_senha">
+                        <input type="password" class="inputStyle" placeholder="Senha" value="Password!" disabled id="inp_senha">
                         <button onclick="editpw()" class="btnEdit"></button>
                     </div>
                 </label>
+                <div id="div_erro"></div>
                 <button onclick="save()">Salvar Alterações</button>
             </div>
         </div>
@@ -77,10 +78,96 @@
         <div class="footerCopyright">
             <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
         </div>
+
+        <div id="backgroundEditImg">
+            <div class="editForm">
+                <label>
+                    <span>Coloque a URL da sua foto:</span>
+                    <input type="text" placeholder="URL" class="inputStyle" id="inp_url">
+                    <button onclick="saveImg()">Salvar Imagem</button>
+                </label>
+            </div>
+        </div>
     </body>
 </html>
 <script>
     window.onload = load_user_data();
 
+    function editImg(){
+        document.getElementById('backgroundEditImg').style.display = 'flex'
+    }
 
+    function saveImg(){
+        var url = inp_url.value;
+
+        if(url.length > 250) alert('URL muito longa. Escolha outra!');
+        else {
+            document.getElementById('backgroundEditImg').style.display = 'none'
+            document.getElementById('avatar').src = inp_url.value;
+        }
+    }
+
+    function save(){
+        var id = inp_id.value.split('#')[1];
+        var nome = inp_nome.value;
+        var nick = inp_nick.value;
+        var email = inp_email.value;
+        var dtNasc = inp_dtNasc.value;
+        var senha = inp_senha.value;
+        var imgURL = avatar.src;
+        var textMsg = "";
+
+        var caracteres_especiais = ['!', '?', '@', '#', '$', '%', '-', '_', '&', '*', '/'];
+        var tem_caracter_especial = false;
+
+        for(var cont = 0; cont < caracteres_especiais.length; cont++){
+            if(senha.indexOf(caracteres_especiais[cont]) >= 0) tem_caracter_especial = true;
+        }
+
+        if(nome == "" || nick == "" || email == "" || dtNasc == "" || senha == "") textMsg = 'Por favor, deixe todos os campos preenchidos';
+        else if(email.indexOf('@') == -1 || email.indexOf('.') == -1) textMsg = "Insira um e-mail válido";
+        else if(senha.length < 7) textMsg = "Insira uma senha mais longa";
+        else if(!tem_caracter_especial) textMsg = "Insira um caracter especial na sua senha";
+        else {
+            fetch('/usuarios/atualizar', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idServer: id,
+                    nomeServer: nome,
+                    nickServer: nick,
+                    emailServer: email,
+                    senhaServer: senha,
+                    dtNascServer: dtNasc,
+                    imagemServer: imgURL
+                })
+            })
+            .then(function(resposta){
+                if(resposta.ok){
+                    resposta.json().then(json => {
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.NICK_USUARIO = json.nick;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.IMAGEM_USUARIO = json.imagem;
+                        sessionStorage.DTNASC_USUARIO = json.dtNasc;
+                        sessionStorage.SENHA_USUARIO = json.senha;
+
+                        setTimeout(function () {
+                            window.location = "./home.html";
+                        }, 1000); // apenas para exibir o loading
+                    });
+                }
+            })
+            .catch(function(error){
+                console.error(error);
+            })
+
+            return false;
+        }
+
+        div_erro.innerHTML = textMsg;
+    }
 </script>
