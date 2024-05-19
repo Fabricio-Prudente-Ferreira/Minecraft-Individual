@@ -88,7 +88,6 @@
         var senha = inpSenha.value;
         var confSenha = inpConfSenha.value;
         var texto = "";
-        var corTexto = 'red';
         var validado = false; 
 
         var caracteres_especiais = ['!', '?', '@', '#', '$', '%', '-', '_', '&', '*', '/'];
@@ -104,8 +103,6 @@
         else if(!tem_caracter_especial) texto = "Seu caracter precisa de um caracter especial";
         else if(senha != confSenha) texto = "As senhas não se correspondem";
         else {
-            corTexto = '#48d348';
-
             fetch("../usuarios/cadastrar", {
                 method: "POST",
                 headers: {
@@ -122,12 +119,10 @@
                 }),
             }) 
             .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
                 if (resposta.ok) {
                     // cardErro.style.display = "block";
 
-                    texto = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    texto = "Cadastro realizado com sucesso! Aguarde...";
                     validado = true;
                     finalizarSessao(texto, validado);
 

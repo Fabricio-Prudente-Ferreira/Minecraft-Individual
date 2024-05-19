@@ -196,7 +196,7 @@ p {
     padding: 5px;
     border: 3px solid #6a6a6a;
     color: white;
-    width: 100%;
+    border-radius: 5px;
 }
 
 label {
@@ -213,6 +213,7 @@ button {
     color: white;
     background-color: #6a6a6a;
     margin: 20px 0;
+    border-radius: 5px;
     cursor: pointer;
     padding: 5px;
 }
@@ -250,6 +251,7 @@ button:hover {
 
 .header .container .navbar .exit:hover {
     color: red;
+    cursor: pointer;
 }
 
 .indexIntroduction {
@@ -276,6 +278,7 @@ button:hover {
 
 #div_erro {
     margin: 5px 0;
+    text-align: center;
 }
 
 .close {

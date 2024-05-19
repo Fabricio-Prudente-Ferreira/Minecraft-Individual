@@ -41,7 +41,7 @@ function load_user_data(){
 
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login.html";
+    window.location = "../index.html";
 }
 
 // carregamento (loading)

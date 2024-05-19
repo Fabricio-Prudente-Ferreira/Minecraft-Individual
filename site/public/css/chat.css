@@ -1,0 +1,74 @@
+.container #interativo {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.chatBox {
+    background-color: #1a1a1a;
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px 0 20px;
+    overflow: auto;
+}
+
+.container #interativo .messageContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 160px;
+    background-color: #111;
+    padding: 0 20px
+}
+
+.container #interativo .messageContent button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    border-radius: 5px;
+    height: 55px;
+    margin: 0 0 0 20px;
+}
+
+.messageUser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.messageUser img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.messageUser .messageBox {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.messageBox .messageData {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.messageBox .messageData span {
+    font-size: 30px;
+    color: #aaa
+}
+
+.messageUser .messageBox .messageData #nick {
+    color: lime;
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+#messageId {
+    font-size: 30px;
+}
