@@ -39,7 +39,7 @@ p {
     display: flex;
     justify-content: center;
     width: 100vw;
-    background-color: #040404;
+    background-color: #000;
     height: 120px;
     align-items: center;
     background-image: url(../images/background/headerBg.png);

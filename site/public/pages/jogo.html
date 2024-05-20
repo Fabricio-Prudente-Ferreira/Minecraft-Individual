@@ -6,6 +6,7 @@
         <title>Village Craft | Jogo</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/jogo.css">
+        <script src="../js/sessao.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
         <style>
@@ -27,7 +28,7 @@
                     <a href="./quiz.html">Quizzes</a>
                     <a href="./jogo.html" class="pagina_atual">Jogo</a>
                     <a href="./perfil.html">Perfil</a>
-                    <a href="./index.html" class="exit">Sair</a>
+                    <a onclick="limparSessao()" class="exit">Sair</a>
                 </div>
             </div>
         </div>
@@ -173,6 +174,7 @@
         'BRANCO',
         'FÓSSIL',
         'PEÔNIA',
+        'NEVADO',
         'BARRIL',
         'FRASCO',
         'LUNETA',
@@ -290,7 +292,7 @@
                         <button onclick='letra("M")' id='letraM'>M</button>
                     </div> 
                     <button onclick='tentativa()' id='btn_tentar'>Tentar</button>
-                    <button onclick='voltar()' id='btn_voltar'></
+                    <button onclick='voltar()' id='btn_voltar'></button>
                 </div>
             </div>
             <div id='resultado'></div>
@@ -457,6 +459,7 @@
             else if(palavra_formada == 'CARVAO') palavra_formada = "CARVÃO";
             else if(palavra_formada == 'RUINAS') palavra_formada = "RUÍNAS";
             else if(palavra_formada == 'FOSSIL') palavra_formada = "FÓSSIL";
+            else if(palavra_formada == 'CRANIO') palavra_formada = "CRÂNIO";
             else if(palavra_formada == 'PEONIA') palavra_formada = "PEÔNIA";
             else if(palavra_formada == 'SALMAO') palavra_formada = "SALMÃO";
         } else {

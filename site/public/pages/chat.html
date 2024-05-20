@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/interativos.css">
         <link rel="stylesheet" href="../css/chat.css">
+        <script src="../js/sessao.js"></script>
     </head>
     <body>
         <div class="header">
@@ -18,7 +19,7 @@
                     <a href="./quiz.html">Quizzes</a>
                     <a href="./jogo.html">Jogo</a>
                     <a href="./perfil.html">Perfil</a>
-                    <a href="./index.html" class="exit">Sair</a>
+                    <a onclick="limparSessao()" class="exit">Sair</a>
                 </div>
             </div>
         </div>
@@ -36,8 +37,8 @@
                         <span class="cardTitle">Redstone</span>
                     </div>
                     <div class="card" onclick="open_chat(3)">
-                        <img src="https://hypixel.net/attachments/hypiuxel-png-png.2611492/" alt="Hypixel">
-                        <span class="cardTitle">Hypixel</span>
+                        <img src="https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp" alt="Poções">
+                        <span class="cardTitle">Poções</span>
                     </div>
                     <div class="card" onclick="open_chat(4)">
                         <img src="https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg" alt="Mobs">
@@ -103,84 +104,117 @@
     var conteudo_container = `
         <span class="title">ASSUNTOS</span>
         <div class="section">
-            <div class="card">
+            <div class="card" onclick="open_chat(1)">
                 <img src="https://beebom.com/wp-content/uploads/2024/04/minecraft-1.21-has-a-name-minecraft-tricky-trials-1.jpg?w=1168&quality=75" alt="Updates">
                 <span class="cardTitle">Atualização - 1.21</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(2)">
                 <img src="https://wallpapercave.com/wp/wp10656185.png" alt="Redstone">
                 <span class="cardTitle">Redstone</span>
             </div>
-            <div class="card">
-                <img src="https://hypixel.net/attachments/hypiuxel-png-png.2611492/" alt="Hypixel">
-                <span class="cardTitle">Hypixel</span>
+            <div class="card" onclick="open_chat(3)">
+                <img src="https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp" alt="Poções">
+                <span class="cardTitle">Poções</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(4)">
                 <img src="https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg" alt="Mobs">
                 <span class="cardTitle">Mobs</span>
             </div>
         </div>
         <div class="section">
-            <div class="card">
+            <div class="card" onclick="open_chat(5)">
                 <img src="https://www.allaboutgames.net/wp-content/uploads/2023/07/minecraft-server.webp" alt="Servers">
                 <span class="cardTitle">Servers</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(6)">
                 <img src="https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg" alt="Construções">
                 <span class="cardTitle">Construções</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(7)">
                 <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/07/minecraft-1-20-ore-distribution.jpg" alt="Mineração">
                 <span class="cardTitle">Mineração</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(8)">
                 <img src="https://c4.wallpaperflare.com/wallpaper/948/782/354/minecraft-minecraft-dungeons-ocean-view-minecraft-dungeons-hidden-depths-4k-hd-wallpaper-preview.jpg" alt="Mods">
                 <span class="cardTitle">Mods</span>
             </div>
         </div>
         <div class="section">
-            <div class="card">
+            <div class="card" onclick="open_chat(9)">
                 <img src="https://play.nintendo.com/images/PLAY-6061-MinecraftLegends-Wallpaper-1920x1080_v01.5cbc3862.5b2aa3d3.jpg" alt="Updates">
                 <span class="cardTitle">Minecraft Legends</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(10)">
                 <img src="https://i.ytimg.com/vi/Cv6f-2Wlsxg/maxresdefault.jpg" alt="Redstone">
                 <span class="cardTitle">Minecraft Education</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(11)">
                 <img src="https://wallpapers.com/images/featured/minecraft-dungeons-au24dj020mmcwydu.jpg" alt="Dungeons">
                 <span class="cardTitle">Minecraft Dungeons</span>
             </div>
-            <div class="card">
+            <div class="card" onclick="open_chat(12)">
                 <img src="../images/background/background.jpg" alt="Mods">
                 <span class="cardTitle">Sugestões</span>
             </div>
         </div>
     `;
 
-    var idChat = 0;
+    var interval = undefined;
 
     function open_chat(id){
-        idChat = id;
+        
+        fetch("../chats/acessar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idChatServer: id
+            })
+        })
+        .then(async function(resposta){
+            if(resposta.ok){
+                await resposta.json().then(json => {
+                    sessionStorage.ID_CHAT = json.id,
+                    sessionStorage.TEMA_CHAT = json.tema
+                })
 
-        var message_content = `
-            <div class='chatBox' id='chatBox'></div>
-            <div class='messageContent'>
-                <input id='inp_message' placeholder='Mensagem' class='inputStyle'>
-                <button onclick='enviar()'>
-                    <img src='../images/imagens/send.png' style='width: 45px; height: 45px;'>    
-                </button>
-            </div>    
-        `;
-
-
-        container.innerHTML = `<div id='interativo'>${message_content}</div>`;
+                var message_content = `
+                    <div class='top'>
+                        <span class='subtitle' style='text-align: center'>${sessionStorage.TEMA_CHAT}</span>
+                        <button onclick='closeChat()'>X</button>
+                    </div>
+                    <div class='chatBox' id='chatBox'></div>
+                    <div class='messageContent'>
+                        <input id='inp_message' placeholder='Mensagem' class='inputStyle'>
+                        <button onclick='enviar()'>
+                            <img src='../images/imagens/send.png' style='width: 45px; height: 45px;'>    
+                        </button>
+                    </div>    
+                `;
+                            
+                container.innerHTML = `<div id='interativo'>${message_content}</div>`;
+                
+                interval = setInterval(() => {
+                    carregar_mensagens(id)
+                }, 1000);
+            } else throw "Houve um erro ao carregar o chat";
+        })
+        .catch(
+            function(erro){
+                console.log(erro);
+            }
+        )
     }
 
     function enviar(){
         var messageText = inp_message.value;
         var textErro = "";
         var idUser = sessionStorage.ID_USUARIO;
+        var idChat = sessionStorage.ID_CHAT;
+
+        document.getElementById('inp_message').value = "";
+        document.getElementById('inp_message').focus();
 
         if(messageText.length > 200) textErro = "Legal";
         else {
@@ -196,28 +230,90 @@
                 }),
             })
             .then(function(resposta){
-                if(resposta.ok){
-                    var mensagemDivUser = `
-                        <div class='messageUser'>
-                            <img src='https://i.pinimg.com/originals/85/78/bf/8578bfd439ef6ee41e103ae82b561986.png' id='imageUser' alt='usuario_imagem'>
-                            <div class='messageBox'>
-                                <div class='messageData'>
-                                    <span id='nick'>Nickname</span>
-                                    <span id='datetime'>21/12/2005 08:00</span>
-                                </div>
-                                <span id='messageId'>${messageText}</span>
-                            </div>
-                        </div>
-                    `;
-            
-                    chatBox.innerHTML += mensagemDivUser;
-                } else throw "Houve um erro ao tentar enviar a mensagem!"
+                if(!resposta.ok) throw "Houve um erro ao tentar enviar a mensagem!"
             }).catch(function(erro){
                 console.log(erro);
             });
 
             return false;
         }
+    }
 
+    function carregar_mensagens(id){
+        fetch("../chats/atualizar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idChatServer: id
+            }),
+        })
+        .then(function(resposta){
+            if(resposta.ok){
+                if(resposta.status == 204) {
+                    chatBox.innerHTML = "Digite algo para iniciar a conversa";
+                    throw 'Conversa vazia!';
+                }
+
+                resposta.json().then(function(resposta){
+                    var mensagemDivUser = "";
+
+                    for(var index = 0; index < resposta.length; index++){
+                        var texto = resposta[index].texto;
+                        var nickname = resposta[index].nickname;
+                        var imagem = resposta[index].imagem;
+
+                        var dataHora = resposta[index].dataHora.split('T');
+                        var data = dataHora[0].split('-');
+                        var dataFormatada = `${data[2]}/${data[1]}/${data[0]}`;
+
+                        var hora = dataHora[1].split(':');
+                        var horaFormatada = `${hora[0]}:${hora[1]}`;
+
+                        if(resposta[index].idUsuario == sessionStorage.ID_USUARIO){
+                            mensagemDivUser += `
+                                <div class='messageUser messageUserOwner'>
+                                    <div class='messageBox'>
+                                        <div class='messageData'>
+                                            <span id='nick' class='owner'>${nickname}</span>
+                                            <span id='datetime'>${dataFormatada} ${horaFormatada}</span>
+                                        </div>
+                                        <span id='messageId'>${texto}</span>
+                                    </div>
+                                    <img src=${imagem} id='imageUser' alt='usuario_imagem'>
+                                </div>
+                            `;
+                        } else {
+                            mensagemDivUser += `
+                                <div class='messageUser'>
+                                    <img src=${imagem} id='imageUser' alt='usuario_imagem'>
+                                    <div class='messageBox'>
+                                        <div class='messageData'>
+                                            <span id='nick' class='others'>${nickname}</span>
+                                            <span id='datetime'>${dataFormatada} ${horaFormatada}</span>
+                                        </div>
+                                        <span id='messageId'>${texto}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }
+
+                    chatBox.innerHTML = mensagemDivUser;
+                })
+            } else {
+                console.log("Houve um erro")
+            }
+        })
+        .catch(function(erro){
+            console.log(erro);
+        })
+    }
+
+    function closeChat(){
+        clearInterval(interval);
+
+        container.innerHTML = conteudo_container;
     }
 </script>

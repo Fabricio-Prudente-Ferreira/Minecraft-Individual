@@ -100,7 +100,7 @@
         if(nome == "" || nick == "" || email == "" || dtNasc == "" || senha == "" || confSenha == "") texto = "Por favor, preencha todos os campos";
         else if(email.indexOf('@') == -1 || email.indexOf('.') == -1) texto = "Digite um e-mail válido";
         else if(senha.length < 7) texto = "Sua senha deve ter ao menos 7 dígitos";
-        else if(!tem_caracter_especial) texto = "Seu caracter precisa de um caracter especial";
+        else if(!tem_caracter_especial) texto = "Sua senha precisa de um caracter especial";
         else if(senha != confSenha) texto = "As senhas não se correspondem";
         else {
             fetch("../usuarios/cadastrar", {

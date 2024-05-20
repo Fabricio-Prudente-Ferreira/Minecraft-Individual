@@ -5,11 +5,13 @@
 }
 
 .chatBox {
-    background-color: #1a1a1a;
+    background-image: url(../images/background/footerBg.png);
     width: 100%;
     height: 100%;
     padding: 20px 20px 0 20px;
-    overflow: auto;
+    overflow-y: auto;
+    color: #aaa;
+    justify-content: flex-end;
 }
 
 .container #interativo .messageContent {
@@ -36,39 +38,64 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: 5px;
-    margin: 20px 0;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.messageUserOwner {
+    justify-content: flex-end;
 }
 
 .messageUser img {
     width: 50px;
     height: 50px;
-    margin-right: 15px;
+    margin: 015px;
 }
 
 .messageUser .messageBox {
     display: flex;
     flex-direction: column;
     color: white;
+    max-width: 50%;
 }
 
 .messageBox .messageData {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .messageBox .messageData span {
-    font-size: 30px;
+    font-size: 20px;
     color: #aaa
 }
 
 .messageUser .messageBox .messageData #nick {
-    color: lime;
     font-size: 35px;
     margin-right: 10px;
 }
 
+.messageUser .messageBox .messageData .others {
+    color: #14ddeb;
+}
+
+.messageUser .messageBox .messageData .owner {
+    color: #48d348
+}
+
 #messageId {
     font-size: 30px;
+}
+
+.container .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.container .top button {
+    width: 50px;
+    height: 50px;
 }
