@@ -24,9 +24,9 @@
                 <img src="../images/villageCraftExt.png" alt="VillageCraft">
                 <div class="navbar">
                     <a href="./home.html">Home</a>
-                    <a href="./chat.html">Assuntos</a>
+                    <a href="./chat.html">Chats</a>
                     <a href="./quiz.html">Quizzes</a>
-                    <a href="./jogo.html" class="pagina_atual">Jogo</a>
+                    <a href="./termo.html" class="pagina_atual">Termo</a>
                     <a href="./perfil.html">Perfil</a>
                     <a onclick="limparSessao()" class="exit">Sair</a>
                 </div>
@@ -35,7 +35,7 @@
         <div class="headerTransition"></div>
         <div class="content">
             <div class="container" id="container">
-                <span class="title">Jogo</span>
+                <span class="title">Termo</span>
                 <div class="section">
                     <span class="subtitle">Tutorial</span>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, hic natus. Harum delectus aperiam officiis suscipit. Iure voluptas, velit molestias delectus sit nam ducimus nostrum officia recusandae consequuntur doloremque ad. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos unde dolores corporis eveniet repellendus placeat maiores vero labore consequuntur vitae nulla dolorum eos, iure perspiciatis fugit impedit praesentium voluptatem maxime. <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam totam voluptates perferendis harum perspiciatis libero necessitatibus beatae accusamus iusto eligendi voluptate animi, natus amet fuga, quis dolorem, facere aliquam?</p>
@@ -53,13 +53,25 @@
         <div class="footerTransition"></div>
         <div class="footer">
             <div class="container">
-                <div class="box">
-                    <a href="./index.html" class="navigation">Início</a>
-                    <a href="./sobremim.html" class="navigation">Sobre Mim</a>
-                    <a href="./cadastro.html" class="navigation">Cadastro</a>
-                    <a href="./login.html" class="navigation">Login</a>
+                <div class="containerBox">
+                    <div class="box">
+                        <span class="subtitleFooter">Páginas</span>
+                        <a href="./home.html" class="navigation">Home</a>
+                        <a href="./chat.html" class="navigation">Chats</a>
+                        <a href="./quiz.html" class="navigation">Quizzes</a>
+                        <a href="./termo.html" class="navigation">Termo</a>
+                        <a href="./perfil.html" class="navigation">Perfil</a>
+                    </div>
+                    <div class="box">
+                        <span class="subtitleFooter">Contatos:</span>
+                        <span>fabricio-ferreira@sptech.school</span>
+                        <span>(11) 14074-8989</span>
+                        <span>Rua Haddock Lobo, 595, São Paulo - SP</span>
+                    </div>
                 </div>
-                <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
+                <div class="containerImg">
+                    <img src="../images/villageCraft.png" alt="VillageCraft">
+                </div>
             </div>
         </div>
         <div class="footerCopyright">
@@ -68,6 +80,22 @@
     </body>
 </html>
 <script>
+    var container_content = `
+        <span class="title">Jogo</span>
+        <div class="section">
+            <span class="subtitle">Tutorial</span>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, hic natus. Harum delectus aperiam officiis suscipit. Iure voluptas, velit molestias delectus sit nam ducimus nostrum officia recusandae consequuntur doloremque ad. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos unde dolores corporis eveniet repellendus placeat maiores vero labore consequuntur vitae nulla dolorum eos, iure perspiciatis fugit impedit praesentium voluptatem maxime. <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam totam voluptates perferendis harum perspiciatis libero necessitatibus beatae accusamus iusto eligendi voluptate animi, natus amet fuga, quis dolorem, facere aliquam?</p>
+        </div>
+        <div class="section">
+            <span class="subtitle">Escolha um Modo</span>
+            <div class="box">
+                <button onclick="load_word('easy')">Fácil</button>
+                <button onclick="load_word('medium')">Médio</button>
+                <button onclick="load_word('hard')">Difícil</button>
+            </div>
+        </div>
+    `;
+
     var palavras_5 = [
         'ZUMBI',
         'SLIME',
@@ -81,13 +109,16 @@
         'GHAST',
         'BLAZE',
         'DISCO',
+        'CALÇA',
         'ENDER',
         'SELVA',
         'TERRA',
         'CORAL',
         'CRAFT',
         'COBRE',
+        'TORTA',
         'PORTA',
+        'BOTAS',
         'TOCHA',
         'CACTO',
         'PRETO',
@@ -98,6 +129,7 @@
         'AREIA',
         'ATRIL',
         'PEDRA',
+        'FUNIL',
         'TÁBUA',
         'PLACA',
         'ALLAY',
@@ -115,13 +147,19 @@
         'POÇÃO',
         'FUNGO',
         'TAIGA',
+        'NOTCH',
         'PRAIA',
         'BARCO',
         'CHAMA',
+        'BAGAS',
+        'MAGMA',
         'GRAMA',
+        'GOLEM',
+        'COURO',
         'REGRA',
         'CINZA',
-        'CIANO'
+        'CIANO',
+        'FOLHA'
     ]
 
     var palavras_6 = [
@@ -136,6 +174,7 @@
         'PIGLIN',
         'OVELHA',
         'MARROM',
+        'ESCADA',
         'ESCAMA',
         'COELHO',
         'BREEZE',
@@ -143,6 +182,9 @@
         'CAVALO',
         'TULIPA',
         'TRILHO',
+        'DRAGÃO',
+        'CABEÇA',
+        'BOGGED',
         'HOGLIN',
         'CAMELO',
         'TEMPLO',
@@ -153,18 +195,21 @@
         'PEPITA',
         'NETHER',
         'PORTAL',
+        'FRANGO',
         'COLINA',
         'ALDEIA',
         'QUADRO',
         'BAIACU',
         'ESCUDO',
         'CARVÃO',
+        'BEACON',
         'FLECHA',
         'PODZOL',
         'TUNDRA',
         'PASTOR',
         'ARANHA',
         'RAPOSA',
+        'ACÁCIA',
         'CIDADE',
         'ABELHA',
         'ZOGLIN',
@@ -172,9 +217,11 @@
         'PIGMAN',
         'BATATA',
         'BRANCO',
+        'BÉTULA',
         'FÓSSIL',
         'PEÔNIA',
         'NEVADO',
+        'ARGILA',
         'BARRIL',
         'FRASCO',
         'LUNETA',
@@ -182,7 +229,9 @@
         'ÁRVORE',
         'CRÂNIO',
         'ENXADA',
-        'OCEANO',
+        'TIJOLO',
+        'TAPETE',
+        'OCEANO',  
         'VINHAS',
         'CONCHA',
         'RAJADA'
@@ -192,28 +241,40 @@
         'CREEPER',
         'AMARELO',
         'COMANDO',
+        'DOURADO',
         'PHANTOM',
         'SHULKER',
         'STRIDER',
         'ANDAIME',
         'LARANJA',
         'MAGENTA',
+        'BIGORNA',
         'PINTURA',
         'MORCEGO',
         'JUMENTO',
         'AXOLOTE',
         'CORANTE',
-        'AFOGADO',
+        'DROWNED',
+        'ARDÓSIA',
+        'SPAWNER',
+        'MOLDURA',
         'GALINHA',
+        'BASTIÃO',
+        'GRANITO',
+        'DIORITO',
+        'ARENITO',
         'PÂNTANO',
         'DESERTO',
         'CLÉRIGO',
+        'DUNGEON',
         'ARMEIRO',
         'ABÓBORA',
         'AZULEJO',
         'LAMPIÃO',
         'PÓLVORA',
+        'CAVERNA',
         'MADEIRA',
+        'BANCADA',
         'ALÇAPÃO',
         'CAVEIRA',
         'COLMEIA',
@@ -222,9 +283,11 @@
         'CENOURA',
         'MACHADO',
         'TESOURA',
+        'JUKEBOX',
         'TESOURO',
         'BASALTO',
         'PAPOULA',
+        'MINÉLIO',
         'FORTUNA',
         'REMENDO',
         'IMPACTO',
@@ -292,7 +355,7 @@
                         <button onclick='letra("M")' id='letraM'>M</button>
                     </div> 
                     <button onclick='tentativa()' id='btn_tentar'>Tentar</button>
-                    <button onclick='voltar()' id='btn_voltar'></button>
+                    <button onclick='voltar()' id='btn_voltar'>Sair</button>
                 </div>
             </div>
             <div id='resultado'></div>
@@ -451,6 +514,7 @@
     function detectar_especiais(){
         if(lista == palavras_5) {
             if(palavra_formada == 'TRACA') palavra_formada = "TRAÇA";
+            if(palavra_formada == 'CALCA') palavra_formada = "CALÇA";
             else if(palavra_formada == 'TABUA') palavra_formada = "TÁBUA";
             else if(palavra_formada == 'POCAO') palavra_formada = "POÇÃO";
         } else if(lista == palavras_6) {
@@ -459,18 +523,26 @@
             else if(palavra_formada == 'CARVAO') palavra_formada = "CARVÃO";
             else if(palavra_formada == 'RUINAS') palavra_formada = "RUÍNAS";
             else if(palavra_formada == 'FOSSIL') palavra_formada = "FÓSSIL";
+            else if(palavra_formada == 'CABECA') palavra_formada = "CABEÇA";
+            else if(palavra_formada == 'DRAGAO') palavra_formada = "DRAGÃO";
+            else if(palavra_formada == 'ACACIA') palavra_formada = "ACÁCIA";
+            else if(palavra_formada == 'BETULA') palavra_formada = "BÉTULA";
             else if(palavra_formada == 'CRANIO') palavra_formada = "CRÂNIO";
             else if(palavra_formada == 'PEONIA') palavra_formada = "PEÔNIA";
             else if(palavra_formada == 'SALMAO') palavra_formada = "SALMÃO";
+            else if(palavra_formada == 'ARVORE') palavra_formada = "ÁRVORE";
         } else {
             if(palavra_formada == 'LAMPIAO') palavra_formada = "LAMPIÃO";
             else if(palavra_formada == 'PANTANO') palavra_formada = "PÂNTANO";
+            else if(palavra_formada == 'ARDOSIA') palavra_formada = "ARDÓSIA";
             else if(palavra_formada == 'ALCAPAO') palavra_formada = "ALÇAPÃO";
             else if(palavra_formada == 'POLVORA') palavra_formada = "PÓLVORA";
             else if(palavra_formada == 'CLERIGO') palavra_formada = "CLÉRIGO";
             else if(palavra_formada == 'ABOBORA') palavra_formada = "ABÓBORA";
             else if(palavra_formada == 'RELOGIO') palavra_formada = "RELÓGIO";
+            else if(palavra_formada == 'BASTIAO') palavra_formada = "BASTIÃO";
             else if(palavra_formada == 'BUSSOLA') palavra_formada = "BÚSSOLA";
+            else if(palavra_formada == 'MICELIO') palavra_formada = "MICÉLIO";
             else if(palavra_formada == 'AFIACAO') palavra_formada = "AFIAÇÃO";
         }
         
@@ -667,5 +739,9 @@
                 }
             }
         )
+    }
+
+    function voltar(){
+
     }
 </script>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Village Craft | Debates</title>
+        <title>Village Craft | Chats</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/interativos.css">
         <link rel="stylesheet" href="../css/chat.css">
@@ -15,9 +15,9 @@
                 <img src="../images/villageCraftExt.png" alt="VillageCraft">
                 <div class="navbar">
                     <a href="./home.html">Home</a>
-                    <a href="./chat.html" class="pagina_atual">Assuntos</a>
+                    <a href="./chat.html" class="pagina_atual">Chats</a>
                     <a href="./quiz.html">Quizzes</a>
-                    <a href="./jogo.html">Jogo</a>
+                    <a href="./termo.html">Termo</a>
                     <a href="./perfil.html">Perfil</a>
                     <a onclick="limparSessao()" class="exit">Sair</a>
                 </div>
@@ -86,13 +86,25 @@
         <div class="footerTransition"></div>
         <div class="footer">
             <div class="container">
-                <div class="box">
-                    <a href="./home.html" class="navigation">Home</a>
-                    <a href="./chat.html" class="navigation">Assuntos</a>
-                    <a href="./quiz.html" class="navigation">Quizzes</a>
-                    <a href="./perfil.html" class="navigation">Perfil</a>
+                <div class="containerBox">
+                    <div class="box">
+                        <span class="subtitleFooter">Páginas</span>
+                        <a href="./home.html" class="navigation">Home</a>
+                        <a href="./chat.html" class="navigation">Chats</a>
+                        <a href="./quiz.html" class="navigation">Quizzes</a>
+                        <a href="./termo.html" class="navigation">Termo</a>
+                        <a href="./perfil.html" class="navigation">Perfil</a>
+                    </div>
+                    <div class="box">
+                        <span class="subtitleFooter">Contatos:</span>
+                        <span>fabricio-ferreira@sptech.school</span>
+                        <span>(11) 14074-8989</span>
+                        <span>Rua Haddock Lobo, 595, São Paulo - SP</span>
+                    </div>
                 </div>
-                <img src="../images/villageCraft.png" alt="VillageCraft" class="footerLogo">
+                <div class="containerImg">
+                    <img src="../images/villageCraft.png" alt="VillageCraft">
+                </div>
             </div>
         </div>
         <div class="footerCopyright">
@@ -196,7 +208,7 @@
                 container.innerHTML = `<div id='interativo'>${message_content}</div>`;
                 
                 interval = setInterval(() => {
-                    carregar_mensagens(id)
+                    carregar_mensagens(id);
                 }, 1000);
             } else throw "Houve um erro ao carregar o chat";
         })
@@ -209,7 +221,7 @@
 
     function enviar(){
         var messageText = inp_message.value;
-        var textErro = "";
+        var textErro = ""; 
         var idUser = sessionStorage.ID_USUARIO;
         var idChat = sessionStorage.ID_CHAT;
 
@@ -264,12 +276,28 @@
                         var nickname = resposta[index].nickname;
                         var imagem = resposta[index].imagem;
 
-                        var dataHora = resposta[index].dataHora.split('T');
-                        var data = dataHora[0].split('-');
-                        var dataFormatada = `${data[2]}/${data[1]}/${data[0]}`;
+                        var dataHora = new Date(resposta[index].dataHora.toLocaleString('en-US', {timeZone: 'America/Sao_Paulo'})).toString();
 
-                        var hora = dataHora[1].split(':');
-                        var horaFormatada = `${hora[0]}:${hora[1]}`;
+                        var dataHora_array = dataHora.split(' ');
+                        var mes = "";
+                        
+                        if(dataHora_array[1] == 'Jan') mes = '01';
+                        if(dataHora_array[1] == 'Feb') mes = '02';
+                        if(dataHora_array[1] == 'Mar') mes = '03';
+                        if(dataHora_array[1] == 'Apr') mes = '04';
+                        if(dataHora_array[1] == 'May') mes = '05';
+                        if(dataHora_array[1] == 'Jun') mes = '06';
+                        if(dataHora_array[1] == 'Jul') mes = '07';
+                        if(dataHora_array[1] == 'Aug') mes = '08';
+                        if(dataHora_array[1] == 'Sep') mes = '09';
+                        if(dataHora_array[1] == 'Oct') mes = '10';
+                        if(dataHora_array[1] == 'Nov') mes = '11';
+                        if(dataHora_array[1] == 'Dec') mes = '12';
+
+                        var dataFormatada = `${dataHora_array[2]}/${mes}/${dataHora_array[3]}`;
+                        
+                        var hora_array = dataHora_array[4].split(':');
+                        var horaFormatada = `${hora_array[0]}:${hora_array[1]}`;
 
                         if(resposta[index].idUsuario == sessionStorage.ID_USUARIO){
                             mensagemDivUser += `

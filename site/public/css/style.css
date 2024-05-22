@@ -150,19 +150,49 @@ p {
     justify-content: space-between;
 }
 
+.footer .container .containerBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 60%;
+}
+
 .footer .box {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    height: 100%;
 }
 
+.footer .box .subtitleFooter {
+    font-size: 45px;
+    text-decoration: underline;
+    color: #48d348;
+    margin-bottom: 20px;
+}
+
+.footer .box span {
+    font-size: 30px;
+    margin: 7px 0;
+}
 
 .footer .box a {
+    font-size: 30px;
     color: white;
+    margin: 3px 0;
 }
 
-.footerLogo {
-    width: 150px;
-    height: 150px;
+.footer .containerImg {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer .containerImg img {
+    width: 300px;
+    height: 300px;
+    border-width: 0;
+    align-self: center;
 }
 
 .footerCopyright {
@@ -241,6 +271,7 @@ button:hover {
 }
 
 .footer .container .box .navigation:hover {
+    font-size: 35px;
     color: #14ddeb;
 }
 

@@ -1,4 +1,4 @@
-var chatModel = require("../models/chatModel");
+var chatModel = require("../models/chatModel"); 
 
 function acessar(req, res){
     var idChat = req.body.idChatServer;

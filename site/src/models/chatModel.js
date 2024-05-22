@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function acessar(idChat){
     var instrucaoSql = `
-        SELECT * FROM Chat WHERE idChat = ${idChat};
+        SELECT * FROM Chat WHERE idChat = ${idChat}; 
     `;
 
     return database.executar(instrucaoSql);
