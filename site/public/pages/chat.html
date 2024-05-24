@@ -185,28 +185,30 @@
                 idChatServer: id
             })
         })
-        .then(async function(resposta){
+        .then(function(resposta){
             if(resposta.ok){
-                await resposta.json().then(json => {
+                resposta.json().then(json => {
                     sessionStorage.ID_CHAT = json.id,
                     sessionStorage.TEMA_CHAT = json.tema
                 })
 
-                var message_content = `
-                    <div class='top'>
-                        <span class='subtitle' style='text-align: center'>${sessionStorage.TEMA_CHAT}</span>
-                        <button onclick='closeChat()'>X</button>
-                    </div>
-                    <div class='chatBox' id='chatBox'></div>
-                    <div class='messageContent'>
-                        <input id='inp_message' placeholder='Mensagem' class='inputStyle'>
-                        <button onclick='enviar()'>
-                            <img src='../images/imagens/send.png' style='width: 45px; height: 45px;'>    
-                        </button>
-                    </div>    
-                `;
-                            
-                container.innerHTML = `<div id='interativo'>${message_content}</div>`;
+                setTimeout(() => {
+                    var message_content = `
+                        <div class='top'>
+                            <span class='subtitle' style='text-align: center'>${sessionStorage.TEMA_CHAT}</span>
+                            <button onclick='closeChat()'>X</button>
+                        </div>
+                        <div class='chatBox' id='chatBox'></div>
+                        <div class='messageContent'>
+                            <input id='inp_message' placeholder='Mensagem' class='inputStyle'>
+                            <button onclick='enviar()'>
+                                <img src='../images/imagens/send.png' style='width: 45px; height: 45px;'>    
+                            </button>
+                        </div>    
+                    `;
+                                
+                    container.innerHTML = `<div id='interativo'>${message_content}</div>`;
+                }, 500);
                 
                 interval = setInterval(() => {
                     carregar_mensagens(id);
@@ -277,8 +279,9 @@
                         var nickname = resposta[index].nickname;
                         var imagem = resposta[index].imagem;
 
-                        var dataHora = new Date(resposta[index].dataHora.toLocaleString('en-US', {timeZone: 'America/Sao_Paulo'})).toString();
+                        var dataHora = new Date(resposta[index].dataHora.toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo'})).toString();
 
+                        console.log(dataHora); 
                         var dataHora_array = dataHora.split(' ');
                         var mes = "";
                         

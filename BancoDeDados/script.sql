@@ -13,12 +13,6 @@ CREATE TABLE Usuario(
 
 SELECT * FROM Usuario; 
 
-TRUNCATE TABLE Usuario;
-INSERT INTO Usuario VALUES (DEFAULT, 'Fabricio', 'Fabzin', 'faprufer@gmail.com', '2020-10-05', 'https://i.pinimg.com/originals/85/78/bf/8578bfd439ef6ee41e103ae82b561986.png', '1234567!');
-
-UPDATE Usuario SET nome = 'Fa', nickname = 'Bri' WHERE idUsuario = 1;
-
-SELECT * FROM Usuario WHERE (email = 'faprufer@gmail.com' OR nickname = 'Fabzin') AND senha = '1234567!';
 /*CREATE TABLE Quiz(
 	idQuiz INT PRIMARY KEY AUTO_INCREMENT,
     tema VARCHAR(30) NOT NULL
@@ -70,7 +64,7 @@ SELECT * FROM Usuario;
 
 SELECT * FROM Mensagem;
 
-INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAINDA BEM Q TE PERGUNTEI NADA!', 1, 2);
+INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('Quero coxinha!!!', 3, 2);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
 TRUNCATE TABLE Mensagem;
 UPDATE Chat SET tema = "Poções" WHERE idChat = 3;

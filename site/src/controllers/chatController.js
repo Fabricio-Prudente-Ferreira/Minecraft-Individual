@@ -18,7 +18,7 @@ function acessar(req, res){
                 console.log(erro);
             }
         )
-    }
+    } 
 }
 
 function enviar(req, res){
