@@ -11,24 +11,6 @@ CREATE TABLE Usuario(
     senha VARCHAR(45) NOT NULL
 );
 
-SELECT * FROM Usuario; 
-
-/*CREATE TABLE Quiz(
-	idQuiz INT PRIMARY KEY AUTO_INCREMENT,
-    tema VARCHAR(30) NOT NULL
-);
-
-CREATE TABLE Pontuacao(
-	idPontuacao INT,
-    fkUsuarioPont INT,
-    fkQuizPont INT,
-    PRIMARY KEY(idPontuacao, fkUsuarioPont, fkQuizPont),
-    acertos INT,
-    perg_respondidas INT,
-    FOREIGN KEY(fkUsuarioPont) REFERENCES Usuario(idUsuario),
-    FOREIGN KEY(fkQuizPont) REFERENCES Quiz(idQuiz)
-);*/
-
 CREATE TABLE Chat(
 	idChat INT AUTO_INCREMENT PRIMARY KEY,
     tema VARCHAR(30) NOT NULL
@@ -45,6 +27,22 @@ CREATE TABLE Mensagem(
     FOREIGN KEY(fkChat) REFERENCES Chat(idChat)
 );
 
+CREATE TABLE Quiz(
+	idQuiz INT PRIMARY KEY AUTO_INCREMENT,
+    tema VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE PontuacaoQuiz(
+	idPontuacaoQuiz INT AUTO_INCREMENT,
+    fkUsuario INT,
+    fkQuiz INT,
+    PRIMARY KEY(idPontuacaoQuiz, fkUsuario, fkQuiz),
+    pontuacao INT,
+    dataHota DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
+);
+
 INSERT INTO Chat(tema) VALUES
 	('Atualização'),
 	('Redstone'),
@@ -59,13 +57,30 @@ INSERT INTO Chat(tema) VALUES
 	('Minecraft Dungeons'),
 	('Sugestões');
     
-SELECT * FROM Chat;
+INSERT INTO Quiz(tema) VALUES
+	('Geral'),
+	('Minérios'),
+	('Redstone'),
+	('Mobs'),
+	('Blocos'),
+	('Itens'),
+	('Encantamentos'),
+	('Biomas'),
+	('Poções'),
+	('Estruturas'),
+	('Crafts'),
+	('Comércio');
+
 SELECT * FROM Usuario;
-
+SELECT * FROM Chat;
 SELECT * FROM Mensagem;
+SELECT * FROM Quiz;
+SELECT * FROM PontuacaoQuiz;
 
-INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('Quero coxinha!!!', 3, 2);
+INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('Bom dia!!!', 3, 2);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
 TRUNCATE TABLE Mensagem;
 UPDATE Chat SET tema = "Poções" WHERE idChat = 3;
+
+
 

@@ -359,9 +359,6 @@
                 <section>
                     <canvas id='acertos'></canvas>
                 </section>
-                <section>
-                    <canvas id='tentativas'></canvas>    
-                </section>
             </div>
             <button onclick="sair()">Voltar</button>
         `;
@@ -391,94 +388,6 @@
                     }]
                 },
                 options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Taxa de Acertos',
-                            color: 'white',
-                            font: {
-                                family: 'pixel-font',
-                                size: 60
-                            }
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            align: 'center',
-                            minHeight: 350,
-                            labels: {
-                                color: '#ccc',
-                                padding: 40,
-                                boxWidth: 60,
-                                font: {
-                                    family: 'pixel-font',
-                                    size: 20
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        )
-
-        var tentativasCanvas = document.getElementById('tentativas').getContext('2d');
-        tentativasCanvas.canvas.parentNode.style.width = '1000px';
-        tentativasCanvas.canvas.parentNode.style.height = '500px';
-        tentativasCanvas.canvas.width = 2;
-        tentativasCanvas.canvas.height = 1;
-
-        var graficotentativasCanvas = new Chart(
-            tentativasCanvas,
-            {
-                type: 'bar',
-                data: {
-                    labels: ['Tentativa 1', 'Tentativa 2'],
-                    datasets: [{
-                        data: [2, acertos],
-                        backgroundColor: ['#48d348'],
-                        label: 'Taxa de Acertos'
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tentativas',
-                                color: '#ccc',
-                                font: {
-                                    size: 20,
-                                    family: 'pixel-font'
-                                }
-                            },
-                            ticks: {
-                                color: '#ccc',
-                                font: {
-                                    family: 'pixel-font',
-                                    size: 15
-                                }
-                            },
-                            grid: {
-                                zeroLineColor: 'white'
-                            }
-                        },
-                        y: {
-                            min: 0,
-                            max: 5,
-                            ticks: {
-                                stepSize: 1,
-                                color: '#ccc',
-                                font: {
-                                    family: 'pixel-font',
-                                    size: 15
-                                }
-                            },
-                            grid: {
-                                color: '#ccc',
-                                zeroLineColor: 'white'
-                            }
-                        }
-                    },
                     plugins: {
                         title: {
                             display: true,

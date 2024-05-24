@@ -19,6 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var chatRouter = require("./src/routes/chats");
 var quizRouter = require("./src/routes/quiz");
+var termoRouter = require("./src/routes/termo");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,6 +31,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/chats", chatRouter);
 app.use("/quiz", quizRouter);
+app.use("/termo", termoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
