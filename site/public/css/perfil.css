@@ -70,7 +70,7 @@ label {
 #backgroundEditImg .editForm {
     display: flex;
     flex-direction: column;
-    background-image: url(../images/background/footerBg.png);
+    background-image: url(../images/background/stoneBg.png);
     width: 60vw;
     height: 220px;
     padding: 20px;

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="./images/villageCraft.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Village Craft | Jogo</title>
+        <title>Village Craft | Termo</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/jogo.css">
         <script src="../js/sessao.js"></script>
@@ -90,9 +90,9 @@
         <div class="section">
             <span class="subtitle">Escolha um Modo</span>
             <div class="box">
-                <button onclick="load_word('easy')">Fácil</button>
-                <button onclick="load_word('medium')">Médio</button>
-                <button onclick="load_word('hard')">Difícil</button>
+                <button onclick="load_word('Fácil')">Fácil</button>
+                <button onclick="load_word('Médio')">Médio</button>
+                <button onclick="load_word('Difícil')">Difícil</button>
             </div>
         </div>
     `;
@@ -135,6 +135,7 @@
         'SCULK',
         'BLOCO',
         'AREIA',
+        'SORTE',
         'ATRIL',
         'PEDRA',
         'FUNIL',
@@ -172,11 +173,12 @@
         'REGRA',
         'CINZA',
         'CIANO',
+        'BOMBA',
         'FOLHA'
     ]
 
     var palavras_6 = [
-        'ALDEÃO',
+        'ALDEÃO', 
         'ESPADA',
         'TRONCO',
         'VARETA',
@@ -212,6 +214,8 @@
         'FRANGO',
         'COLINA',
         'ALDEIA',
+        'VENENO',
+        'COOKIE',
         'QUADRO',
         'BAIACU',
         'CHIFRE',
@@ -246,6 +250,7 @@
         'LUNETA',
         'SAVANA',
         'ÁRVORE',
+        'TIGELA',
         'CRÂNIO',
         'ENXADA',
         'TIJOLO',
@@ -299,6 +304,7 @@
         'ARENITO',
         'PÂNTANO',
         'DESERTO',
+        'MICÉLIO',
         'CLÉRIGO',
         'DUNGEON',
         'CRISTAL',
@@ -325,7 +331,6 @@
         'TESOURO',
         'BASALTO',
         'PAPOULA',
-        'MINÉLIO',
         'FORTUNA',
         'REMENDO',
         'IMPACTO',
@@ -345,6 +350,14 @@
     var modo = "";
     
     function load_word(dificuldade){
+        lista_repetidos = [];
+        lista_cont_certas = [];
+        lista_cont_semicertas = [];
+        lista_cont_erradas = [];
+        lista_tentativas = [];
+
+        tentativas = 0;
+
         modo = dificuldade;
 
         if(dificuldade == 'Fácil') lista = palavras_5;
@@ -446,8 +459,6 @@
         
         if(aux.length < palavra.length) document.getElementById(`letra-${tentativas}.${aux.length}`).value = letra;
     }
-
-    var lista_caracteres_possiveis = [];
 
     function changeInput(index){
         var element = document.getElementById(`letra-${tentativas}.${index}`);

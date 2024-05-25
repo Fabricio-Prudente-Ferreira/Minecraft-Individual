@@ -136,6 +136,7 @@ p {
 
 .footer {
     width: 100vw;
+    height: 480px;
     background-color: #040404;
     color: white;
     display: flex;
