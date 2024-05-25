@@ -32,8 +32,12 @@ function inserir(req, res){
     else {
         quizModel.inserir(idQuiz, idUser, pontuacao)
         .then(function(respostaInserir){
-            console.log(respostaInserir);
             res.json(respostaInserir)
+        })
+        .catch(function(erro){
+            console.error(erro);
+            console.log("\nHouve um erro ao inserir a pontuação do Quiz! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
         })
     }
 }

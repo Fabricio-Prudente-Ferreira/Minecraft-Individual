@@ -55,7 +55,9 @@ function atualizar(req, res){
         }
     ).catch(
         function(erro){
-            console.log(erro);
+            console.error(erro);
+            console.log("\nHouve um erro ao atualizar o chat! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
         }
     )
 }

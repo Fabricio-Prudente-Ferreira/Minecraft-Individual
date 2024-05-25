@@ -43,6 +43,22 @@ CREATE TABLE PontuacaoQuiz(
     FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
 );
 
+CREATE TABLE PontuacaoTermo(
+	idPontuacaoTermo INT AUTO_INCREMENT,
+    fkUsuario INT,
+    PRIMARY KEY(idPontuacaoTermo, fkUsuario),
+    FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
+    palavra VARCHAR(7),
+    qtdTentativas INT,
+    qtdAcertos INT,
+    qtdSemiacertos INT,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    modo VARCHAR(45) NOT NULL,
+    CONSTRAINT chkModo CHECK(modo IN('Fácil', 'Médio', 'Difícil'))
+);
+
+SHOW TABLES;
+
 INSERT INTO Chat(tema) VALUES
 	('Atualização'),
 	('Redstone'),
@@ -76,6 +92,7 @@ SELECT * FROM Chat;
 SELECT * FROM Mensagem;
 SELECT * FROM Quiz;
 SELECT * FROM PontuacaoQuiz;
+SELECT * FROM PontuacaoTermo;
 
 INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('Bom dia!!!', 3, 2);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
