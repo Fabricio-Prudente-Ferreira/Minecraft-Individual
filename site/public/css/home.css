@@ -61,3 +61,53 @@
     width: 50px;
     height: 50px;
 }
+
+.section {
+    width: 90vw;
+    border: 6px solid black;
+    background-image: url(../images/background/stoneBg.png);
+    padding: 20px;
+}
+
+.section .subtitle {
+    text-align: center;
+}
+
+#termo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+#termo .aviso {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+#termo .aviso a {
+    margin-left: 10px;
+    color: #48d348;
+}
+
+#termo .aviso a:hover {
+    color: #14ddeb
+}
+
+.graphicsTermo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.meio {
+    border-bottom: 7px white dashed;
+    border-top: 7px white dashed;
+}

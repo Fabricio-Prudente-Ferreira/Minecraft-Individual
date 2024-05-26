@@ -48,13 +48,15 @@ CREATE TABLE PontuacaoTermo(
     fkUsuario INT,
     PRIMARY KEY(idPontuacaoTermo, fkUsuario),
     FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
-    palavra VARCHAR(7),
-    qtdTentativas INT,
-    qtdAcertos INT,
-    qtdSemiacertos INT,
+    palavra VARCHAR(7) NOT NULL,
+    qtdTentativas INT NOT NULL,
+    qtdAcertos INT NOT NULL,
+    qtdSemiacertos INT NOT NULL,
     dataHora DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     modo VARCHAR(45) NOT NULL,
-    CONSTRAINT chkModo CHECK(modo IN('Fácil', 'Médio', 'Difícil'))
+    resultado INT NOT NULL,
+    CONSTRAINT chkModo CHECK(modo IN('Fácil', 'Médio', 'Difícil')),
+    CONSTRAINT chkResultado CHECK(resultado IN(0, 1))
 );
 
 SHOW TABLES;
@@ -89,14 +91,19 @@ INSERT INTO Quiz(tema) VALUES
 
 SELECT * FROM Usuario;
 SELECT * FROM Chat;
-SELECT * FROM Mensagem;
+SELECT * FROM Mensagem WHERE fkChat = 2;
+INSERT INTO Mensagem VALUES(DEFAULT, 5, 2, 'Fale alguma coisa aqui!', DEFAULT);
+UPDATE Usuario SET nickname = 'Steve Jobs' WHERE idUsuario = 4;
 SELECT * FROM Quiz;
 SELECT * FROM PontuacaoQuiz;
 SELECT * FROM PontuacaoTermo;
 
+INSERT INTO PontuacaoTermo VALUES(DEFAULT, 2, 'PHANTOM', 7, 11, 5, '2024-04-25 17:00:00', 'Difícil', 0);
+
 INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('Bom dia!!!', 3, 2);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
-TRUNCATE TABLE Mensagem;
+TRUNCATE TABLE PontuacaoTermo;
+DELETE FROM PontuacaoTermo WHERE idPontuacaoTermo >= 6;
 UPDATE Chat SET tema = "Poções" WHERE idChat = 3;
 
 

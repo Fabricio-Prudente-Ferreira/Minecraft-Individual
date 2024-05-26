@@ -20,6 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var chatRouter = require("./src/routes/chats");
 var quizRouter = require("./src/routes/quiz");
 var termoRouter = require("./src/routes/termo");
+var pontuacaoRouter = require("./src/routes/pontuacao");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +33,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/chats", chatRouter);
 app.use("/quiz", quizRouter);
 app.use("/termo", termoRouter);
+app.use("/pontuacao", pontuacaoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

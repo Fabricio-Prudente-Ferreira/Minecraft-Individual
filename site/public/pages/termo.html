@@ -346,6 +346,7 @@
     var lista_cont_semicertas = [];
     var lista_cont_erradas = [];
     var lista_tentativas = [];
+    var resultado_status = 0;
 
     var modo = "";
     
@@ -357,6 +358,7 @@
         lista_tentativas = [];
 
         tentativas = 0;
+        resultado_status = 0;
 
         modo = dificuldade;
 
@@ -529,6 +531,8 @@
                 for(var cont = 0; cont < palavra.length; cont++){
                     document.getElementById(`letra-${tentativas}.${cont}`).disabled = true;
                 }
+
+                resultado_status = 1;
 
                 gerar_grafico();
             }
@@ -810,7 +814,8 @@
                 tentativasServer: tentativas + 1,
                 acertosServer: total_acertos,
                 semiacertosServer: total_semiacertos,
-                modoServer: modo
+                modoServer: modo,
+                resultadoServer: resultado_status
             }),
         }) 
         .then(function (resposta) {

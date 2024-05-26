@@ -8,6 +8,17 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/home.css">
         <script src="../js/sessao.js"></script>
+        <script src="../js/chartJsIndex.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <style>
+            canvas {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        </style>
     </head>
     <body>
         <div class="header">
@@ -36,10 +47,31 @@
                     <div class="box" id="mobsCards"></div>
                     <div id="mobPages"></div>
                 </div>
-                <div class="section">
-                    <span class="subtitle">Pontuações</span>
-                    <div class="graphics">
-
+                <div class="section" id="termo">
+                    <span class="subtitle">Pontuações - Termo</span>
+                    <div class="graphicsTermo" id="modoFacil">
+                        <section>
+                            <canvas id="tentativas_termo_facil"></canvas>
+                        </section>
+                        <section>
+                            <canvas id="geral_termo_facil"></canvas>
+                        </section>
+                    </div>
+                    <div class="graphicsTermo meio" id="modoMedio">
+                        <section>
+                            <canvas id="tentativas_termo_medio"></canvas>
+                        </section>
+                        <section>
+                            <canvas id="geral_termo_medio"></canvas>
+                        </section>
+                    </div>
+                    <div class="graphicsTermo" id="modoDificil">
+                        <section>
+                            <canvas id="tentativas_termo_dificil"></canvas>
+                        </section>
+                        <section>
+                            <canvas id="geral_termo_dificil"></canvas>
+                        </section>
                     </div>
                 </div>
                 <div class="section">
@@ -199,4 +231,99 @@
 
     mobsCards.innerHTML = cards[0];
     mobPages.innerHTML = pages;
+
+
+    /* ============================ CARREGAR PONTUAÇÃO ============================ */
+
+    var pontuacoes_facil = [];
+    var pontuacoes_medio = [];
+    var pontuacoes_dificil = [];
+
+    var lista_tentativas_facil = [];
+    var lista_tentativas_medio = [];
+    var lista_tentativas_dificil = [];
+
+    var lista_cores_facil = [];
+    var lista_cores_medio = [];
+    var lista_cores_dificil = [];
+
+    var cont_tentativas_facil = 0;
+    var cont_tentativas_medio = 0;
+    var cont_tentativas_dificil = 0;
+
+    var vitorias_facil = 0;
+    var vitorias_medio = 0;
+    var vitorias_dificil = 0;
+
+    fetch("../pontuacao/termo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        }),
+    })
+    .then(function(resposta){
+        if(resposta.ok){
+            resposta.json().then(function(respostaJson){
+                var facil_validacao = false;
+                var medio_validacao = false;
+                var dificil_validacao = false;
+
+                for(var index = 0; index < respostaJson.modo.length; index++){
+                    var cor = "";
+                    var dificuldade = respostaJson.modo[index];
+                    var palavra = respostaJson.palavra[index];
+                    var vitoria = respostaJson.resultado[index];
+                    var qtd_tentativas = respostaJson.qtdTentativas[index];
+
+                    if(vitoria) cor = "#48d348";
+                    else cor = '#004455';
+
+                    if(dificuldade == 'Fácil') {
+                        if(vitoria) vitorias_facil++;
+                        facil_validacao = true;
+                        cont_tentativas_facil++;
+                        lista_tentativas_facil.push(`Tent. ${cont_tentativas_facil} - ${palavra}`);
+                        pontuacoes_facil.push(qtd_tentativas);
+                        lista_cores_facil.push(cor);
+                    }
+                    else if(dificuldade == 'Médio') {
+                        if(vitoria) vitorias_medio++;
+                        medio_validacao = true;
+                        cont_tentativas_medio++;
+                        lista_tentativas_medio.push(`Tent. ${cont_tentativas_medio} - ${palavra}`);
+                        pontuacoes_medio.push(qtd_tentativas);
+                        lista_cores_medio.push(cor);
+                    }
+                    else {
+                        if(vitoria) vitorias_dificil++;
+                        dificil_validacao = true;
+                        cont_tentativas_dificil++
+                        lista_tentativas_dificil.push(`Tent. ${cont_tentativas_dificil} - ${palavra}`);
+                        pontuacoes_dificil.push(qtd_tentativas);
+                        lista_cores_dificil.push(cor);
+                    }
+                }
+
+                if(facil_validacao) chartjs_termo_facil();
+                else modoFacil.innerHTML = "<span class='aviso'>Você ainda não jogou o modo fácil do Termo. <a href='./termo.html'>Clique aqui para jogar!</a></span>";
+                
+                if(medio_validacao) chartjs_termo_medio();
+                else modoMedio.innerHTML = "<span class='aviso'>Você ainda não jogou o modo médio do Termo. <a href='./termo.html'>Clique aqui para jogar!</a></span>";
+
+                if(dificil_validacao) chartjs_termo_dificil();
+                else modoDificil.innerHTML = "<span class='aviso'>Você ainda não jogou o modo difícil o Termo. <a href='./termo.html'>Clique aqui para jogar!</a></span>";
+            })
+        } else {
+            termo.innerHTML = `
+                <span class="subtitle">Pontuações - Termo</span>
+                <span class='aviso'>Você ainda não jogou o Termo. <a href='./termo.html'>Clique aqui para jogar!</a></span>
+            `;
+        }
+    })
+    .catch(function(erro){
+        console.log(erro);
+    })
 </script>

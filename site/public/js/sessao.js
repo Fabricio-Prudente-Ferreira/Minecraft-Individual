@@ -44,12 +44,6 @@ function limparSessao() {
     window.location = "../index.html";
 }
 
-// carregamento (loading)
-function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
-}
-
 function finalizarSessao(texto, bool) {
     if(bool) var cor = '#14ddeb';
     else var cor = 'red';
