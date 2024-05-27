@@ -42,11 +42,6 @@
         <div class="content">
             <div class="container">
                 <span class="title">SEJA BEM-VINDO <span id='nick_usuario' class="title">Nickname</span></span>
-                <div class="section">
-                    <span class="subtitle">Mobs</span>
-                    <div class="box" id="mobsCards"></div>
-                    <div id="mobPages"></div>
-                </div>
                 <div class="section" id="termo">
                     <span class="subtitle">Pontuações - Termo</span>
                     <div class="graphicsTermo" id="modoFacil">
@@ -74,8 +69,80 @@
                         </section>
                     </div>
                 </div>
-                <div class="section">
-                    <span class="subtitle"></span>
+                <div class="section" id="quiz">
+                    <span class="subtitle">Pontuações - Quizzes</span>
+                    <div class="boxQuizGraphic">
+                        <div class="graphicsQuiz" id="div_geral">
+                            <section>
+                                <canvas id="tentativas_quiz_geral"></canvas>
+                            </section>
+                        </div>
+                        <div class="graphicsQuiz" id="div_minerios">
+                            <section>
+                                <canvas id="tentativas_quiz_minérios"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="boxQuizGraphic">
+                        <div class="graphicsQuiz" id="div_redstone">
+                            <section>
+                                <canvas id="tentativas_quiz_redstone"></canvas>
+                            </section>
+                        </div>
+                        <div class="graphicsQuiz" id="div_mobs">
+                            <section>
+                                <canvas id="tentativas_quiz_mobs"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="boxQuizGraphic">
+                        <div class="graphicsQuiz" id="div_blocos">
+                            <section>
+                                <canvas id="tentativas_quiz_blocos"></canvas>
+                            </section>
+                        </div>
+                        <div class="graphicsQuiz" id="div_itens">
+                            <section>
+                                <canvas id="tentativas_quiz_itens"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="boxQuizGraphic">
+                        <div class="graphicsQuiz" id="div_encantamentos">
+                            <section>
+                                <canvas id="tentativas_quiz_encantamentos"></canvas>
+                            </section>
+                        </div>
+                        <div class="graphicsQuiz" id="div_biomas">
+                            <section>
+                                <canvas id="tentativas_quiz_biomas"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="boxQuizGraphic">
+                        <div class="graphicsQuiz" id="div_pocoes">
+                            <section>
+                                <canvas id="tentativas_quiz_poções"></canvas>
+                            </section>
+                        </div>
+                        <div class="graphicsQuiz" id="div_estruturas">
+                            <section>
+                                <canvas id="tentativas_quiz_estruturas"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="boxQuizGraphic">
+                        <div class="graphicsQuiz" id="div_crafts">
+                            <section>
+                                <canvas id="tentativas_quiz_crafts"></canvas>
+                            </section>
+                        </div>
+                        <div class="graphicsQuiz" id="div_comercio">
+                            <section>
+                                <canvas id="tentativas_quiz_comércio"></canvas>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,130 +178,9 @@
 <script>
     window.onload = validarSessao();
 
-    var mobsName = [
-        'Abelha',
-        'Afogado',
-        'Aldeão',
-        'Aldeão Zumbi',
-        'Allay',
-        'Aranha',
-        'Aranha de Caverna',
-        'Axolote',
-        'Bacalhau',
-        'Baiacu',
-        'Blaze',
-        'Bode',
-        'Bogged',
-        'Boneco de Ferro',
-        'Boneco de Neve',
-        'Breeze',
-        'Bruxa',
-        'Burro',
-        'Camelo',
-        'Cavalo',
-        'Cavalo Esqueleto',
-        'Coelho',
-        'Coguvaca',
-        'Creeper',
-        'Cubo de Magma',
-        'Devastador',
-        'Dragão Ender',
-        'Enderman',
-        'Endermite',
-        'Esqueleto',
-        'Esqueleto Wither',
-        'Galinha',
-        'Gato',
-        'Ghast',
-        'Girino',
-        'Golfinho',
-        'Guardião',
-        'Guardião Ancião',
-        'Hoglin',
-        'Husk',
-        'Invocador',
-        'Jaquatirica',
-        'Jumento',
-        'Lhama',
-        'Lobo',
-        'Lula',
-        'Lula Brilhante',
-        'Morcego',
-        'Ovelha',
-        'Panda',
-        'Papagaio',
-        'Phantom',
-        'Peixe Tropical',
-        'Piglin',
-        'Piglin Bárbaro',
-        'Piglin Zumbi',
-        'Porco',
-        'Salmão',
-        'Sapo',
-        'Saqueador',
-        'Shulker',
-        'Slime',
-        'Sniffer',
-        'Stray',
-        'Strider',
-        'Tartaruga',
-        'Tatu',
-        'Traça',
-        'Urso Polar',
-        'Vaca',
-        'Vingador',
-        'Warden',
-        'Wither',
-        'Zoglin',
-        'Zumbi'
-    ];
-
-    var cards = [];
-    var letras = ['A'];
-
-    var content = "<div class='group'><span style='color: white;'>A</span><div class='cards'>";
-    var contCards = 0;
-    var pularLinha = false;
-    var letra = "A";
-
-    for(var index = 0; index < mobsName.length; index++){
-        if(!mobsName[index].startsWith(letra)) {
-            letra = mobsName[index][0];
-            letras.push(letra);
-            pularLinha = true;
-        } else pularLinha = false;
-        
-        if(pularLinha) {
-            content += `</div></div>`
-            cards.push(content);
-            content = `<div class='group'><span style='color: white;'>${letra}</span><div class='cards'>`;
-            contCards = 0;
-        }
-        else if(contCards % 4 == 0) content += `</div><div class='cards'>`;
-            
-        content += `<button class='card'>${mobsName[index]}</button>`;
-
-        if(index == mobsName.length - 1) { 
-            content += `</div></div>`;
-            cards.push(content);
-        }
-
-        contCards++;
-    }
-
-    var pages = "";
-    for(var index = 0; index < cards.length; index++){
-        pages += `
-            <button onclick="mobsCards.innerHTML = cards[${index}]">${letras[index]}</button>
-        `
-    }
-
-    mobsCards.innerHTML = cards[0];
-    mobPages.innerHTML = pages;
-
-
     /* ============================ CARREGAR PONTUAÇÃO ============================ */
 
+    //TERMO
     var pontuacoes_facil = [];
     var pontuacoes_medio = [];
     var pontuacoes_dificil = [];
@@ -324,6 +270,92 @@
         }
     })
     .catch(function(erro){
-        console.log(erro);
+        console.error(erro);
+    })
+
+    var pontAllData = []; 
+    var pontOresData = []; 
+    var pontRedsData = []; 
+    var pontMobsData = []; 
+    var pontBlocksData = []; 
+    var pontItemsData = []; 
+    var pontEnchantData = []; 
+    var pontBiomesData = []; 
+    var pontPotionsData = []; 
+    var pontStructuresData = []; 
+    var pontCraftsData = []; 
+    var pontTradesData = []; 
+
+    //QUIZZES
+    fetch("../pontuacao/quizzes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        }),
+    })
+    .then(function(resposta){
+        if(resposta.ok){
+            resposta.json().then(function(respostaJson){
+                pontAllData = respostaJson.pontAll;
+                pontOresData = respostaJson.pontOres;
+                pontRedsData = respostaJson.pontReds;
+                pontMobsData = respostaJson.pontMobs;
+                pontBlocksData = respostaJson.pontBlocks;
+                pontItemsData = respostaJson.pontItems;
+                pontEnchantData = respostaJson.pontEnchant;
+                pontBiomesData = respostaJson.pontBiomes;
+                pontPotionsData = respostaJson.pontPotions;
+                pontStructuresData = respostaJson.pontStructures;
+                pontCraftsData = respostaJson.pontCrafts;
+                pontTradesData = respostaJson.pontTrades;
+                
+                if(pontAllData.length >= 1) chartjs_quiz([pontAllData, 'Geral', '#48d348']);
+                else quiz_erro_texto(div_geral, 'Geral');
+
+                if(pontOresData.length >= 1) chartjs_quiz([pontOresData, 'Minérios', '#004455']);
+                else quiz_erro_texto(div_minerios, 'Minérios');
+                
+                if(pontRedsData.length >= 1) chartjs_quiz([pontRedsData, 'Redstone', '#48d348']);
+                else quiz_erro_texto(div_redstone, 'Redstone');
+                
+                if(pontMobsData.length >= 1) chartjs_quiz([pontMobsData, 'Mobs', '#004455']);
+                else quiz_erro_texto(div_mobs, 'Mobs');
+                
+                if(pontBlocksData.length >= 1) chartjs_quiz([pontBlocksData, 'Blocos', '#48d348']);
+                else quiz_erro_texto(div_blocos, 'Blocos');
+                
+                if(pontItemsData.length >= 1) chartjs_quiz([pontItemsData, 'Itens', '#004455']);
+                else quiz_erro_texto(div_itens, 'Itens');
+                
+                if(pontEnchantData.length >= 1) chartjs_quiz([pontEnchantData, 'Encantamentos', '#48d348']);
+                else quiz_erro_texto(div_encantamentos, 'Encantamentos');
+                
+                if(pontBiomesData.length >= 1) chartjs_quiz([pontBiomesData, 'Biomas', '#004455']);
+                else quiz_erro_texto(div_biomas, 'Biomas');
+                
+                if(pontPotionsData.length >= 1) chartjs_quiz([pontPotionsData, 'Poções', '#48d348']);
+                else quiz_erro_texto(div_pocoes, 'Poções');
+                
+                if(pontStructuresData.length >= 1) chartjs_quiz([pontStructuresData, 'Estruturas', '#004455']);
+                else quiz_erro_texto(div_estruturas, 'Estruturas');
+                
+                if(pontCraftsData.length >= 1) chartjs_quiz([pontCraftsData, 'Craft', '#48d348']);
+                else quiz_erro_texto(div_crafts, 'Crafts');
+                
+                if(pontTradesData.length >= 1) chartjs_quiz([pontTradesData, 'Comércio', '#004455']);
+                else quiz_erro_texto(div_comercio, 'Comércio');
+            })
+        } else {
+            quiz.innerHTML = `
+                <span class="subtitle">Pontuações - Quizzes</span>
+                <span class='aviso'>Você ainda não jogou os Quizzes. <a href='./quiz.html'>Clique aqui para jogar!</a></span>
+            `;
+        }
+    })
+    .catch(function(erro){
+        console.error(erro);
     })
 </script>

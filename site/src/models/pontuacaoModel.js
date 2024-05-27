@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function termo(idUsuario){
     var instrucaoSql = `
-        SELECT * FROM PontuacaoTermo WHERE fkUsuario = ${idUsuario}; 
+        SELECT qtdTentativas, palavra, modo, resultado FROM PontuacaoTermo WHERE fkUsuario = ${idUsuario}; 
     `;
 
     return database.executar(instrucaoSql);
@@ -10,7 +10,7 @@ function termo(idUsuario){
 
 function quizzes(idUsuario){
     var instrucaoSql = `
-        SELECT * FROM PontuacaoQuiz JOIN Quiz ON fkQuiz = idQuiz WHERE fkUsuario = ${idUsuario};
+        SELECT tema, pontuacao FROM PontuacaoQuiz JOIN Quiz ON fkQuiz = idQuiz WHERE fkUsuario = ${idUsuario};
     `;
 
     return database.executar(instrucaoSql);

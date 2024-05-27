@@ -20,48 +20,6 @@
     height: 160px;
 }
 
-.content .container .box {
-    flex-direction: column;
-    display: flex;
-    width: 1500px;
-    align-items: center;
-}
-
-.content .container .box .group {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.content .container .box .group .cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.card {
-    background-color: #6a6a6a;
-    border: #333 solid 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    width: 300px;
-}
-
-#mobPages {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-#mobPages button {
-    width: 50px;
-    height: 50px;
-}
-
 .section {
     width: 90vw;
     border: 6px solid black;
@@ -77,10 +35,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
 }
 
-#termo .aviso {
+.aviso {
+    color: white;
     margin-top: 20px;
     display: flex;
     flex-direction: row;
@@ -88,12 +46,12 @@
     justify-content: center;
 }
 
-#termo .aviso a {
+.aviso a {
     margin-left: 10px;
     color: #48d348;
 }
 
-#termo .aviso a:hover {
+.aviso a:hover {
     color: #14ddeb
 }
 
@@ -110,4 +68,29 @@
 .meio {
     border-bottom: 7px white dashed;
     border-top: 7px white dashed;
+}
+
+.boxQuizGraphic {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.boxQuizGraphic .graphicsQuiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px dashed white;
+    width: 800px;
+    height: 450px;
+}
+
+.avisoQuiz {
+    flex-direction: column;
+    margin: 20px;
+    text-align: center;
+    margin: 0;
 }

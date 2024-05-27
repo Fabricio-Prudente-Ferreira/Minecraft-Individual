@@ -1,3 +1,88 @@
+var options_scale_termo_tentativas = {
+    x: {
+        border: {
+            color: 'white'
+        },
+        title: {
+            display: true,
+            text: 'Jogos',
+            color: '#ccc',
+            font: {
+                size: 25,
+                family: 'pixel-font'
+            }
+        },
+        ticks: {
+            color: '#ccc',
+            font: {
+                family: 'pixel-font',
+                size: 20
+            }
+        },
+        grid: {
+            color: '#666',
+            tickColor: 'white'
+        }
+    },
+    y: {
+        min: 0,
+        max: 7,
+        title: {
+            display: true,
+            text: 'Nº de Tentativas',
+            color: '#ccc',
+            font: {
+                size: 25,
+                family: 'pixel-font'
+            }
+        },
+        ticks: {
+            stepSize: 1,
+            color: '#ccc',
+            font: {
+                family: 'pixel-font',
+                size: 20
+            }
+        },
+        grid: {
+            color: '#666',
+            tickColor: 'white'
+        },
+        border: {
+            color: 'white'
+        }
+    }
+}
+
+var options_termo_geral = {
+    plugins: {
+        title: {
+            display: true,
+            text: 'Conquistas',
+            color: 'white',
+            font: {
+                family: 'pixel-font',
+                size: 60
+            }
+        },
+        legend: {
+            display: true,
+            position: 'bottom',
+            align: 'center',
+            minHeight: 350,
+            labels: {
+                color: '#ccc',
+                padding: 30,
+                boxWidth: 40,
+                font: {
+                    family: 'pixel-font',
+                    size: 25
+                }
+            }
+        }
+    }
+}
+
 function chartjs_termo_facil(){
     var last_tentativas_facil = [];
     var last_pontuacoes_facil = [];
@@ -33,61 +118,7 @@ function chartjs_termo_facil(){
                 }]
             },
             options: {
-                scales: {
-                    x: {
-                        border: {
-                            color: 'white'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Jogos',
-                            color: '#ccc',
-                            font: {
-                                size: 25,
-                                family: 'pixel-font'
-                            }
-                        },
-                        ticks: {
-                            color: '#ccc',
-                            font: {
-                                family: 'pixel-font',
-                                size: 20
-                            }
-                        },
-                        grid: {
-                            color: '#666',
-                            tickColor: 'white'
-                        }
-                    },
-                    y: {
-                        min: 0,
-                        max: 7,
-                        title: {
-                            display: true,
-                            text: 'Nº de Tentativas',
-                            color: '#ccc',
-                            font: {
-                                size: 25,
-                                family: 'pixel-font'
-                            }
-                        },
-                        ticks: {
-                            stepSize: 1,
-                            color: '#ccc',
-                            font: {
-                                family: 'pixel-font',
-                                size: 20
-                            }
-                        },
-                        grid: {
-                            color: '#666',
-                            tickColor: 'white'
-                        },
-                        border: {
-                            color: 'white'
-                        }
-                    }
-                },
+                scales: options_scale_termo_tentativas,
                 plugins: {
                     title: {
                         display: true,
@@ -123,34 +154,7 @@ function chartjs_termo_facil(){
                     backgroundColor: ['#48d348', '#004455'],
                 }]
             },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Conquistas',
-                        color: 'white',
-                        font: {
-                            family: 'pixel-font',
-                            size: 60
-                        }
-                    },
-                    legend: {
-                        display: true,
-                        position: 'bottom',
-                        align: 'center',
-                        minHeight: 350,
-                        labels: {
-                            color: '#ccc',
-                            padding: 30,
-                            boxWidth: 40,
-                            font: {
-                                family: 'pixel-font',
-                                size: 25
-                            }
-                        }
-                    }
-                }
-            }
+            options: options_termo_geral
         }
     )
 }
@@ -190,61 +194,7 @@ function chartjs_termo_medio() {
                 }]
             },
             options: {
-                scales: {
-                    x: {
-                        border: {
-                            color: 'white'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Jogos',
-                            color: '#ccc',
-                            font: {
-                                size: 25,
-                                family: 'pixel-font'
-                            }
-                        },
-                        ticks: {
-                            color: '#ccc',
-                            font: {
-                                family: 'pixel-font',
-                                size: 20
-                            }
-                        },
-                        grid: {
-                            color: '#666',
-                            tickColor: 'white'
-                        }
-                    },
-                    y: {
-                        min: 0,
-                        max: 7,
-                        title: {
-                            display: true,
-                            text: 'Nº de Tentativas',
-                            color: '#ccc',
-                            font: {
-                                size: 25,
-                                family: 'pixel-font'
-                            }
-                        },
-                        ticks: {
-                            stepSize: 1,
-                            color: '#ccc',
-                            font: {
-                                family: 'pixel-font',
-                                size: 20
-                            }
-                        },
-                        grid: {
-                            color: '#666',
-                            tickColor: 'white'
-                        },
-                        border: {
-                            color: 'white'
-                        }
-                    }
-                },
+                scales: options_scale_termo_tentativas,
                 plugins: {
                     title: {
                         display: true,
@@ -280,34 +230,7 @@ function chartjs_termo_medio() {
                     backgroundColor: ['#48d348', '#004455'],
                 }]
             },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Conquistas',
-                        color: 'white',
-                        font: {
-                            family: 'pixel-font',
-                            size: 60
-                        }
-                    },
-                    legend: {
-                        display: true,
-                        position: 'bottom',
-                        align: 'center',
-                        minHeight: 350,
-                        labels: {
-                            color: '#ccc',
-                            padding: 30,
-                            boxWidth: 40,
-                            font: {
-                                family: 'pixel-font',
-                                size: 25
-                            }
-                        }
-                    }
-                }
-            }
+            options: options_termo_geral
         }
     )
 }
@@ -347,61 +270,7 @@ function chartjs_termo_dificil(){
                 }]
             },
             options: {
-                scales: {
-                    x: {
-                        border: {
-                            color: 'white'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Jogos',
-                            color: '#ccc',
-                            font: {
-                                size: 25,
-                                family: 'pixel-font'
-                            }
-                        },
-                        ticks: {
-                            color: '#ccc',
-                            font: {
-                                family: 'pixel-font',
-                                size: 20
-                            }
-                        },
-                        grid: {
-                            color: '#666',
-                            tickColor: 'white'
-                        }
-                    },
-                    y: {
-                        min: 0,
-                        max: 7,
-                        title: {
-                            display: true,
-                            text: 'Nº de Tentativas',
-                            color: '#ccc',
-                            font: {
-                                size: 25,
-                                family: 'pixel-font'
-                            }
-                        },
-                        ticks: {
-                            stepSize: 1,
-                            color: '#ccc',
-                            font: {
-                                family: 'pixel-font',
-                                size: 20
-                            }
-                        },
-                        grid: {
-                            color: '#666',
-                            tickColor: 'white'
-                        },
-                        border: {
-                            color: 'white'
-                        }
-                    }
-                },
+                scales: options_scale_termo_tentativas,
                 plugins: {
                     title: {
                         display: true,
@@ -437,29 +306,128 @@ function chartjs_termo_dificil(){
                     backgroundColor: ['#48d348', '#004455'],
                 }]
             },
+            options: options_termo_geral
+        }
+    )
+}
+
+var options_quiz = {
+    x: {
+        border: {
+            color: 'white'
+        },
+        title: {
+            display: true,
+            text: 'Jogos',
+            color: '#ccc',
+            font: {
+                size: 25,
+                family: 'pixel-font'
+            }
+        },
+        ticks: {
+            color: '#ccc',
+            font: {
+                family: 'pixel-font',
+                size: 20
+            }
+        },
+        grid: {
+            color: '#666',
+            tickColor: 'white'
+        }
+    },
+    y: {
+        min: 0,
+        max: 5,
+        title: {
+            display: true,
+            text: 'Nº de Acertos',
+            color: '#ccc',
+            font: {
+                size: 25,
+                family: 'pixel-font'
+            }
+        },
+        ticks: {
+            stepSize: 1,
+            color: '#ccc',
+            font: {
+                family: 'pixel-font',
+                size: 20
+            }
+        },
+        grid: {
+            color: '#666',
+            tickColor: 'white'
+        },
+        border: {
+            color: 'white'
+        }
+    }
+}
+
+function dataQuiz_chartJS(lista){
+    var labelsChartJS = [];
+    var pontuacoes = [];
+
+    if(lista.length <= 5){
+        for(var cont = 0; cont < lista.length; cont++){
+            labelsChartJS.push(`Tent. ${cont + 1}`);
+            pontuacoes.push(lista[cont]);
+        }
+    } else {
+        for(var cont = lista.length - 5; cont < lista.length; cont++){
+            labelsChartJS.push(`Tent. ${cont + 1}`);
+            pontuacoes.push(lista[cont]);
+        }
+    }
+
+    return [labelsChartJS, pontuacoes];
+}
+
+function chartjs_quiz(quizTheme){
+    var tentativas_quiz = document.getElementById(`tentativas_quiz_${quizTheme[1].toLowerCase()}`).getContext('2d');
+    tentativas_quiz.canvas.parentNode.style.width = '700px';
+    tentativas_quiz.canvas.parentNode.style.height = '350px';
+    tentativas_quiz.canvas.width = 2;
+    tentativas_quiz.canvas.height = 1;
+
+    var resultado = dataQuiz_chartJS(quizTheme[0]);
+
+    new Chart(
+        tentativas_quiz,
+        {
+            type: 'bar',
+            data: {
+                labels: resultado[0],
+                datasets: [{
+                    label: `Acertos no Quiz - ${quizTheme[1]}`,
+                    data: resultado[1],
+                    backgroundColor: quizTheme[2],
+                    fill: true
+                }]
+            },
             options: {
+                scales: options_quiz,
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Conquistas',
+                        text: quizTheme[1],
                         color: 'white',
                         font: {
                             family: 'pixel-font',
-                            size: 60
+                            size: 50
                         }
                     },
                     legend: {
                         display: true,
                         position: 'bottom',
-                        align: 'center',
-                        minHeight: 350,
                         labels: {
-                            color: '#ccc',
-                            padding: 30,
-                            boxWidth: 40,
+                            color: '#ddd',
                             font: {
                                 family: 'pixel-font',
-                                size: 25
+                                size: 20
                             }
                         }
                     }
@@ -467,4 +435,8 @@ function chartjs_termo_dificil(){
             }
         }
     )
+}
+
+function quiz_erro_texto(div, tema){
+    div.innerHTML = `<span class='aviso avisoQuiz'>Você ainda não jogou o Quiz de tema ${tema}. <a href='./quiz.html'>Clique aqui para jogar!</a></span>`;
 }
