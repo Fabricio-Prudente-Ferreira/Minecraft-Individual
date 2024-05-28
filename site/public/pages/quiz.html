@@ -340,7 +340,7 @@
         .then(function (resposta) {
             if (resposta.ok) {
                 setTimeout(() => {
-                    gerar_grafico();
+                    gerar_grafico(); 
                 }, 250);
             } else {
                 throw "Houve um erro ao inserir a pontuação!";
@@ -380,7 +380,7 @@
                         data: [acertos, 5 - acertos],
                         backgroundColor: [
                             '#48d348',
-                            '#a00'
+                            '#004455'
                         ],
                         label: 'Taxa de Acertos'
                     }]

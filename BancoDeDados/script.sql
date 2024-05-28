@@ -8,7 +8,13 @@ CREATE TABLE Usuario(
     email VARCHAR(70) NOT NULL,
     dtNasc DATE NOT NULL,
     imagem VARCHAR(250),
-    senha VARCHAR(45) NOT NULL
+    senha VARCHAR(45) NOT NULL,
+    CONSTRAINT chkImagem CHECK(
+		imagem LIKE '%.png' OR 
+        imagem LIKE '%.jpg' OR
+        imagem LIKE '%.gif' OR
+        imagem LIKE '%.webp'
+	)
 );
 
 CREATE TABLE Chat(
@@ -100,9 +106,12 @@ SELECT * FROM PontuacaoTermo;
 
 INSERT INTO PontuacaoTermo VALUES(DEFAULT, 2, 'PHANTOM', 7, 11, 5, '2024-04-25 17:00:00', 'Difícil', 0);
 
-INSERT INTO Mensagem(texto, fkUsuarioMsg, fkChat) VALUES('Bom dia!!!', 3, 2);
+SELECT tema, pontuacao FROM PontuacaoQuiz JOIN Quiz ON fkQuiz = idQuiz WHERE fkUsuario = 2;
+
+INSERT INTO PontuacaoQuiz VALUES(DEFAULT, 3, 12, 1, DEFAULT);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
 TRUNCATE TABLE PontuacaoTermo;
+TRUNCATE TABLE PontuacaoQuiz;
 DELETE FROM PontuacaoTermo WHERE idPontuacaoTermo >= 6;
 UPDATE Chat SET tema = "Poções" WHERE idChat = 3;
 

@@ -373,12 +373,12 @@ function dataQuiz_chartJS(lista){
 
     if(lista.length <= 5){
         for(var cont = 0; cont < lista.length; cont++){
-            labelsChartJS.push(`Tent. ${cont + 1}`);
+            labelsChartJS.push(`Tentativa ${cont + 1}`);
             pontuacoes.push(lista[cont]);
         }
     } else {
         for(var cont = lista.length - 5; cont < lista.length; cont++){
-            labelsChartJS.push(`Tent. ${cont + 1}`);
+            labelsChartJS.push(`Tentativa ${cont + 1}`);
             pontuacoes.push(lista[cont]);
         }
     }
@@ -438,5 +438,18 @@ function chartjs_quiz(quizTheme){
 }
 
 function quiz_erro_texto(div, tema){
-    div.innerHTML = `<span class='aviso avisoQuiz'>Você ainda não jogou o Quiz de tema ${tema}. <a href='./quiz.html'>Clique aqui para jogar!</a></span>`;
+    if(tema == 'Geral') url = 'https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp';
+    else if(tema == 'Minérios') url = 'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg';
+    else if(tema == 'Redstone') url = 'https://wallpapercave.com/wp/wp10656185.png';
+    else if(tema == 'Mobs') url = 'https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg';
+    else if(tema == 'Blocos') url = 'https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original';
+    else if(tema == 'Itens') url = 'https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large';
+    else if(tema == 'Encantamentos') url = 'https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg';
+    else if(tema == 'Biomas') url = 'https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg';
+    else if(tema == 'Poções') url = 'https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp';
+    else if(tema == 'Estruturas') url = 'https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg';
+    else if(tema == 'Crafts') url = 'https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg';
+    else if(tema == 'Comércio') url = '../images/villageTheme.jpg';
+
+    div.innerHTML = `<img src=${url} alt=${tema}><span class='aviso avisoQuiz'>Você ainda não jogou o Quiz de tema ${tema}. <a href='./quiz.html'>Clique aqui para jogar!</a></span>`;
 }

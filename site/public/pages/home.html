@@ -73,11 +73,13 @@
                     <span class="subtitle">Pontuações - Quizzes</span>
                     <div class="boxQuizGraphic">
                         <div class="graphicsQuiz" id="div_geral">
+                            <img src="https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_geral"></canvas>
                             </section>
                         </div>
                         <div class="graphicsQuiz" id="div_minerios">
+                            <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_minérios"></canvas>
                             </section>
@@ -85,11 +87,13 @@
                     </div>
                     <div class="boxQuizGraphic">
                         <div class="graphicsQuiz" id="div_redstone">
+                            <img src="https://wallpapercave.com/wp/wp10656185.png" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_redstone"></canvas>
                             </section>
                         </div>
                         <div class="graphicsQuiz" id="div_mobs">
+                            <img src="https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_mobs"></canvas>
                             </section>
@@ -97,11 +101,13 @@
                     </div>
                     <div class="boxQuizGraphic">
                         <div class="graphicsQuiz" id="div_blocos">
+                            <img src="https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_blocos"></canvas>
                             </section>
                         </div>
                         <div class="graphicsQuiz" id="div_itens">
+                            <img src="https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_itens"></canvas>
                             </section>
@@ -109,11 +115,13 @@
                     </div>
                     <div class="boxQuizGraphic">
                         <div class="graphicsQuiz" id="div_encantamentos">
+                            <img src="https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_encantamentos"></canvas>
                             </section>
                         </div>
                         <div class="graphicsQuiz" id="div_biomas">
+                            <img src="https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_biomas"></canvas>
                             </section>
@@ -121,11 +129,13 @@
                     </div>
                     <div class="boxQuizGraphic">
                         <div class="graphicsQuiz" id="div_pocoes">
+                            <img src="https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_poções"></canvas>
                             </section>
                         </div>
                         <div class="graphicsQuiz" id="div_estruturas">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_estruturas"></canvas>
                             </section>
@@ -133,11 +143,13 @@
                     </div>
                     <div class="boxQuizGraphic">
                         <div class="graphicsQuiz" id="div_crafts">
+                            <img src="https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_crafts"></canvas>
                             </section>
                         </div>
                         <div class="graphicsQuiz" id="div_comercio">
+                            <img src="../images/villageTheme.jpg" alt="img1">
                             <section>
                                 <canvas id="tentativas_quiz_comércio"></canvas>
                             </section>
@@ -315,37 +327,37 @@
                 if(pontAllData.length >= 1) chartjs_quiz([pontAllData, 'Geral', '#48d348']);
                 else quiz_erro_texto(div_geral, 'Geral');
 
-                if(pontOresData.length >= 1) chartjs_quiz([pontOresData, 'Minérios', '#004455']);
+                if(pontOresData.length >= 1) chartjs_quiz([pontOresData, 'Minérios', '#14ddeb']);
                 else quiz_erro_texto(div_minerios, 'Minérios');
                 
                 if(pontRedsData.length >= 1) chartjs_quiz([pontRedsData, 'Redstone', '#48d348']);
                 else quiz_erro_texto(div_redstone, 'Redstone');
                 
-                if(pontMobsData.length >= 1) chartjs_quiz([pontMobsData, 'Mobs', '#004455']);
+                if(pontMobsData.length >= 1) chartjs_quiz([pontMobsData, 'Mobs', '#14ddeb']);
                 else quiz_erro_texto(div_mobs, 'Mobs');
                 
                 if(pontBlocksData.length >= 1) chartjs_quiz([pontBlocksData, 'Blocos', '#48d348']);
                 else quiz_erro_texto(div_blocos, 'Blocos');
                 
-                if(pontItemsData.length >= 1) chartjs_quiz([pontItemsData, 'Itens', '#004455']);
+                if(pontItemsData.length >= 1) chartjs_quiz([pontItemsData, 'Itens', '#14ddeb']);
                 else quiz_erro_texto(div_itens, 'Itens');
                 
                 if(pontEnchantData.length >= 1) chartjs_quiz([pontEnchantData, 'Encantamentos', '#48d348']);
                 else quiz_erro_texto(div_encantamentos, 'Encantamentos');
                 
-                if(pontBiomesData.length >= 1) chartjs_quiz([pontBiomesData, 'Biomas', '#004455']);
+                if(pontBiomesData.length >= 1) chartjs_quiz([pontBiomesData, 'Biomas', '#14ddeb']);
                 else quiz_erro_texto(div_biomas, 'Biomas');
                 
                 if(pontPotionsData.length >= 1) chartjs_quiz([pontPotionsData, 'Poções', '#48d348']);
                 else quiz_erro_texto(div_pocoes, 'Poções');
                 
-                if(pontStructuresData.length >= 1) chartjs_quiz([pontStructuresData, 'Estruturas', '#004455']);
+                if(pontStructuresData.length >= 1) chartjs_quiz([pontStructuresData, 'Estruturas', '#14ddeb']);
                 else quiz_erro_texto(div_estruturas, 'Estruturas');
                 
-                if(pontCraftsData.length >= 1) chartjs_quiz([pontCraftsData, 'Craft', '#48d348']);
+                if(pontCraftsData.length >= 1) chartjs_quiz([pontCraftsData, 'Crafts', '#48d348']);
                 else quiz_erro_texto(div_crafts, 'Crafts');
                 
-                if(pontTradesData.length >= 1) chartjs_quiz([pontTradesData, 'Comércio', '#004455']);
+                if(pontTradesData.length >= 1) chartjs_quiz([pontTradesData, 'Comércio', '#14ddeb']);
                 else quiz_erro_texto(div_comercio, 'Comércio');
             })
         } else {

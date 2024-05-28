@@ -95,7 +95,7 @@
         <div id="backgroundEditImg">
             <div class="editForm">
                 <div class="top">
-                    <span>Coloque a URL da sua foto (.png/.jpg/.gif):</span>
+                    <span>Coloque a URL da sua foto (.png/.jpg/.gif/.webp):</span>
                     <button onclick="closeEditImg()" class="close">X</button>
                 </div>
                 <label>
@@ -121,7 +121,7 @@
         var url = inp_url.value;
 
         if(url.length > 250) alert('URL muito longa. Escolha outra!');
-        else if(url.indexOf('.jpg') == -1 && url.indexOf('.png') == -1 && url.indexOf('.gif') == -1) alert('Imagem inválida');
+        else if(url.indexOf('.jpg') == -1 && url.indexOf('.png') == -1 && url.indexOf('.gif') == -1 && url.indexOf('.webp') == -1) alert('Imagem inválida');
         else {
             document.getElementById('backgroundEditImg').style.display = 'none'
             document.getElementById('avatar').src = inp_url.value;
