@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Village Craft | Termo</title>
         <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/jogo.css">
+        <link rel="stylesheet" href="../css/termo.css">
         <script src="../js/sessao.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
@@ -44,9 +44,9 @@
                 <div class="section">
                     <span class="subtitle">Escolha um Modo</span>
                     <div class="box">
-                        <button onclick="load_word('Fácil')">Fácil</button>
-                        <button onclick="load_word('Médio')">Médio</button>
-                        <button onclick="load_word('Difícil')">Difícil</button>
+                        <button onclick="placar('Fácil')">Fácil</button>
+                        <button onclick="placar('Médio')">Médio</button>
+                        <button onclick="placar('Difícil')">Difícil</button>
                     </div>
                 </div>
             </div>
@@ -90,9 +90,9 @@
         <div class="section">
             <span class="subtitle">Escolha um Modo</span>
             <div class="box">
-                <button onclick="load_word('Fácil')">Fácil</button>
-                <button onclick="load_word('Médio')">Médio</button>
-                <button onclick="load_word('Difícil')">Difícil</button>
+                <button onclick="placar('Fácil')">Fácil</button>
+                <button onclick="placar('Médio')">Médio</button>
+                <button onclick="placar('Difícil')">Difícil</button>
             </div>
         </div>
     `;
@@ -212,6 +212,7 @@
         'NETHER',
         'PORTAL',
         'FRANGO',
+        'PISTÃO',
         'COLINA',
         'ALDEIA',
         'VENENO',
@@ -350,7 +351,69 @@
     var resultado_status = 0;
 
     var modo = "";
+    var segundos = 0;
+    var minutos = 0;
+    var cronometragem = undefined;
     
+    function placar(dificuldade){
+        modo = dificuldade;
+
+        container.innerHTML = `
+            <div id='resultado' style='display: flex; flex-direction: row; justify-content: space-around;'>
+                <button onclick='load_word("${dificuldade}")' style='width: 500px;'>Iniciar</button>
+                <div id='classificacao'>
+                    <span class='subtitle'>Colocação</span>    
+                </div>
+            </div>
+        `;
+
+        fetch("../termo/termoColocacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                dificuldadeServer: dificuldade
+            }),
+        }) 
+        .then(function (resposta) {
+            if(resposta.ok) {
+                resposta.json().then(function(respostaJson){
+                    var listaUsuarios = respostaJson.usuario;
+                    var listaTentativas = respostaJson.tentativa;
+                    var listaTempos = respostaJson.tempo;
+
+                    for(var index = 0; index < respostaJson.usuario.length; index++){
+                        if(index == 0) var trophyColor = '#48d348';
+                        else if(index == 1) var trophyColor = '#14ddeb';
+                        else if(index == 2) var trophyColor = '#004455';
+                        else var trophyColor = '#888';
+
+                        var tempoUsuarioFormatado = '';
+                        if(listaTempos[index] >= 60) tempoUsuarioFormatado = `${Number((listaTempos[index] / 60).toFixed(0))}min ${listaTempos[index] % 60}s`;
+                        else tempoUsuarioFormatado = `${listaTempos[index]}s`;
+
+                        document.getElementById('classificacao').innerHTML += `
+                            <div class='classificacaoCard'>
+                                <div class='trophy' style='background-color: ${trophyColor};'>${index + 1}°</div>
+                                <div class='classificacaoData'>
+                                    <span style='color: ${trophyColor};'>Nome: ${listaUsuarios[index]}</span>    
+                                    <span>Quantidade de Tentativas: ${listaTentativas[index]}</span>    
+                                    <span>Feito em ${tempoUsuarioFormatado}</span>    
+                                </div>
+                            </div>
+                        `;
+                    }
+                })
+            }
+            else throw "Houve um erro ao mostrar as pontuações!";
+        })
+        .catch(function (resposta) {
+            console.error(resposta);
+            document.getElementById('classificacao').innerHTML += `<br>Não existe nenhuma pontuação disponível nesta categoria!`;
+        });
+    }
+
     function load_word(dificuldade){
         lista_repetidos = [];
         lista_cont_certas = [];
@@ -358,10 +421,11 @@
         lista_cont_erradas = [];
         lista_tentativas = [];
 
+        segundos = 0;
+        minutos = 0;
+
         tentativas = 0;
         resultado_status = 0;
-
-        modo = dificuldade;
 
         if(dificuldade == 'Fácil') lista = palavras_5;
         else if(dificuldade == 'Médio') lista = palavras_6;
@@ -414,6 +478,7 @@
                     </div> 
                     <button onclick='tentativa()' id='btn_tentar'>Tentar</button>
                     <button onclick='voltar()' id='btn_voltar'>Sair</button>
+                    <span id='cronometro' style='color: white;'>00:00</span>
                 </div>
             </div>
             <div id='resultado'></div>
@@ -449,6 +514,25 @@
         letters.innerHTML = lettersContent;
 
         document.getElementById('letra-0.0').focus();
+
+        var minutosFormatado = '00';
+        var segundosFormatado = '00';
+
+        cronometragem = setInterval(() => {
+            segundos++;
+
+            if(segundos % 60 == 0) {
+                minutos++;
+                segundos = 0;
+            }
+            if(minutos <= 9) minutosFormatado = `0${minutos}`;
+            else minutosFormatado = minutos;
+
+            if(segundos <= 9) segundosFormatado = `0${segundos}`;
+            else segundosFormatado = segundos;
+
+            document.getElementById('cronometro').innerHTML = `${minutosFormatado}:${segundosFormatado}`;
+        }, 1000);
     }
 
     function letra(letra){
@@ -533,7 +617,6 @@
                 }
 
                 resultado_status = 1;
-
                 gerar_grafico();
             }
             else {
@@ -581,6 +664,7 @@
             else if(palavra_formada == 'RUINAS') palavra_formada = "RUÍNAS";
             else if(palavra_formada == 'FOSSIL') palavra_formada = "FÓSSIL";
             else if(palavra_formada == 'CABECA') palavra_formada = "CABEÇA";
+            else if(palavra_formada == 'PISTAO') palavra_formada = "PISTÃO";
             else if(palavra_formada == 'DRAGAO') palavra_formada = "DRAGÃO";
             else if(palavra_formada == 'ELITRO') palavra_formada = "ÉLITRO";
             else if(palavra_formada == 'VERSAO') palavra_formada = "VERSÃO";
@@ -615,6 +699,8 @@
     }
 
     function gerar_grafico(){
+        clearInterval(cronometragem);
+
         var alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         for(var cont = 0; cont < alfabeto.length; cont++){
@@ -815,7 +901,8 @@
                 acertosServer: total_acertos,
                 semiacertosServer: total_semiacertos,
                 modoServer: modo,
-                resultadoServer: resultado_status
+                resultadoServer: resultado_status,
+                tempoCronometroServer: minutos * 60 + segundos
             }),
         }) 
         .then(function (resposta) {
@@ -828,5 +915,6 @@
 
     function voltar(){
         container.innerHTML = container_content;
+        clearInterval(cronometragem);
     }
 </script>

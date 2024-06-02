@@ -259,12 +259,12 @@ button:hover {
     flex-direction: row;
     gap: 10px;
     align-self: center;
+    justify-content: center;
     font-size: 26px;
 }
 
 .form a {
     color: #48d348;
-    margin: 7px 0;
 }
 
 .form a:hover {
@@ -272,7 +272,6 @@ button:hover {
 }
 
 .footer .container .box .navigation:hover {
-    font-size: 35px;
     color: #14ddeb;
 }
 

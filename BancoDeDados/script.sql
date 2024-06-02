@@ -112,7 +112,7 @@ INSERT INTO PontuacaoQuiz VALUES(DEFAULT, 3, 12, 1, DEFAULT);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
 TRUNCATE TABLE PontuacaoTermo;
 TRUNCATE TABLE PontuacaoQuiz;
-DELETE FROM PontuacaoTermo WHERE idPontuacaoTermo >= 6;
+DELETE FROM Usuario WHERE idUsuario >= 8;
 UPDATE Chat SET tema = "Poções" WHERE idChat = 3;
 
 

@@ -83,10 +83,48 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 100%; 
 }
 
 .graficos section {
     display: flex;
     justify-content: center;
+}
+
+#classificacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: white;
+}
+
+.classificacaoCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 0 0;
+}
+
+.classificacaoCard .trophy {
+    display: flex;
+    width: 55px;
+    height: 55px;
+    color: white;
+    margin-right: 20px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.classificacaoCard .classificacaoData {
+    display: flex;
+    flex-direction: column;
+}
+
+.classificacaoCard .classificacaoData span {
+    color: white;
+    font-size: 30px;
 }

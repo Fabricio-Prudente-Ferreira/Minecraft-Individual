@@ -228,6 +228,18 @@
         var idUser = sessionStorage.ID_USUARIO;
         var idChat = sessionStorage.ID_CHAT;
 
+        var mensagemFormatada = "";
+        
+        if((messageText.indexOf('<') >= 0 && messageText.indexOf('>') >= 0) || messageText.indexOf("'") >= 0){
+            for(var index = 0; index < messageText.length; index++){
+                if(messageText[index] == '<') mensagemFormatada += '&lt';
+                else if(messageText[index] == '>') mensagemFormatada += '&gt';
+                else if(messageText[index] == "'") mensagemFormatada += '&#39';
+                else mensagemFormatada += messageText[index];
+            }
+        }
+        else mensagemFormatada = messageText;
+
         document.getElementById('inp_message').value = "";
         document.getElementById('inp_message').focus();
 
@@ -239,7 +251,7 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    mensagemServer: messageText,
+                    mensagemServer: mensagemFormatada,
                     idUserServer: idUser,
                     idChatServer: idChat
                 }),
@@ -281,7 +293,6 @@
 
                         var dataHora = new Date(resposta[index].dataHora.toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo'})).toString();
 
-                        console.log(dataHora); 
                         var dataHora_array = dataHora.split(' ');
                         var mes = "";
                         
