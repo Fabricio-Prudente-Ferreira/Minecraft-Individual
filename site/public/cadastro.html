@@ -121,8 +121,6 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
                     nomeServer: nome,
                     nickServer: nick,
                     emailServer: email,
@@ -132,8 +130,6 @@
             }) 
             .then(function (resposta) {
                 if (resposta.ok) {
-                    // cardErro.style.display = "block";
-
                     texto = "Cadastro realizado com sucesso! Aguarde...";
                     validado = true;
                     finalizarSessao(texto, validado);

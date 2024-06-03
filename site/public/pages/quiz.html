@@ -94,6 +94,7 @@
                 </div>
             </div>
         </div>
+        <div id="cronometro">00:00</div>
         <div class="footerTransition"></div>
         <div class="footer">
             <div class="container">
@@ -210,64 +211,99 @@
                     sessionStorage.TEMA_QUIZ = json.tema
                 })
 
+                var functions = [
+                    questionsAll,
+                    questionsOres,
+                    questionsRedstone,
+                    questionsMobs,
+                    questionsBlocks,
+                    questionsItems,
+                    questionsEnchantments,
+                    questionsBiomes,
+                    questionsPotions,
+                    questionsStructures,
+                    questionsCrafts,
+                    questionsTrade
+                ];
+
+                var images = [
+                    'https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp',
+                    'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg',
+                    'https://wallpapercave.com/wp/wp10656185.png',
+                    'https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg',
+                    'https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original',
+                    'https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large',
+                    'https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg',
+                    'https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg',
+                    'https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp',
+                    'https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg',
+                    'https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg',
+                    '../images/villageTheme.jpg'
+                ];
+
                 setTimeout(() => {
-                    if(id == 1) {
-                        img = 'https://cdn.dfg.com.br/itemimages/999494424-minecraft-original-full-acesso-capa-da-optifine-MQE5.webp';
-                        questionsAll();
-                    }
-                    else if(id == 2) {
-                        img = 'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/01/minecraft-diamonds.jpg';
-                        questionsOres();
-                    }
-                    else if(id == 3) {
-                        img = 'https://wallpapercave.com/wp/wp10656185.png';
-                        questionsRedstone();
-                    }
-                    else if(id == 4) {
-                        img = 'https://i.pinimg.com/736x/93/a1/a7/93a1a7ec2b32c2b8a2b5eca8eeefe1a0.jpg';
-                        questionsMobs();
-                    }
-                    else if(id == 5) {
-                        img = 'https://img.game8.co/3532271/d297853aa8e4ea432358d7d0bc53b96c.png/original';
-                        questionsBlocks();
-                    }
-                    else if(id == 6) {
-                        img = 'https://pbs.twimg.com/media/E5yO_QSX0Agwzsj.png:large';
-                        questionsItems();
-                    }
-                    else if(id == 7) {
-                        img = 'https://beebom.com/wp-content/uploads/2021/12/Minecraft-Enchantments-Guide.jpg';
-                        questionsEnchantments();
-                    }
-                    else if(id == 8) {
-                        img = 'https://www.gamersdecide.com/sites/default/files/beautiful_biomes_cover.jpg';
-                        questionsBiomes();
-                    }
-                    else if(id == 9) {
-                        img = 'https://assetsio.gnwcdn.com/minecraft%20potions.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp';
-                        questionsPotions();
-                    }
-                    else if(id == 10) {
-                        img = 'https://miro.medium.com/v2/resize:fit:1400/1*G_wHQk2D5ZMCl6yW9nZuYw.jpeg';
-                        questionsStructures();
-                    }
-                    else if(id == 11) {
-                        img = 'https://media.sketchfab.com/models/21c0d44437c04b1d8b51a2fc6dac21ec/thumbnails/2cf93212b1ad4c36a61cdd98d1e41944/5cd267b1d51644a984400c140dcb3586.jpeg';
-                        questionsCrafts();
-                    }
-                    else {
-                        img = '../images/villageTheme.jpg';
-                        questionsTrade();
-                    }
-    
+                    img = images[id - 1];
+                    functions[id - 1]();
+
                     container.innerHTML = `
                         <div id="interativo" class="quiz">
-                            <span class="subtitle">${sessionStorage.TEMA_QUIZ}</span>
-                            <img src=${img} alt='img-${sessionStorage.TEMA_QUIZ}'>
-                            <button onclick="next()">Iniciar</button>
-                            <button onclick="sair()">Voltar</button>
+                            <div class='interativo_menu'>
+                                <span class="subtitle">${sessionStorage.TEMA_QUIZ}</span>
+                                <img src=${img} alt='img-${sessionStorage.TEMA_QUIZ}'>
+                                <button onclick="next()">Iniciar</button>
+                                <button onclick="sair()">Voltar</button>
+                            </div>
+                            <div id='classificacao'></div>
                         </div>
                     `;
+
+                    document.getElementById('interativo').style.flexDirection = 'row';
+
+                    fetch("../quiz/quizColocacao", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            idQuizServer: id
+                        }),
+                    }) 
+                    .then(function (resposta) {
+                        if(resposta.ok) {
+                            resposta.json().then(function(respostaJson){
+                                var listaUsuarios = respostaJson.usuario;
+                                var listaPontuacoes = respostaJson.pontuacao;
+                                var listaTempos = respostaJson.tempo;
+
+                                for(var index = 0; index < respostaJson.usuario.length; index++){
+                                    if(index == 0) var trophyColor = '#48d348';
+                                    else if(index == 1) var trophyColor = '#14ddeb';
+                                    else if(index == 2) var trophyColor = '#004455';
+                                    else var trophyColor = '#888';
+
+                                    var tempoUsuarioFormatado = '';
+                                    if(listaTempos[index] >= 60) tempoUsuarioFormatado = `${Number((listaTempos[index] / 60).toFixed(0))}min ${listaTempos[index] % 60}s`;
+                                    else tempoUsuarioFormatado = `${listaTempos[index]}s`;
+
+                                    document.getElementById('classificacao').innerHTML += `
+                                        <div class='classificacaoCard'>
+                                            <div class='trophy' style='background-color: ${trophyColor};'>${index + 1}°</div>
+                                            <div class='classificacaoData'>
+                                                <span style='color: ${trophyColor};'>Nome: ${listaUsuarios[index]}</span>    
+                                                <span>Quantidade de Acertos: ${listaPontuacoes[index]}</span>    
+                                                <span>Feito em ${tempoUsuarioFormatado}</span>    
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            })
+                        }
+                        else throw "Houve um erro ao mostrar as pontuações!";
+                    })
+                    .catch(function (resposta) {
+                        console.error(resposta);
+                        document.getElementById('classificacao').innerHTML += `<br>Não existe nenhuma pontuação disponível neste Quiz!`;
+        });
                 }, 500);
             } else throw "Houve um erro ao carregar o quiz";
         })
@@ -278,8 +314,40 @@
         )
     }
 
+    var minutos = 0;
+    var segundos = 0;
+    var cronometragem = undefined;
+
     function next() {
         contador++;
+
+        document.getElementById('interativo').style.flexDirection = 'column';
+        document.getElementById('cronometro').style.display = 'flex';
+
+        if(contador == 0){
+            cronometro.innerHTML = '00:00';
+            segundos = 0;
+            minutos = 0;
+
+            var minutosFormatado = '00';
+            var segundosFormatado = '00';
+
+            cronometragem = setInterval(() => {
+                segundos++;
+
+                if(segundos % 60 == 0) {
+                    minutos++;
+                    segundos = 0;
+                }
+                if(minutos <= 9) minutosFormatado = `0${minutos}`;
+                else minutosFormatado = minutos;
+
+                if(segundos <= 9) segundosFormatado = `0${segundos}`;
+                else segundosFormatado = segundos;
+
+                document.getElementById('cronometro').innerHTML = `${minutosFormatado}:${segundosFormatado}`;
+            }, 1000);
+        }
 
         interativo.innerHTML = `
             <span class="subtitle question">${perguntas[contador]}</span>
@@ -322,10 +390,12 @@
             else results();
 
             clearInterval(timer);
-        }, 1500);
+        }, 900);
     }
 
     function results(){
+        clearInterval(cronometragem);
+
         fetch("../quiz/inserir", {
             method: "POST",
             headers: {
@@ -334,7 +404,8 @@
             body: JSON.stringify({
                 idQuizServer: sessionStorage.ID_QUIZ,
                 idUserServer: sessionStorage.ID_USUARIO,
-                pontuacaoServer: acertos
+                pontuacaoServer: acertos,
+                tempoExecutadoServer: minutos * 60 + segundos
             }),
         }) 
         .then(function (resposta) {
@@ -417,8 +488,11 @@
         )
     }
 
-    
-    function sair(){ container.innerHTML = content; }
+    function sair() { 
+        container.innerHTML = content; 
+        clearInterval(cronometragem);
+        document.getElementById('cronometro').style.display = 'none';
+    }
 
     // ============================================== FUNÇÕES PARA CADA TEMA DE QUIZ ============================================== //
     

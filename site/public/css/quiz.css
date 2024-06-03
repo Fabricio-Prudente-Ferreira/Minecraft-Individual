@@ -1,9 +1,23 @@
 #interativo {
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     padding: 20px;
     height: auto;
+}
+
+.interativo_menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+#classificacao {
+    width: 40%;
+    display: flex;
+    align-items: flex-start;
 }
 
 .quiz img {
@@ -38,4 +52,18 @@
 
 .quiz .options .alternatives button {
     width: 48%;
+}
+
+#cronometro {
+    display: none;
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    background-image: url(../images/background/sculk.png);
+    border: 6px solid black;
+    width: 250px;
+    height: 90px;
+    color: white;
+    justify-content: center;
+    align-items: center;
 }

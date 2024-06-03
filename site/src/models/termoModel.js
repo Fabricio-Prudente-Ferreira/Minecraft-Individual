@@ -10,7 +10,7 @@ function inserir(idUsuario, palavraSecreta, tentativas, acertos, semiacertos, mo
 
 function termoColocacao(dificuldade){
     var instrucaoSql = `
-        SELECT MIN(qtdTentativas) AS 'tentativa', nome, MIN(tempoExecutado) AS 'tempoExecutado' FROM PontuacaoTermo JOIN Usuario ON fkUsuario = idUsuario WHERE resultado = 1 AND modo = '${dificuldade}' GROUP BY nome ORDER BY MIN(tempoExecutado) ASC, MIN(tempoExecutado) ASC;
+        SELECT qtdTentativas AS 'tentativa', nome, tempoExecutado FROM PontuacaoTermo AS pt JOIN Usuario ON idUsuario = pt.fkUsuario WHERE resultado = 1 AND modo = '${dificuldade}' AND pt.qtdTentativas = (SELECT MIN(qtdTentativas) FROM PontuacaoTermo WHERE fkUsuario = pt.fkUsuario AND modo = '${dificuldade}') ORDER BY pt.qtdTentativas DESC, pt.tempoExecutado;
     `;
 
     return database.executar(instrucaoSql);

@@ -45,6 +45,7 @@ CREATE TABLE PontuacaoQuiz(
     PRIMARY KEY(idPontuacaoQuiz, fkUsuario, fkQuiz),
     pontuacao INT,
     dataHota DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    tempoExecutado INT,
     FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
 );
@@ -61,6 +62,7 @@ CREATE TABLE PontuacaoTermo(
     dataHora DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     modo VARCHAR(45) NOT NULL,
     resultado INT NOT NULL,
+    tempoExecutado INT,
     CONSTRAINT chkModo CHECK(modo IN('Fácil', 'Médio', 'Difícil')),
     CONSTRAINT chkResultado CHECK(resultado IN(0, 1))
 );
@@ -95,6 +97,8 @@ INSERT INTO Quiz(tema) VALUES
 	('Crafts'),
 	('Comércio');
 
+# COMANDOS TESTES A SEREM APAGADOS FUTURAMENTE -------------
+
 SELECT * FROM Usuario;
 SELECT * FROM Chat;
 SELECT * FROM Mensagem WHERE fkChat = 2;
@@ -104,16 +108,27 @@ SELECT * FROM Quiz;
 SELECT * FROM PontuacaoQuiz;
 SELECT * FROM PontuacaoTermo;
 
-INSERT INTO PontuacaoTermo VALUES(DEFAULT, 2, 'PHANTOM', 7, 11, 5, '2024-04-25 17:00:00', 'Difícil', 0);
+INSERT INTO PontuacaoTermo VALUES(DEFAULT, 7, 'SLIME', 1, 7, 0, '2024-04-25 17:00:00', 'Fácil', 1, 10);
 
-SELECT tema, pontuacao FROM PontuacaoQuiz JOIN Quiz ON fkQuiz = idQuiz WHERE fkUsuario = 2;
+SELECT MIN(qtdTentativas) AS 'tentativa', nome, MIN(tempoExecutado) FROM PontuacaoTermo 
+	JOIN Usuario ON fkUsuario = idUsuario 
+    WHERE resultado = 1 AND modo = 'Fácil' 
+    GROUP BY nome
+    ORDER BY MIN(tempoExecutado) ASC, MIN(tempoExecutado) ASC;
 
 INSERT INTO PontuacaoQuiz VALUES(DEFAULT, 3, 12, 1, DEFAULT);
 SELECT * FROM Mensagem JOIN Usuario WHERE id;
 TRUNCATE TABLE PontuacaoTermo;
+TRUNCATE TABLE Mensagem;
 TRUNCATE TABLE PontuacaoQuiz;
 DELETE FROM Usuario WHERE idUsuario >= 8;
 UPDATE Chat SET tema = "Poções" WHERE idChat = 3;
 
-
+SELECT qtdTentativas, modo, resultado, nome FROM PontuacaoTermo JOIN Usuario ON fkUsuario = idUsuario;
+SELECT MIN(qtdTentativas), nome FROM PontuacaoTermo 
+	JOIN Usuario ON fkUsuario = idUsuario 
+    WHERE resultado = 1
+    GROUP BY nome 
+    ORDER BY MIN(qtdTentativas) ASC;
+DESC PontuacaoTermo;
 
