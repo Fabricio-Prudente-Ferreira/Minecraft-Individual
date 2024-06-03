@@ -57,6 +57,7 @@
                             <input type="password" class="inputStyle" id="inpConfSenha" placeholder="Senha" maxlength="45">
                         </label>
                     </div>
+                    <img src="./images/imagens/password/eye_hide.png" alt="olho" id="olho" onclick="mostrar_senha()">
                     <div id="div_erro" style="text-align: center;"></div>
                     <button onclick="cadastrar()">Concluir Cadastro</button>
                     <span class="submessage">Já possui uma conta?<a href="login.html">Login</a></span>
@@ -76,8 +77,8 @@
                     </div>
                     <div class="box">
                         <span class="subtitleFooter">Contatos:</span>
-                        <span>fabricio-ferreira@sptech.school</span>
-                        <span>(11) 14074-8989</span>
+                        <span>&#9993; fabricio-ferreira@sptech.school</span>
+                        <span>&#9743; (11) 14074-8989</span>
                         <span>Rua Haddock Lobo, 595, São Paulo - SP</span>
                     </div>
                 </div>
@@ -149,5 +150,24 @@
         }
         
         finalizarSessao(texto, validado);
+    }
+
+    var show = false;
+    function mostrar_senha(){
+        show = !show;
+
+        var element_senha1 = document.getElementById('inpSenha');
+        var element_senha2 = document.getElementById('inpConfSenha');
+
+        if(show) {
+            olho.src = './images/imagens/password/eye_show.png';
+            element_senha1.type = 'text';
+            element_senha2.type = 'text';
+        }
+        else {
+            olho.src = './images/imagens/password/eye_hide.png';
+            element_senha1.type = 'password';
+            element_senha2.type = 'password';
+        }    
     }
 </script>

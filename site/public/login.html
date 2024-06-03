@@ -33,9 +33,11 @@
                     </label>
                     <label>
                         <span>Senha</span>
-                        <input type="password" class="inputStyle" id="inpSenha" placeholder="Senha">
+                        <div class="inputSenha" style="display: flex; gap: 10px;">
+                            <input type="password" class="inputStyle" id="inpSenha" placeholder="Senha">
+                            <img src="./images/imagens/password/eye_hide.png" alt="olho" id="olho" onclick="mostrar_senha()">
+                        </div>
                     </label>
-                    <a href="recuperacaoSenha.html" class="submessage">Esqueci minha senha</a>
                     <div id="div_erro"></div>
                     <button onclick="login()">Entrar</button>
                     <span class="submessage">Não possui uma conta?<a href="cadastro.html">Cadastre-se</a></span>
@@ -55,8 +57,8 @@
                     </div>
                     <div class="box">
                         <span class="subtitleFooter">Contatos:</span>
-                        <span>fabricio-ferreira@sptech.school</span>
-                        <span>(11) 14074-8989</span>
+                        <span>&#9993; fabricio-ferreira@sptech.school</span>
+                        <span>&#9743; (11) 14074-8989</span>
                         <span>Rua Haddock Lobo, 595, São Paulo - SP</span>
                     </div>
                 </div>
@@ -119,5 +121,21 @@
 
             return false;
         }
+    }
+
+    var show = false;
+    function mostrar_senha(){
+        show = !show;
+
+        var element_senha = document.getElementById('inpSenha');
+
+        if(show) {
+            olho.src = './images/imagens/password/eye_show.png';
+            element_senha.type = 'text';
+        }
+        else {
+            olho.src = './images/imagens/password/eye_hide.png';
+            element_senha.type = 'password';
+        }    
     }
 </script>
