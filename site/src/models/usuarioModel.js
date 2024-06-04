@@ -14,19 +14,25 @@ function cadastrar(nome, nick, email, dtNasc, senha) {
     return database.executar(instrucaoSql);
 }
 
-async function atualizar(id, nome, nick, email, dtNasc, imagem, senha) {
-    var update = `
+function atualizar(id, nome, nick, email, dtNasc, imagem, senha) {
+    var instrucaoSql = `
         UPDATE Usuario SET nome = '${nome}', nickname = '${nick}', email = '${email}', dtNasc = '${dtNasc}', imagem = '${imagem}', senha = '${senha}' WHERE idUsuario = ${id};
     `;
+    
+    return database.executar(instrucaoSql);
+}
 
-    var instrucaoSql = `SELECT * FROM Usuario WHERE idUsuario = ${id};`;
+function mostrar(idUsuario) {
+    var instrucaoSql = `
+        SELECT * FROM Usuario WHERE idUsuario = ${idUsuario};
+    `;
 
-    await database.executar(update);
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
     autenticar,
     cadastrar,
-    atualizar
+    atualizar,
+    mostrar
 };

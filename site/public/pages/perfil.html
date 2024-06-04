@@ -171,19 +171,10 @@
                     textMsg = "Atualizado com Sucesso!";
                     validado = true;
                     finalizarSessao(textMsg, validado);
-                    resposta.json().then(json => {
-                        sessionStorage.ID_USUARIO = json.id;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.NICK_USUARIO = json.nick;
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.IMAGEM_USUARIO = json.imagem;
-                        sessionStorage.DTNASC_USUARIO = json.dtNasc;
-                        sessionStorage.SENHA_USUARIO = json.senha;
-                        
-                        setTimeout(function () {
-                            window.location = "./home.html";
-                        }, 1000); // apenas para exibir o loading
-                    });
+
+                    setTimeout(function () {
+                        window.location = "./home.html";
+                    }, 1000); 
                 }
             })
             .catch(function(error){
@@ -195,4 +186,30 @@
 
         finalizarSessao(textMsg, validado);
     }
+
+    fetch('/usuarios/mostrar', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idServer: sessionStorage.ID_USUARIO
+        })
+    })
+    .then(function(resposta){
+        if(resposta.ok){;
+            resposta.json().then(json => {
+                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.NICK_USUARIO = json.nick;
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.IMAGEM_USUARIO = json.imagem;
+                sessionStorage.DTNASC_USUARIO = json.dtNasc;
+                sessionStorage.SENHA_USUARIO = json.senha;
+            });
+        }
+    })
+    .catch(function(error){
+        console.error(error);
+    })
 </script>

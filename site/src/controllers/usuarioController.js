@@ -86,17 +86,35 @@ function atualizar(req, res){
         usuarioModel.atualizar(id, nome, nick, email, dtNasc, imagem, senha)
         .then(
             function(resultadoAtualizar){
-                res.json({
-                    id: resultadoAtualizar[0].idUsuario,
-                    email: resultadoAtualizar[0].email,
-                    nome: resultadoAtualizar[0].nome,
-                    nick: resultadoAtualizar[0].nickname,
-                    imagem: resultadoAtualizar[0].imagem,
-                    dtNasc: resultadoAtualizar[0].dtNasc,
-                    senha: resultadoAtualizar[0].senha,
-                });
+                res.json(resultadoAtualizar);
             }
         ).catch(
+            function(erro){
+                console.error(erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
+function mostrar(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+
+    if(idUsuario == undefined) res.status(400).send();
+    else {
+        usuarioModel.mostrar(idUsuario)
+        .then(function(resultadoMostrar){
+            res.json({
+                id: resultadoMostrar[0].idUsuario,
+                email: resultadoMostrar[0].email,
+                nome: resultadoMostrar[0].nome,
+                nick: resultadoMostrar[0].nickname,
+                imagem: resultadoMostrar[0].imagem,
+                dtNasc: resultadoMostrar[0].dtNasc,
+                senha: resultadoMostrar[0].senha,
+            })
+        })
+        .catch(
             function(erro){
                 console.error(erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
@@ -108,5 +126,6 @@ function atualizar(req, res){
 module.exports = {
     autenticar,
     cadastrar,
-    atualizar
+    atualizar,
+    mostrar
 }

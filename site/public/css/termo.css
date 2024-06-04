@@ -128,3 +128,11 @@
     color: white;
     font-size: 30px;
 }
+
+p a {
+  color: #48d348
+}
+
+p a:hover {
+    color: #14ddeb;
+}

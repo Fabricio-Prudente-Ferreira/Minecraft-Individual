@@ -27,7 +27,7 @@
         <div class="headerTransition"></div>
         <div class="content">
             <div class="container" id="container">
-                <span class="title">ASSUNTOS</span>
+                <span class="title">CHATS</span>
                 <div class="section">
                     <div class="card" onclick="open_chat(1)">
                         <img src="https://beebom.com/wp-content/uploads/2024/04/minecraft-1.21-has-a-name-minecraft-tricky-trials-1.jpg?w=1168&quality=75" alt="Updates">
@@ -279,7 +279,7 @@
         .then(function(resposta){
             if(resposta.ok){
                 if(resposta.status == 204) {
-                    chatBox.innerHTML = "Digite algo para iniciar a conversa";
+                    chatBox.innerHTML = "Digite algo para iniciar a conversa"; 
                     throw 'Conversa vazia!';
                 }
 
