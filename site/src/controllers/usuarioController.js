@@ -100,7 +100,7 @@ function atualizar(req, res){
 function mostrar(req, res) {
     var idUsuario = req.body.idUsuarioServer;
 
-    if(idUsuario == undefined) res.status(400).send();
+    if(idUsuario == undefined) res.status(400).send("Seu idUsuario está undefined!");
     else {
         usuarioModel.mostrar(idUsuario)
         .then(function(resultadoMostrar){

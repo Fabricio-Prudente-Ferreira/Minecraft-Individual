@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../css/perfil.css">
         <script src="../js/sessao.js"></script>
     </head>
-    <body>
+    <body onload="mostrar()">
         <div class="header">
             <div class="container">
                 <img src="../images/villageCraftExt.png" alt="VillageCraft">
@@ -100,27 +100,70 @@
                 </div>
                 <label>
                     <input type="text" placeholder="URL" class="inputStyle" id="inp_url">
-                    <button onclick="saveImg()">Salvar Imagem</button>
+                    <button onclick="saveImg()" style="margin: 20px 0;">Salvar Imagem</button>
                 </label>
+                <div class="bottom">
+                    <span>Ou escolha uma das imagens abaixo:</span>
+                    <div id="defaultPfps"></div>
+                </div>
             </div>
         </div>
     </body>
 </html>
 <script>
-    window.onload = load_user_data();
+    function mostrar(){
+        fetch('/usuarios/mostrar', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO
+            })
+        })
+        .then(function(resposta){
+            if(resposta.ok){;
+                resposta.json().then(json => {
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.NICK_USUARIO = json.nick;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.IMAGEM_USUARIO = json.imagem;
+                    sessionStorage.DTNASC_USUARIO = json.dtNasc;
+                    sessionStorage.SENHA_USUARIO = json.senha;
+
+                    load_user_data();
+                });
+            }
+        })
+        .catch(function(error){
+            console.error(`Erro ao capturar os dados: ${error}`);
+        })
+    }
+
+    var carouselPosition = 0;
 
     function editImg(){
-        document.getElementById('backgroundEditImg').style.display = 'flex'
+        carouselPosition = 0;
+        document.getElementById('backgroundEditImg').style.display = 'flex';
+
+        defaultPfps.innerHTML = `
+            <button onclick="pfpCarousel('anterior')">&lt;</button>
+            <img src="${ip}/images/pfps/steve.jpg" alt="imagem1" class="profilePicture" id="pfp1" onclick="inserirUrl('pfp1')">
+            <img src="${ip}/images/pfps/alex.png" alt="imagem2" class="profilePicture" id="pfp2" onclick="inserirUrl('pfp2')">
+            <img src="${ip}/images/pfps/allay.png" alt="imagem3" class="profilePicture" id='pfp3' onclick="inserirUrl('pfp3')">
+            <button onclick="pfpCarousel('proximo')">&gt;</button>
+        `;
     }
 
     function closeEditImg(){
-        document.getElementById('backgroundEditImg').style.display = 'none'
+        document.getElementById('backgroundEditImg').style.display = 'none';
     }
 
     function saveImg(){
         var url = inp_url.value;
 
-        if(url.length > 250) alert('URL muito longa. Escolha outra!');
+        if(url.length > 500) alert('URL muito longa. Escolha outra!');
         else if(url.indexOf('.jpg') == -1 && url.indexOf('.png') == -1 && url.indexOf('.gif') == -1 && url.indexOf('.webp') == -1) alert('Imagem inválida');
         else {
             document.getElementById('backgroundEditImg').style.display = 'none'
@@ -169,6 +212,7 @@
             .then(function(resposta){
                 if(resposta.ok){
                     textMsg = "Atualizado com Sucesso!";
+                    sessionStorage.NICK_USUARIO = nick;
                     validado = true;
                     finalizarSessao(textMsg, validado);
 
@@ -187,29 +231,42 @@
         finalizarSessao(textMsg, validado);
     }
 
-    fetch('/usuarios/mostrar', {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idServer: sessionStorage.ID_USUARIO
-        })
-    })
-    .then(function(resposta){
-        if(resposta.ok){;
-            resposta.json().then(json => {
-                sessionStorage.ID_USUARIO = json.id;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.NICK_USUARIO = json.nick;
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.IMAGEM_USUARIO = json.imagem;
-                sessionStorage.DTNASC_USUARIO = json.dtNasc;
-                sessionStorage.SENHA_USUARIO = json.senha;
-            });
+    var lista_pfp_carousel = [
+        [`${ip}/images/pfps/steve.jpg`, `${ip}/images/pfps/alex.png`, `${ip}/images/pfps/allay.png`],
+        [`${ip}/images/pfps/creeper.png`, `${ip}/images/pfps/dog.png`, `${ip}/images/pfps/wolf.png`],
+        [`${ip}/images/pfps/pig.png`, `${ip}/images/pfps/cow.png`, `${ip}/images/pfps/sheep.png`],
+        [`${ip}/images/pfps/ocelot.png`, `${ip}/images/pfps/panda.png`, `${ip}/images/pfps/chicken.png`],
+        [`${ip}/images/pfps/cat.png`, `${ip}/images/pfps/spider.jpg`, `${ip}/images/pfps/squid.png`],
+        [`${ip}/images/pfps/axolotl.png`, `${ip}/images/pfps/bat.png`, `${ip}/images/pfps/bee.jpg`],
+        [`${ip}/images/pfps/zombie.jpg`, `${ip}/images/pfps/husk.png`, `${ip}/images/pfps/drowned.png`],
+        [`${ip}/images/pfps/skeleton.png`, `${ip}/images/pfps/stray.png`, `${ip}/images/pfps/wither.png`],
+        [`${ip}/images/pfps/enderman.png`, `${ip}/images/pfps/dragon.png`, `${ip}/images/pfps/warden.png`],
+        [`${ip}/images/pfps/villager.png`, `${ip}/images/pfps/ironGolem.png`, `${ip}/images/pfps/pumpkin.png`],
+        [`${ip}/images/pfps/ravanger.png`, `${ip}/images/pfps/evoker.png`, `${ip}/images/pfps/witch.png`],
+        [`${ip}/images/pfps/zombiePigman.png`, `${ip}/images/pfps/strider.png`, `${ip}/images/pfps/blaze.png`],
+        [`${ip}/images/pfps/camel.png`, `${ip}/images/pfps/turtle.png`, `${ip}/images/pfps/llama.png`],
+        [`${ip}/images/pfps/slime.png`, `${ip}/images/pfps/magmaCube.png`, `${ip}/images/pfps/ghast.png`],
+        [`${ip}/images/pfps/guardian.png`, `${ip}/images/pfps/elderGuardian.png`, `${ip}/images/pfps/vex.png`],
+        [`${ip}/images/pfps/mooshroom.png`, `${ip}/images/pfps/fox.png`, `${ip}/images/pfps/silverfish.png`],
+        [`${ip}/images/pfps/illusioner.png`, `${ip}/images/pfps/frog.png`, `${ip}/images/pfps/shulker.png`]
+    ];
+
+    function pfpCarousel(action){
+        if(action == 'proximo') {
+            if(carouselPosition < 16) carouselPosition++;
+            else carouselPosition = 0;
         }
-    })
-    .catch(function(error){
-        console.error(error);
-    })
+        else {
+            if(carouselPosition > 0) carouselPosition--;
+            else carouselPosition = 16;
+        }
+
+        document.getElementById('pfp1').src = lista_pfp_carousel[carouselPosition][0];
+        document.getElementById('pfp2').src = lista_pfp_carousel[carouselPosition][1];
+        document.getElementById('pfp3').src = lista_pfp_carousel[carouselPosition][2];
+    }
+
+    function inserirUrl(id){
+        document.getElementById('inp_url').value = document.getElementById(id).src;
+    }
 </script>

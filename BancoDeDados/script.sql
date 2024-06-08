@@ -108,6 +108,38 @@ SELECT * FROM Quiz;
 SELECT * FROM PontuacaoQuiz;
 SELECT * FROM PontuacaoTermo;
 
+INSERT INTO PontuacaoQuiz(fkUsuario, fkQuiz, pontuacao, tempoExecutado) VALUES
+	(1, 2, 5, 50),
+	(2, 2, 4, 60),
+	(2, 2, 3, 70),
+	(3, 2, 4, 10),
+	(3, 2, 5, 20),
+	(4, 2, 3, 30),
+	(1, 2, 1, 40),
+	(5, 2, 0, 80),
+	(6, 2, 2, 100);
+    
+SELECT 
+	MAX(pontuacao),
+	nome,
+    min(tempoExecutado)
+FROM PontuacaoQuiz
+	JOIN Quiz ON idQuiz = fkQuiz
+    JOIN Usuario ON idUsuario = fkUsuario
+    WHERE fkQuiz = 2
+	GROUP BY nome
+    ORDER BY MAX(pontuacao) DESC, min(tempoExecutado);
+    
+SELECT 
+    pontuacao,
+    nome,
+    tempoExecutado
+FROM PontuacaoQuiz AS pq
+	JOIN Usuario ON idUsuario = pq.fkUsuario
+	WHERE fkQuiz = 2 AND 
+    pq.pontuacao = (SELECT MAX(pontuacao) FROM PontuacaoQuiz WHERE fkUsuario = pq.fkUsuario AND fkQuiz = 2)
+	ORDER BY pq.pontuacao DESC, pq.tempoExecutado;
+
 INSERT INTO PontuacaoTermo VALUES(DEFAULT, 7, 'SLIME', 1, 7, 0, '2024-04-25 17:00:00', 'Fácil', 1, 10);
 
 SELECT MIN(qtdTentativas) AS 'tentativa', nome, MIN(tempoExecutado) FROM PontuacaoTermo 

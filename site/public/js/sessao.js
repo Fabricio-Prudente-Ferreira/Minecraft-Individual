@@ -1,8 +1,6 @@
-// sessão
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nick = sessionStorage.NICK_USUARIO;
-
     var nick_usuario = document.getElementById("nick_usuario");
 
     if (email != null && nick != null) {
