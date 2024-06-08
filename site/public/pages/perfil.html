@@ -143,15 +143,16 @@
 
     var carouselPosition = 0;
 
+    var ip = 'http://localhost:3333'; //DEFINIR IP LOCAL
+
     function editImg(){
-        carouselPosition = 0;
         document.getElementById('backgroundEditImg').style.display = 'flex';
 
         defaultPfps.innerHTML = `
             <button onclick="pfpCarousel('anterior')">&lt;</button>
-            <img src="${ip}/images/pfps/steve.jpg" alt="imagem1" class="profilePicture" id="pfp1" onclick="inserirUrl('pfp1')">
-            <img src="${ip}/images/pfps/alex.png" alt="imagem2" class="profilePicture" id="pfp2" onclick="inserirUrl('pfp2')">
-            <img src="${ip}/images/pfps/allay.png" alt="imagem3" class="profilePicture" id='pfp3' onclick="inserirUrl('pfp3')">
+            <img src=${lista_pfp_carousel[carouselPosition][0]} alt="imagem1" class="profilePicture" id="pfp1" onclick="inserirUrl('pfp1')">
+            <img src=${lista_pfp_carousel[carouselPosition][1]} alt="imagem2" class="profilePicture" id="pfp2" onclick="inserirUrl('pfp2')">
+            <img src=${lista_pfp_carousel[carouselPosition][2]} alt="imagem3" class="profilePicture" id='pfp3' onclick="inserirUrl('pfp3')">
             <button onclick="pfpCarousel('proximo')">&gt;</button>
         `;
     }
@@ -268,5 +269,7 @@
 
     function inserirUrl(id){
         document.getElementById('inp_url').value = document.getElementById(id).src;
+
+        saveImg();
     }
 </script>
