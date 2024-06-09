@@ -40,18 +40,15 @@ function termoColocacao(req, res){
         .then(function(respostaColocacao){
             if(respostaColocacao.length >= 1){
                 var lista_usuarios = [];
-                var lista_tentativas = [];
                 var lista_tempo = [];
 
                 for(var index = 0; index < respostaColocacao.length; index++){
                     lista_usuarios.push(respostaColocacao[index].nome);
-                    lista_tentativas.push(respostaColocacao[index].tentativa);
                     lista_tempo.push(respostaColocacao[index].tempoExecutado);
                 }
 
                 res.json({
                     usuario: lista_usuarios,
-                    tentativa: lista_tentativas,
                     tempo: lista_tempo
                 });
             } else res.status(403).send("Sem pontuações disponíveis");

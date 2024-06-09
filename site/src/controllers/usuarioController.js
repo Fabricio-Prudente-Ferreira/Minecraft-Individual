@@ -123,9 +123,28 @@ function mostrar(req, res) {
     }
 }
 
+function detectarSenha(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+
+    if(idUsuario == undefined) res.status(400).send("Seu idUsuario está undefined!");
+    else {
+        usuarioModel.detectarSenha(idUsuario)
+        .then(function(resultadoDetectar){
+            res.json(resultadoDetectar);
+        })
+        .catch(
+            function(erro){
+                console.error(erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     atualizar,
-    mostrar
+    mostrar,
+    detectarSenha
 }

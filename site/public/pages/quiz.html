@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="shortcut icon" href="./images/villageCraft.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../images/villageCraft.png" type="image/x-icon">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Village Craft | Quizzes</title>
@@ -253,7 +253,9 @@
                                 <button onclick="next()">Iniciar</button>
                                 <button onclick="sair()">Voltar</button>
                             </div>
-                            <div id='classificacao'></div>
+                            <div id='classificacao'>
+                                <span class='subtitle'>Colocação</span>    
+                            </div>
                         </div>
                     `;
 
@@ -272,7 +274,6 @@
                         if(resposta.ok) {
                             resposta.json().then(function(respostaJson){
                                 var listaUsuarios = respostaJson.usuario;
-                                var listaPontuacoes = respostaJson.pontuacao;
                                 var listaTempos = respostaJson.tempo;
 
                                 for(var index = 0; index < respostaJson.usuario.length; index++){
@@ -289,8 +290,7 @@
                                         <div class='classificacaoCard'>
                                             <div class='trophy' style='background-color: ${trophyColor};'>${index + 1}°</div>
                                             <div class='classificacaoData'>
-                                                <span style='color: ${trophyColor};'>Nome: ${listaUsuarios[index]}</span>    
-                                                <span>Quantidade de Acertos: ${listaPontuacoes[index]}</span>    
+                                                <span style='color: ${trophyColor};'>Nome: ${listaUsuarios[index]}</span>
                                                 <span>Feito em ${tempoUsuarioFormatado}</span>    
                                             </div>
                                         </div>

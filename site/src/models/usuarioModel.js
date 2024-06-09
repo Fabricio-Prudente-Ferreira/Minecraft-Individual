@@ -30,9 +30,18 @@ function mostrar(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function detectarSenha(idUsuario) {
+    var instrucaoSql = `
+        SELECT senha FROM Usuario WHERE idUsuario = ${idUsuario};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     atualizar,
-    mostrar
+    mostrar,
+    detectarSenha
 };

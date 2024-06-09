@@ -6,7 +6,7 @@ function validarSessao() {
     if (email != null && nick != null) {
         nick_usuario.innerHTML = nick;
     } else {
-        window.location = "../login.html";
+        window.location = "../login.html"; 
     }
 }
 

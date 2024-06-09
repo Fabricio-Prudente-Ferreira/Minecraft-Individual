@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="shortcut icon" href="./images/villageCraft.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../images/villageCraft.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Village Craft | Termo</title>
         <link rel="stylesheet" href="../css/style.css">
@@ -388,7 +388,10 @@
 
         container.innerHTML = `
             <div id='resultado' style='display: flex; flex-direction: row; justify-content: space-around;'>
-                <button onclick='load_word("${dificuldade}")' style='width: 500px;'>Iniciar</button>
+                <div class='interativo_menu'>
+                    <button onclick='load_word("${dificuldade}")' style='width: 500px;'>Iniciar</button>
+                    <button onclick='voltar()' style='width: 500px;'>Voltar</button>
+                </div>
                 <div id='classificacao'>
                     <span class='subtitle'>Colocação</span>    
                 </div>
@@ -408,7 +411,6 @@
             if(resposta.ok) {
                 resposta.json().then(function(respostaJson){
                     var listaUsuarios = respostaJson.usuario;
-                    var listaTentativas = respostaJson.tentativa;
                     var listaTempos = respostaJson.tempo;
 
                     for(var index = 0; index < respostaJson.usuario.length; index++){
@@ -425,8 +427,7 @@
                             <div class='classificacaoCard'>
                                 <div class='trophy' style='background-color: ${trophyColor};'>${index + 1}°</div>
                                 <div class='classificacaoData'>
-                                    <span style='color: ${trophyColor};'>Nome: ${listaUsuarios[index]}</span>    
-                                    <span>Quantidade de Tentativas: ${listaTentativas[index]}</span>    
+                                    <span style='color: ${trophyColor};'>Nome: ${listaUsuarios[index]}</span>
                                     <span>Feito em ${tempoUsuarioFormatado}</span>    
                                 </div>
                             </div>

@@ -15,7 +15,7 @@ function abrir(req, res){
             }
         ).catch(
             function(erro){
-                console.log(erro);
+                console.log(erro); 
             }
         )
     }
@@ -53,18 +53,15 @@ function quizColocacao(req, res){
         .then(function(respostaColocacao){
             if(respostaColocacao.length >= 1){
                 var lista_usuarios = [];
-                var lista_pontuacoes = [];
                 var lista_tempo = [];
 
                 for(var index = 0; index < respostaColocacao.length; index++){
                     lista_usuarios.push(respostaColocacao[index].nome);
-                    lista_pontuacoes.push(respostaColocacao[index].pontuacao);
                     lista_tempo.push(respostaColocacao[index].tempoExecutado);
                 }
 
                 res.json({
                     usuario: lista_usuarios,
-                    pontuacao: lista_pontuacoes,
                     tempo: lista_tempo
                 });
             } else res.status(403).send("Sem pontuações disponíveis");

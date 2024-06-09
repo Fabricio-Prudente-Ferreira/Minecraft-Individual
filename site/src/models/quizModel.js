@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function abrir(idQuiz){
     var instrucaoSql = `
-        SELECT * FROM Quiz WHERE idQuiz = ${idQuiz}; 
+        SELECT idQuiz, tema FROM Quiz WHERE idQuiz = ${idQuiz}; 
     `;
 
     return database.executar(instrucaoSql);
@@ -16,9 +16,9 @@ function inserir(idQuiz, idUsuario, pontuacao, tempoExecutado){
     return database.executar(instrucaoSql);
 }
 
-function quizColocacao(idQuiz){
+function quizColocacao(idQuiz){ 
     var instrucaoSql = `
-        SELECT pontuacao, nome, tempoExecutado FROM PontuacaoQuiz AS pq JOIN Usuario ON idUsuario = pq.fkUsuario WHERE fkQuiz = ${idQuiz} AND pq.pontuacao = (SELECT MAX(pontuacao) FROM PontuacaoQuiz WHERE fkUsuario = pq.fkUsuario AND fkQuiz = ${idQuiz}) ORDER BY pq.pontuacao DESC, pq.tempoExecutado;
+        SELECT nome, MIN(tempoExecutado) AS tempoExecutado FROM PontuacaoQuiz JOIN Usuario ON idUsuario = fkUsuario WHERE pontuacao = 5 AND fkQuiz = ${idQuiz} GROUP BY nome ORDER BY MIN(tempoExecutado) ASC;
     `;
 
     console.log(instrucaoSql);

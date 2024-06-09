@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="shortcut icon" href="./images/villageCraft.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../images/villageCraft.png" type="image/x-icon">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Village Craft | Perfil</title>
@@ -28,9 +28,7 @@
             <div class="container">
                 <span class="title">SEU PERFIL</span>
                 <div class="box">
-                    <div class="avatar" onclick="editImg()">
-                        <img id='avatar' alt="avatar">
-                    </div>
+                    <img id='avatar' alt="avatar" class="avatar" onclick="edit('backgroundEditImg')">
                     <div class="labels">
                         <label>
                             <span>Nome</span>
@@ -57,7 +55,7 @@
                     <span>Senha</span>
                     <div class="flex">
                         <input type="password" class="inputStyle" placeholder="Senha" value="Password!" disabled id="inp_senha" maxlength="45">
-                        <button onclick="editpw()" class="btnEdit"></button>
+                        <button onclick="edit('editPassword')" class="btnEdit"></button>
                     </div>
                 </label>
                 <div id="div_erro"></div>
@@ -91,12 +89,11 @@
         <div class="footerCopyright">
             <span class="copyright">&copy; 2024 - Desenvolvido por Fabricio Prudente Ferreira | RA: 04241070 | 1-CCO/A | Faculdade São Paulo Tech School</span>
         </div>
-
         <div id="backgroundEditImg">
             <div class="editForm">
                 <div class="top">
                     <span>Coloque a URL da sua foto (.png/.jpg/.gif/.webp):</span>
-                    <button onclick="closeEditImg()" class="close">X</button>
+                    <button onclick="closeEdit('backgroundEditImg')" class="close">X</button>
                 </div>
                 <label>
                     <input type="text" placeholder="URL" class="inputStyle" id="inp_url">
@@ -106,6 +103,28 @@
                     <span>Ou escolha uma das imagens abaixo:</span>
                     <div id="defaultPfps"></div>
                 </div>
+            </div>
+        </div>
+        <div id="editPassword">
+            <div class="editForm">
+                <div class="top">
+                    <span class="subtitle">Edite a sua senha</span>
+                    <button onclick="closeEdit('editPassword')" class="close">X</button>
+                </div>
+                <label>
+                    <span>Senha atual:</span>
+                    <input type="password" id="inp_senhaAtual" class="inputStyle" placeholder="Atual senha">
+                </label>
+                <label>
+                    <span>Nova senha:</span>
+                    <input type="password" id="inp_senhaNova" class="inputStyle" placeholder="Nova senha">
+                </label>
+                <label>
+                    <span>Confirmar Senha:</span>
+                    <input type="password" id="inp_senhaNovaConf" class="inputStyle" placeholder="Nova senha">
+                </label>
+                <img src="../images/imagens/password/eye_hide.png" alt="olho" id="olho" onclick="mostrar_senha()">
+                <button onclick="alterarPw()">Alterar Senha</button>
             </div>
         </div>
     </body>
@@ -141,24 +160,26 @@
         })
     }
 
-    var carouselPosition = 0;
+    var carouselPosition = 0; 
 
-    var ip = 'http://localhost:3333'; //DEFINIR IP LOCAL
+    var ip = 'http://192.168.10.5:3333'; //DEFINIR IP LOCAL
 
-    function editImg(){
-        document.getElementById('backgroundEditImg').style.display = 'flex';
+    function edit(divId){
+        document.getElementById(divId).style.display = 'flex';
 
-        defaultPfps.innerHTML = `
-            <button onclick="pfpCarousel('anterior')">&lt;</button>
-            <img src=${lista_pfp_carousel[carouselPosition][0]} alt="imagem1" class="profilePicture" id="pfp1" onclick="inserirUrl('pfp1')">
-            <img src=${lista_pfp_carousel[carouselPosition][1]} alt="imagem2" class="profilePicture" id="pfp2" onclick="inserirUrl('pfp2')">
-            <img src=${lista_pfp_carousel[carouselPosition][2]} alt="imagem3" class="profilePicture" id='pfp3' onclick="inserirUrl('pfp3')">
-            <button onclick="pfpCarousel('proximo')">&gt;</button>
-        `;
+        if(divId == 'backgroundEditImg'){
+            defaultPfps.innerHTML = `
+                <button onclick="pfpCarousel('anterior')">&lt;</button>
+                <img src=${lista_pfp_carousel[carouselPosition][0]} alt="imagem1" class="profilePicture" id="pfp1" onclick="inserirUrl('pfp1')">
+                <img src=${lista_pfp_carousel[carouselPosition][1]} alt="imagem2" class="profilePicture" id="pfp2" onclick="inserirUrl('pfp2')">
+                <img src=${lista_pfp_carousel[carouselPosition][2]} alt="imagem3" class="profilePicture" id='pfp3' onclick="inserirUrl('pfp3')">
+                <button onclick="pfpCarousel('proximo')">&gt;</button>
+            `;
+        }
     }
 
-    function closeEditImg(){
-        document.getElementById('backgroundEditImg').style.display = 'none';
+    function closeEdit(divId){
+        document.getElementById(divId).style.display = 'none';
     }
 
     function saveImg(){
@@ -232,6 +253,49 @@
         finalizarSessao(textMsg, validado);
     }
 
+    
+    function alterarPw(){
+        var senhaAtual = inp_senhaAtual.value;
+        var senhaNova = inp_senhaNova.value;
+        var senhaNovaConf = inp_senhaNovaConf.value;
+        var caracteres_especiais = ['!', '?', '@', '#', '$', '%', '-', '_', '&', '*', '/'];
+        var tem_caracter_especial = false;
+
+        for(var cont = 0; cont < caracteres_especiais.length; cont++){
+            if(senhaNova.indexOf(caracteres_especiais[cont]) >= 0) tem_caracter_especial = true;
+        }
+        
+        if(senhaAtual == '' || senhaNova == '' || senhaNovaConf == '') alert('Preencha todos os campos para alterar sua senha!');
+        else if(senhaNova != senhaNovaConf) alert('A nova senha não se coincide na confirmação! Por favor, insira a mesma senha para confirmá-la.');
+        else if(senhaNova.length < 7) alert('Sua nova senha está muito curta!');
+        else if(!tem_caracter_especial) alert('Você precisa inserir um caracter especial na sua nova senha!');
+        else {
+            fetch('/usuarios/detectarSenha', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                })
+            })
+            .then(function(resposta){
+                if(resposta.ok){
+                    resposta.json().then(function(resultado){
+                        if(resultado[0].senha != senhaAtual) alert("A senha inserida não se coincide com a que foi cadastrada.");
+                        else {
+                            document.getElementById('inp_senha').value = senhaNova;
+                            document.getElementById('editPassword').style.display = 'none';
+                        }
+                    })
+                }
+            })
+            .catch(function(error){
+                console.error(error);
+            })
+        }
+    }
+
     var lista_pfp_carousel = [
         [`${ip}/images/pfps/steve.jpg`, `${ip}/images/pfps/alex.png`, `${ip}/images/pfps/allay.png`],
         [`${ip}/images/pfps/creeper.png`, `${ip}/images/pfps/dog.png`, `${ip}/images/pfps/wolf.png`],
@@ -271,5 +335,27 @@
         document.getElementById('inp_url').value = document.getElementById(id).src;
 
         saveImg();
+    }
+
+    var show = false;
+    function mostrar_senha(){
+        show = !show;
+
+        var element_senha1 = document.getElementById('inp_senhaAtual');
+        var element_senha2 = document.getElementById('inp_senhaNova');
+        var element_senha3 = document.getElementById('inp_senhaNovaConf');
+
+        if(show) {
+            olho.src = '../images/imagens/password/eye_show.png';
+            element_senha1.type = 'text';
+            element_senha2.type = 'text';
+            element_senha3.type = 'text';
+        }
+        else {
+            olho.src = '../images/imagens/password/eye_hide.png';
+            element_senha1.type = 'password';
+            element_senha2.type = 'password';
+            element_senha3.type = 'password';
+        }    
     }
 </script>

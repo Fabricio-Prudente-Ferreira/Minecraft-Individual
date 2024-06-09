@@ -19,4 +19,8 @@ router.post("/mostrar", function (req, res) {
     usuarioController.mostrar(req, res);
 })
 
+router.post("/detectarSenha", function (req, res) {
+    usuarioController.detectarSenha(req, res);
+})
+
 module.exports = router;
