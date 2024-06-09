@@ -313,6 +313,22 @@ button:hover {
     height: 160px;
 }
 
+.indexIntroduction .steve {
+    position: absolute;
+    top: 466px;
+    right: 350px;
+    width: 160px;
+    height: 160px;
+}
+
+.indexIntroduction .creeper {
+    position: absolute;
+    top: 477px;
+    right: 190px;
+    width: 160px;
+    height: 160px;
+}
+
 #div_erro {
     margin: 5px 0;
     text-align: center;
