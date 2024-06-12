@@ -1,3 +1,4 @@
+DROP DATABASE VillageCraft;
 CREATE DATABASE VillageCraft;
 USE VillageCraft;
 
@@ -43,9 +44,8 @@ CREATE TABLE PontuacaoQuiz(
     fkUsuario INT,
     fkQuiz INT,
     PRIMARY KEY(idPontuacaoQuiz, fkUsuario, fkQuiz),
-    pontuacao INT,
-    dataHota DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    tempoExecutado INT,
+    pontuacao INT NOT NULL,
+    tempoExecutado INT NOT NULL,
     FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY(fkQuiz) REFERENCES Quiz(idQuiz)
 );
@@ -59,10 +59,9 @@ CREATE TABLE PontuacaoTermo(
     qtdTentativas INT NOT NULL,
     qtdAcertos INT NOT NULL,
     qtdSemiacertos INT NOT NULL,
-    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     modo VARCHAR(45) NOT NULL,
     resultado INT NOT NULL,
-    tempoExecutado INT,
+    tempoExecutado INT NOT NULL,
     CONSTRAINT chkModo CHECK(modo IN('Fácil', 'Médio', 'Difícil')),
     CONSTRAINT chkResultado CHECK(resultado IN(0, 1))
 );
@@ -98,69 +97,9 @@ INSERT INTO Quiz(tema) VALUES
 	('Comércio');
 
 # COMANDOS TESTES A SEREM APAGADOS FUTURAMENTE -------------
-
 SELECT * FROM Usuario;
-SELECT * FROM Chat;
-SELECT * FROM Mensagem WHERE fkChat = 2;
-INSERT INTO Mensagem VALUES(DEFAULT, 5, 2, 'Fale alguma coisa aqui!', DEFAULT);
-UPDATE Usuario SET nickname = 'Steve Jobs' WHERE idUsuario = 4;
 SELECT * FROM Quiz;
 SELECT * FROM PontuacaoQuiz;
 SELECT * FROM PontuacaoTermo;
-
-INSERT INTO PontuacaoQuiz(fkUsuario, fkQuiz, pontuacao, tempoExecutado) VALUES
-	(1, 2, 5, 50),
-	(2, 2, 4, 60),
-	(2, 2, 3, 70),
-	(3, 2, 4, 10),
-	(3, 2, 5, 20),
-	(4, 2, 3, 30),
-	(1, 2, 1, 40),
-	(5, 2, 0, 80),
-	(6, 2, 2, 100);
-    
-SELECT 
-	MAX(pontuacao),
-	nome,
-    min(tempoExecutado)
-FROM PontuacaoQuiz
-	JOIN Quiz ON idQuiz = fkQuiz
-    JOIN Usuario ON idUsuario = fkUsuario
-    WHERE fkQuiz = 2
-	GROUP BY nome
-    ORDER BY MAX(pontuacao) DESC, min(tempoExecutado);
-    
-SELECT 
-    pontuacao,
-    nome,
-    tempoExecutado
-FROM PontuacaoQuiz AS pq
-	JOIN Usuario ON idUsuario = pq.fkUsuario
-	WHERE fkQuiz = 2 AND 
-    pq.pontuacao = (SELECT MAX(pontuacao) FROM PontuacaoQuiz WHERE fkUsuario = pq.fkUsuario AND fkQuiz = 2)
-	ORDER BY pq.pontuacao DESC, pq.tempoExecutado;
-
-INSERT INTO PontuacaoTermo VALUES(DEFAULT, 7, 'SLIME', 1, 7, 0, '2024-04-25 17:00:00', 'Fácil', 1, 10);
-
-SELECT MIN(qtdTentativas) AS 'tentativa', nome, MIN(tempoExecutado) FROM PontuacaoTermo 
-	JOIN Usuario ON fkUsuario = idUsuario 
-    WHERE resultado = 1 AND modo = 'Fácil' 
-    GROUP BY nome
-    ORDER BY MIN(tempoExecutado) ASC, MIN(tempoExecutado) ASC;
-
-INSERT INTO PontuacaoQuiz VALUES(DEFAULT, 3, 12, 1, DEFAULT);
-SELECT * FROM Mensagem JOIN Usuario WHERE id;
-TRUNCATE TABLE PontuacaoTermo;
-TRUNCATE TABLE Mensagem;
-TRUNCATE TABLE PontuacaoQuiz;
-DELETE FROM Usuario WHERE idUsuario >= 8;
-UPDATE Chat SET tema = "Poções" WHERE idChat = 3;
-
-SELECT qtdTentativas, modo, resultado, nome FROM PontuacaoTermo JOIN Usuario ON fkUsuario = idUsuario;
-SELECT MIN(qtdTentativas), nome FROM PontuacaoTermo 
-	JOIN Usuario ON fkUsuario = idUsuario 
-    WHERE resultado = 1
-    GROUP BY nome 
-    ORDER BY MIN(qtdTentativas) ASC;
-DESC PontuacaoTermo;
-
+SELECT * FROM Chat;
+SELECT * FROM Mensagem;

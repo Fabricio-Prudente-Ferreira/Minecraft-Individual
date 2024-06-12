@@ -54,6 +54,7 @@ p {
     width: 200px;
     height: 100px;
     align-self: center;
+    cursor: pointer;
 }
 
 .header .navbar {

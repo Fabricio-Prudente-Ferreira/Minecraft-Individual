@@ -23,7 +23,7 @@
     <body>
         <div class="header">
             <div class="container">
-                <img src="../images/villageCraftExt.png" alt="VillageCraft">
+                <img src="../images/villageCraftExt.png" alt="VillageCraft" onclick="window.location='./home.html'">
                 <div class="navbar">
                     <a href="./home.html" class="pagina_atual">Home</a>
                     <a href="./chat.html">Chats</a>
@@ -37,8 +37,8 @@
         <div class="indexIntroduction">
             <img src="../images/villageCraft.png" alt="VillageCraft">
             <img src="../images/imagens/moon.png" alt="moon" class="moon">
-            <img src="./images/imagens/steve.png" alt="steve" class="steve">
-            <img src="./images/imagens/creeper.png" alt="creeper" class="creeper">
+            <img src="../images/imagens/steve.png" alt="steve" class="steve">
+            <img src="../images/imagens/creeper.png" alt="creeper" class="creeper">
         </div>
         <div class="headerTransition"></div>
         <div class="content">
@@ -238,7 +238,7 @@
                     var vitoria = respostaJson.resultado[index];
                     var qtd_tentativas = respostaJson.qtdTentativas[index];
 
-                    if(vitoria) cor = "#a9ffa9";
+                    if(vitoria) cor = "#48d348";
                     else cor = '#004455';
 
                     if(dificuldade == 'Fácil') {

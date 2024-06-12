@@ -12,7 +12,7 @@
     <body onload="mostrar()">
         <div class="header">
             <div class="container">
-                <img src="../images/villageCraftExt.png" alt="VillageCraft">
+                <img src="../images/villageCraftExt.png" alt="VillageCraft" onclick="window.location='./home.html'">
                 <div class="navbar">
                     <a href="./home.html">Home</a>
                     <a href="./chat.html">Chats</a>
@@ -162,7 +162,7 @@
 
     var carouselPosition = 0; 
 
-    var ip = 'http://localhost:3333'; //DEFINIR IP LOCAL
+    var ip = 'http://10.18.36.3:3333'; //DEFINIR IP LOCAL
 
     function edit(divId){
         document.getElementById(divId).style.display = 'flex';
